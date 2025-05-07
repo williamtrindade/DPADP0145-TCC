@@ -1,18 +1,23 @@
 \section{Padrão arquitetural Model-View-Controller(MVC)}
+
     \par Esta seção tem como objetivo, explorar o MVC desde o seu surgimento na Xerox PARC até as versões mais modernas utilizadas do desenvolvimento web. Essa abordagem ajudará a entender por que mesmo depois de quatro décadas o MVC ainda vem sendo relevante para o desenvolvimento de software, o que corrobora para entender-se como implementar os princípios da arquitetura limpa em seu contexto.
     
     \subsection{Contexto histórico}
     
         \par O padrão arquitetural Model-View-Controller (MVC) foi desenvolvido em 1978 por Trygve Reenskaug enquanto o mesmo trabalhava na Xerox PARC, com o objetivo de criar sistemas de informação que refletissem os modelos mentais dos usuários, promovendo uma interação intuitiva por meio de inspeção e edição de dados \cite[p.~1]{artigo:reenskaug:2003}. 
         
-        \par Ainda nesse contexto, a sua implementação foi realizada inicialmente no ambiente Smalltalk, e foi formalizada como um padrão por Reenskaug em notas técnicas publicadas em maio e dezembro de 1979, essa notas estabeleceram as bases do padrão \cite{artigo:reenskaug:1979}. Quanto a validação e a demonstração de eficacia do padrão MVC, as mesmas vieram de um experimento no Xerox PARC, envolvendo um sistema de planejamento para uma fábrica de semicondutores, dessa forma mostrando a sua aplicabilidade prática \cite{artigo:reenskaug:2003}.
+        \par Ainda nesse contexto, a sua implementação foi realizada inicialmente no ambiente Smalltalk, e foi formalizada como um padrão por Reenskaug em notas técnicas publicadas em maio e dezembro de 1979, essa notas estabeleceram as bases do padrão \cite{artigo:reenskaug:1979}.
+        
+        \par Quanto a validação e a demonstração de eficacia do padrão MVC, as mesmas vieram de um experimento no Xerox PARC, envolvendo um sistema de planejamento para uma fábrica de semicondutores, dessa forma mostrando a sua aplicabilidade prática \cite{artigo:reenskaug:2003}.
         
         \par Com a evolução tecnológica, o MVC foi adaptado para interfaces mais complexas e posteriormente inspirou frameworks modernos, como o ASP.NET MVC, que foi lançado no ano de 2009 \cite{artigo:deacon:2009}. Nesse sentido é notável  que o Smalltalk foi o responsável pela criação do padrão MVC, que posteriormente se tornou amplamente adotado em sistemas orientados a objetos \cite{artigo:deacon:2009}.
         
     \subsection{Definição}
         \par O MVC é um padrão arquitetural que separa o software em três camadas, a camada que contem lógica do domínio da aplicação chamada Model, a camada que é responsável pela apresentação dos dados chamada View e a camada responsável por controlar as interações do usuário com a aplicação chamada Controller, assim promovendo modularidade, reutilização e manutenção do sistema\cite{artigo:reenskaug:2003}.
 
-        \par Nesse contexto de definição, o coração do MVC não é a separação técnica entre Model, View e Controller, mas a garantia de que o Model espelhe o modelo mental do usuário. Isso significa que, ao interagir com o sistema, o usuário não está lidando com tabelas de banco de dados ou JSON, mas com representações digitais de conceitos que já fazem parte do seu entendimento (ex.: 'projetos', 'tarefas', 'prazos'). Essa abordagem, inspirada em psicologia cognitiva e em linguagens de modelagem como UML, foi o que diferenciou o MVC de padrões anteriores \cite{artigo:reenskaug:2003}.
+        \par Nesse contexto de definição de conceitos, nota-se que o coração do padrão MVC não é a separação técnica entre Model, View e Controller, mas a garantia de que o Model espelhe o modelo mental do usuário \cite{artigo:reenskaug:2003}. 
+        
+        \par Isso significa que, ao interagir com o sistema, o usuário não está lidando com tabelas de banco de dados ou JSON, mas com representações digitais de conceitos que já fazem parte do seu entendimento (ex.: 'projetos', 'tarefas', 'prazos'). Essa abordagem, inspirada em psicologia cognitiva e em linguagens de modelagem como UML, foi o que diferenciou o MVC de padrões anteriores \cite{artigo:reenskaug:2003}.
 
         \begin{figure}[H] % O [H] exige o uso do pacote float (veja abaixo)
             \centering
@@ -25,7 +30,9 @@
         \subsubsection{Model}
             \par A camada Model representa o núcleo do domínio da aplicação, encapsulando tanto os dados quanto as regras de negócio que comandam o comportamento do sistema. Ela deve manter-se completamente independente das questões relacionadas à interface do usuário, não contendo qualquer referência direta ou conhecimento sobre como os dados são apresentados ou manipulados externamente \cite{artigo:deacon:2009}
             
-            \par Esta camada é composta por entidades que modelam o problema em questão, como classes representando clientes, transações financeiras ou reservas, permanecendo estável mesmo quando as interfaces de usuário sofrem modificações significativas. A literatura ainda explica uma distinção importante entre o Modelo de Domínio (Md), que contém a lógica essencial do negócio, e o Modelo de Aplicação (Ma), que atua como mediador entre o núcleo do sistema e as camadas de apresentação \cite{artigo:deacon:2009}.
+            \par Esta camada é composta por entidades que modelam o problema em questão, como classes representando clientes, transações financeiras ou reservas, permanecendo estável mesmo quando as interfaces de usuário sofrem modificações significativas \cite{artigo:deacon:2009}. 
+            
+            \par A literatura ainda explica uma distinção importante entre o Modelo de Domínio (Md), que contém a lógica essencial do negócio, e o Modelo de Aplicação (Ma), que atua como mediador entre o núcleo do sistema e as camadas de apresentação \cite{artigo:deacon:2009}.
             
         \subsubsection{View}
             \par A camada View é responsável pela apresentação dos dados ao usuário final, assumindo o papel de interface através da qual a interação com o sistema ocorre. Uma mesma aplicação pode possuir múltiplas Views para um único Model, permitindo diferentes formas de visualização e interação com os mesmos dados subjacentes. Estas podem variar desde interfaces gráficas sofisticadas (GUIs) até linhas de comando textuais (CLIs) ou mesmo APIs para integração com outros sistemas \cite{artigo:deacon:2009}.
@@ -39,7 +46,9 @@
             
         \subsubsection{A comunicação entre os componentes}
         
-            \par A comunicação entre estes componentes segue padrões bem definidos que preservam a separação de conceitos. As Views se comunicam com o Model através de mensagens, geralmente mediadas pelo Modelo de Aplicação quando este está presente, para solicitar atualizações ou acesso a dados. O fluxo inverso, onde mudanças no Model precisam ser refletidas nas Views, ocorre através de mecanismos de notificação por eventos, garantindo que o Model permaneça independente de suas Views \cite{artigo:deacon:2009}.
+            \par A comunicação entre estes componentes segue padrões bem definidos que preservam a separação de conceitos. As Views se comunicam com o Model através de mensagens, geralmente mediadas pelo Modelo de Aplicação quando este está presente, para solicitar atualizações ou acesso a dados \cite{artigo:deacon:2009}.
+            
+            \par O fluxo inverso, onde mudanças no Model precisam ser refletidas nas Views, ocorre através de mecanismos de notificação por eventos, garantindo que o Model permaneça independente de suas Views \cite{artigo:deacon:2009}.
             
             \par Já os Controllers, por sua vez, interceptam as interações do usuário com a aplicação, decidindo quais ações vão ser disparadas na View ou no Model, sem no entanto assumir responsabilidades que pertençam a estes componentes, mantendo assim sua responsabilidade bem definida \cite{artigo:deacon:2009}.
             
@@ -63,12 +72,13 @@
         \par Esta implementação do MVC no Smalltalk-80 serviu como base, definindo os princípios fundamentais de separação de preocupações que influenciaram profundamente o desenvolvimento de interfaces gráficas no futuro \cite{artigo:reenskaug:2003}
             
     \subsection{Padrão MVC-WEB}
+    
         \par O padrão MVC-Web surge como uma adaptação do tradicional Model-View-Controller (MVC) para o contexto de aplicações web, onde a arquitetura cliente-servidor e o protocolo HTTP introduzem desafios distintos em relação aos sistemas desktop originais \cite{inproceedings:grove:2011}.
-
+        
         \par Enquanto o MVC clássico foi concebido para ambientes interativos como o Smalltalk-80, o MVC-Web reflete as mudanças necessárias para lidar com a natureza stateless da web, a separação física entre cliente e servidor e a necessidade de gerenciamento explícito do fluxo de navegação \cite{inproceedings:grove:2011}.
 
         \subsubsection{Model}
-            \par @TODO: RELER ESTE ARTIGO
+        
             \par No MVC-Web, o Model mantém sua função central de gerenciar o estado da aplicação e suas regras de negócio mas com adaptações significativas:
 
             \begin{itemize}
@@ -81,7 +91,7 @@
 
 
         \subsubsection{View}
-            \par @TODO: RELER ESTE ARTIGO
+    
             \par A View no MVC-Web assume um papel híbrido, combinando renderização server-side com interatividade client-side:
 
             \begin{itemize}
@@ -94,7 +104,6 @@
         
        
         \subsubsection{Controller}
-        \par @TODO: RELER ESTE ARTIGO
         
         \par O Controller no MVC-Web sofre as mudanças mais radicais, principalmente devido ao Front Controller, um padrão arquitetônico que centraliza o tratamento de requisições HTTP:
 
