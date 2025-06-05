@@ -306,11 +306,15 @@ Defesa realizada por videoconferência.
 \newif\if@fone
    \def\fone#1{\@fonetrue\gdef\UFSM@fone{Fone (0xx) #1}}
 
-\newcommand{\margemesquerda}{\newcommand{\UFSM@leftcat}}
-\newcommand{\margemsuperior}{\newcommand{\UFSM@topcat}}
-\newcommand{\margemdireita}{\newcommand{\UFSM@rightcat}}
-\newcommand{\margeminferior}{\newcommand{\UFSM@bottomcat}}
+\def\UFSM@leftcat{1}   % Define um valor padrão (ex: 1 cm)
+\def\UFSM@topcat{1}     % Define um valor padrão
+\def\UFSM@rightcat{1}  % Define um valor padrão
+\def\UFSM@bottomcat{1} % Define um valor padrão
 
+\newcommand{\margemesquerda}[1]{\gdef\UFSM@leftcat{#1}}
+\newcommand{\margemsuperior}[1]{\gdef\UFSM@topcat{#1}}
+\newcommand{\margemdireita}[1]{\gdef\UFSM@rightcat{#1}}
+\newcommand{\margeminferior}[1]{\gdef\UFSM@bottomcat{#1}}
 
 
 \newif\if@orientador

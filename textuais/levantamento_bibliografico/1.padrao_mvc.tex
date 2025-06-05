@@ -24,38 +24,41 @@
             \includegraphics[width=0.8\textwidth]{figuras/figura_mvc_1.png}
             \caption{Modelo de colaboração UML da solução Smalltalk-80.}
             \label{fig:figura_mvc_1}
-            \newcommand{\source}{Fonte: \cite{artigo:reenskaug:2003}}
+            \newcommand{\minhafonte}{Fonte: \cite{artigo:reenskaug:2003}}
+            \minhafonte
         \end{figure}
 
-        \subsubsection{Model}
-            \par A camada Model representa o núcleo do domínio da aplicação, encapsulando tanto os dados quanto as regras de negócio que comandam o comportamento do sistema. Ela deve manter-se completamente independente das questões relacionadas à interface do usuário, não contendo qualquer referência direta ou conhecimento sobre como os dados são apresentados ou manipulados externamente \cite{artigo:deacon:2009}
-            
-            \par Esta camada é composta por entidades que modelam o problema em questão, como classes representando clientes, transações financeiras ou reservas, permanecendo estável mesmo quando as interfaces de usuário sofrem modificações significativas \cite{artigo:deacon:2009}. 
-            
-            \par A literatura ainda explica uma distinção importante entre o Modelo de Domínio (Md), que contém a lógica essencial do negócio, e o Modelo de Aplicação (Ma), que atua como mediador entre o núcleo do sistema e as camadas de apresentação \cite{artigo:deacon:2009}.
-            
-        \subsubsection{View}
-            \par A camada View é responsável pela apresentação dos dados ao usuário final, assumindo o papel de interface através da qual a interação com o sistema ocorre. Uma mesma aplicação pode possuir múltiplas Views para um único Model, permitindo diferentes formas de visualização e interação com os mesmos dados subjacentes. Estas podem variar desde interfaces gráficas sofisticadas (GUIs) até linhas de comando textuais (CLIs) ou mesmo APIs para integração com outros sistemas \cite{artigo:deacon:2009}.
-            
-            \par A View possui conhecimento sobre a existência e estrutura do Model, acessando seus dados para exibição, mas o inverso não é verdadeiro - o Model permanece completamente alheio às suas Views. Esta relação unidirecional é fundamental para manter o baixo acoplamento do sistema, permitindo que as Views sejam modificadas ou expandidas sem impactar a camada de domínio da aplicação \cite{artigo:deacon:2009}.
-
-        \subsubsection{Controller}
-            \par O Controller atua como o componente responsável por processar as entradas do usuário, traduzindo ações físicas (como cliques de mouse ou pressionamentos de tecla) em comandos significativos para o sistema. Em muitas implementações modernas, observa-se uma tendência de fusão entre View e Controller, resultando em um componente único frequentemente denominado Delegate \cite{artigo:deacon:2009}.
-            
-            \par Ele ainda mantém suas características específicas vistas no modelo tradicional, incluindo sua natureza dependente de plataforma, pois deve lidar com as particularidades do sistema operacional subjacente, e seu caráter essencialmente processual, focando na interpretação de eventos sem armazenar estado permanente \cite{artigo:deacon:2009}.
-            
-        \subsubsection{A comunicação entre os componentes}
+        %% MODEL 
         
-            \par A comunicação entre estes componentes segue padrões bem definidos que preservam a separação de conceitos. As Views se comunicam com o Model através de mensagens, geralmente mediadas pelo Modelo de Aplicação quando este está presente, para solicitar atualizações ou acesso a dados \cite{artigo:deacon:2009}.
+        \par A camada Model representa o núcleo do domínio da aplicação, encapsulando tanto os dados quanto as regras de negócio que comandam o comportamento do sistema. Ela deve manter-se completamente independente das questões relacionadas à interface do usuário, não contendo qualquer referência direta ou conhecimento sobre como os dados são apresentados ou manipulados externamente \cite{artigo:deacon:2009}
+        
+        \par Esta camada é composta por entidades que modelam o problema em questão, como classes representando clientes, transações financeiras ou reservas, permanecendo estável mesmo quando as interfaces de usuário sofrem modificações significativas \cite{artigo:deacon:2009}. 
+        
+        \par A literatura ainda explica uma distinção importante entre o Modelo de Domínio (Md), que contém a lógica essencial do negócio, e o Modelo de Aplicação (Ma), que atua como mediador entre o núcleo do sistema e as camadas de apresentação \cite{artigo:deacon:2009}.
             
-            \par O fluxo inverso, onde mudanças no Model precisam ser refletidas nas Views, ocorre através de mecanismos de notificação por eventos, garantindo que o Model permaneça independente de suas Views \cite{artigo:deacon:2009}.
+        %% VIEW 
+        
+        \par A camada View é responsável pela apresentação dos dados ao usuário final, assumindo o papel de interface através da qual a interação com o sistema ocorre. Uma mesma aplicação pode possuir múltiplas Views para um único Model, permitindo diferentes formas de visualização e interação com os mesmos dados subjacentes. Estas podem variar desde interfaces gráficas sofisticadas (GUIs) até linhas de comando textuais (CLIs) ou mesmo APIs para integração com outros sistemas \cite{artigo:deacon:2009}.
+        
+        \par A View possui conhecimento sobre a existência e estrutura do Model, acessando seus dados para exibição, mas o inverso não é verdadeiro - o Model permanece completamente alheio às suas Views. Esta relação unidirecional é fundamental para manter o baixo acoplamento do sistema, permitindo que as Views sejam modificadas ou expandidas sem impactar a camada de domínio da aplicação \cite{artigo:deacon:2009}.
+
+        %% CONTROLLER
+        \par O Controller atua como o componente responsável por processar as entradas do usuário, traduzindo ações físicas (como cliques de mouse ou pressionamentos de tecla) em comandos significativos para o sistema. Em muitas implementações modernas, observa-se uma tendência de fusão entre View e Controller, resultando em um componente único frequentemente denominado Delegate \cite{artigo:deacon:2009}.
+        
+        \par Ele ainda mantém suas características específicas vistas no modelo tradicional, incluindo sua natureza dependente de plataforma, pois deve lidar com as particularidades do sistema operacional subjacente, e seu caráter essencialmente processual, focando na interpretação de eventos sem armazenar estado permanente \cite{artigo:deacon:2009}.
             
-            \par Já os Controllers, por sua vez, interceptam as interações do usuário com a aplicação, decidindo quais ações vão ser disparadas na View ou no Model, sem no entanto assumir responsabilidades que pertençam a estes componentes, mantendo assim sua responsabilidade bem definida \cite{artigo:deacon:2009}.
+        %% A comunicação entre os componentes
+        
+        \par A comunicação entre estes componentes segue padrões bem definidos que preservam a separação de conceitos. As Views se comunicam com o Model através de mensagens, geralmente mediadas pelo Modelo de Aplicação quando este está presente, para solicitar atualizações ou acesso a dados \cite{artigo:deacon:2009}.
+        
+        \par O fluxo inverso, onde mudanças no Model precisam ser refletidas nas Views, ocorre através de mecanismos de notificação por eventos, garantindo que o Model permaneça independente de suas Views \cite{artigo:deacon:2009}.
+        
+        \par Já os Controllers, por sua vez, interceptam as interações do usuário com a aplicação, decidindo quais ações vão ser disparadas na View ou no Model, sem no entanto assumir responsabilidades que pertençam a estes componentes, mantendo assim sua responsabilidade bem definida \cite{artigo:deacon:2009}.
             
-        \subsubsection{Diferenciais}
-            \par A arquitetura MVC oferece diferencias significativos para o desenvolvimento e manutenção de sistemas de software complexos. Ao isolar a lógica de negócio das preocupações com interface do usuário, torna-se possível modificar ou expandir as camadas de apresentação sem afetar o núcleo do sistema, assim como reutilizar o mesmo Model em diferentes contextos e plataformas \cite{artigo:deacon:2009}.
-            
-            \par A comunicação baseada em eventos e o princípio de dependência unidirecional entre os componentes contribuem para a criação de sistemas mais flexíveis, coesos e fáceis de manter, características essenciais em ambientes onde os requisitos estão sujeitos a mudanças frequentes \cite{artigo:deacon:2009}.
+        %% Diferenciais
+        \par A arquitetura MVC oferece diferencias significativos para o desenvolvimento e manutenção de sistemas de software complexos. Ao isolar a lógica de negócio das preocupações com interface do usuário, torna-se possível modificar ou expandir as camadas de apresentação sem afetar o núcleo do sistema, assim como reutilizar o mesmo Model em diferentes contextos e plataformas \cite{artigo:deacon:2009}.
+        
+        \par A comunicação baseada em eventos e o princípio de dependência unidirecional entre os componentes contribuem para a criação de sistemas mais flexíveis, coesos e fáceis de manter, características essenciais em ambientes onde os requisitos estão sujeitos a mudanças frequentes \cite{artigo:deacon:2009}.
 
     \subsection{Padrão MVC no Smalltalk-80}
 
@@ -77,33 +80,33 @@
         
         \par Enquanto o MVC clássico foi concebido para ambientes interativos como o Smalltalk-80, o MVC-Web reflete as mudanças necessárias para lidar com a natureza stateless da web, a separação física entre cliente e servidor e a necessidade de gerenciamento explícito do fluxo de navegação \cite{inproceedings:grove:2011}.
 
-        \subsubsection{Model}
+        %% MODEL
         
-            \par No MVC-Web, o Model mantém sua função central de gerenciar o estado da aplicação e suas regras de negócio mas com adaptações significativas:
+        \par No MVC-Web, o Model mantém sua função central de gerenciar o estado da aplicação e suas regras de negócio mas com adaptações significativas:
 
-            \begin{itemize}
-                \item Persistência de Dados: Diferentemente do Smalltalk, onde o modelo era persistente na memória, em frameworks web como Rails ou ASP.NET, o modelo frequentemente interage com bancos de dados, usando padrões como Active Record ou ORM (Mapeamento Objeto-Relacional) \cite{inproceedings:grove:2011}.
-                
-                \item Transações e Lógica de Negócio: O modelo continua responsável por executar operações críticas, mas sua comunicação com as views não ocorre mais via Observer (como no padrão original). Em vez disso, o controller atua como intermediário \cite{inproceedings:grove:2011}.
-                
-                \item Interfaces Externas: Em aplicações modernas, o modelo também pode integrar APIs externas ou serviços web, expandindo sua função além do armazenamento local \cite{inproceedings:grove:2011}.
-            \end{itemize}
+        \begin{itemize}
+            \item Persistência de Dados: Diferentemente do Smalltalk, onde o modelo era persistente na memória, em frameworks web como Rails ou ASP.NET, o modelo frequentemente interage com bancos de dados, usando padrões como Active Record ou ORM (Mapeamento Objeto-Relacional) \cite{inproceedings:grove:2011}.
+            
+            \item Transações e Lógica de Negócio: O modelo continua responsável por executar operações críticas, mas sua comunicação com as views não ocorre mais via Observer (como no padrão original). Em vez disso, o controller atua como intermediário \cite{inproceedings:grove:2011}.
+            
+            \item Interfaces Externas: Em aplicações modernas, o modelo também pode integrar APIs externas ou serviços web, expandindo sua função além do armazenamento local \cite{inproceedings:grove:2011}.
+        \end{itemize}
 
 
-        \subsubsection{View}
+        %% VIEW
     
-            \par A View no MVC-Web assume um papel híbrido, combinando renderização server-side com interatividade client-side:
+        \par A View no MVC-Web assume um papel híbrido, combinando renderização server-side com interatividade client-side:
 
-            \begin{itemize}
-                \item Templates Dinâmicos: Frameworks como Rails e ASP.NET usam templates HTML com código embutido para gerar páginas dinamicamente \cite{inproceedings:grove:2011}.
+        \begin{itemize}
+            \item Templates Dinâmicos: Frameworks como Rails e ASP.NET usam templates HTML com código embutido para gerar páginas dinamicamente \cite{inproceedings:grove:2011}.
 
-                \item Interações no lado do cliente: Com tecnologias como JavaScript e Ajax, a view pode realizar validações, atualizações parciais e outras operações sem recarregar a página, assumindo funções que, no MVC original, eram do modelo ou controller \cite{inproceedings:grove:2011}.
+            \item Interações no lado do cliente: Com tecnologias como JavaScript e Ajax, a view pode realizar validações, atualizações parciais e outras operações sem recarregar a página, assumindo funções que, no MVC original, eram do modelo ou controller \cite{inproceedings:grove:2011}.
 
-                \item Separação Menos Rígida: Enquanto no Smalltalk a view era passiva (só exibia dados), no MVC-Web ela pode conter lógica de apresentação e até mesmo regras de negócio simples (como validação de formulários), o que desafia a pureza do padrão \cite{inproceedings:grove:2011}.
-            \end{itemize}
+            \item Separação Menos Rígida: Enquanto no Smalltalk a view era passiva (só exibia dados), no MVC-Web ela pode conter lógica de apresentação e até mesmo regras de negócio simples (como validação de formulários), o que desafia a pureza do padrão \cite{inproceedings:grove:2011}.
+        \end{itemize}
         
        
-        \subsubsection{Controller}
+        %% Controller
         
         \par O Controller no MVC-Web sofre as mudanças mais radicais, principalmente devido ao Front Controller, um padrão arquitetônico que centraliza o tratamento de requisições HTTP:
 
