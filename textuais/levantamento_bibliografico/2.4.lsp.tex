@@ -1,0 +1,37 @@
+
+%
+%
+% LSP
+%
+%
+\subsection{Princípio da Substituição de Liskov (Liskov Substitution Principle - LSP)}
+
+    \par O Princípio da Substituição de Liskov (LSP), formulado por Barbara Liskov, dita que instâncias de uma classe pai devem ser substituíveis por instâncias de uma classe derivada sem alterar a corretude ou o comportamento esperado do programa. Este princípio é crucial para guiar o uso da herança de forma a manter a integridade e a previsibilidade do sistema. Essencialmente, uma subclasse deve poder ser utilizada em qualquer lugar onde sua superclasse é esperada, sem causar efeitos colaterais indesejados \cite{livro:martin:cleanarch}.
+
+    \par Aderir ao LSP é fundamental para o uso correto do polimorfismo e da herança, resultando em código mais confiável e de fácil manutenção, especialmente em sistemas grandes onde o polimorfismo é intensamente utilizado. Quando o LSP é respeitado, as hierarquias de classes são mais robustas, e a capacidade de substituição garante que o sistema se comporte de maneira consistente, independentemente da implementação específica da subclasse utilizada \cite{livro:joshi:2016}.
+    
+    \par Um exemplo de violação do LSP, pode visto no diagrama ANTES da aplicação do LSP  na Figura \ref{fig:lsp_bad}:
+
+    \begin{figure}[H]
+        \centering   
+        \includesvg[width=0.5\linewidth]{figuras/solid/lsp_bad.svg}
+        \caption{Violação da LSP.}
+        \label{fig:lsp_bad} 
+        \newcommand{\minhafonte}{Fonte: Adaptado de \cite{artigo:ramachandrappa:2024}.}
+        \minhafonte
+    \end{figure} 
+    
+    
+    \par Nesse caso Penguin herda de Bird e o método fly() em Bird implica a capacidade de voar, a implementação de fly() em Penguin (que não voa) lança uma exceção. Assim violando o LSP. Uma solução é apresentada no diagrama DEPOIS da refatoração na Figura \ref{fig:figura_lsp_good}.
+
+     \begin{figure}[H]
+        \centering   
+        \includesvg[width=0.6\linewidth]{figuras/solid/lsp_good.svg}
+        \caption{Aplicação da LSP.}
+        \label{fig:figura_lsp_good} 
+        \newcommand{\minhafonte}{Fonte: Adaptado de \cite{artigo:ramachandrappa:2024}.}
+        \minhafonte
+    \end{figure} 
+    
+    
+    Agora tem-se hierarquias mais adequadas e interfaces específicas para as capacidades, como uma interface IFlyingBird que não é implementada por Penguin, agora objetos do tipo Bird podem ser trocados sem problemas \cite{artigo:ramachandrappa:2024}.

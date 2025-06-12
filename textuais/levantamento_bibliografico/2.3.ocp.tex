@@ -1,0 +1,40 @@
+
+%
+%
+% OPC
+%
+%
+\subsection{Princípio Aberto/Fechado (Open/Closed Principle - OCP)}
+
+    \par O OCP determina que classes devem ser abertas para extensão, mas fechadas para modificação, assim permitindo a adição de funcionalidades sem alterar o código existente \cite{livro:martin:cleanarch}. Na Arquitetura Limpa, o OCP é implementado por meio de interfaces e herança, especialmente em adaptadores, para suportar novas integrações \cite{livro:martin:cleanarch}. 
+
+    \par O Princípio Aberto/Fechado (OCP), conforme articulado por Bertrand Meyer, estabelece que entidades de software, como classes, módulos ou funções, devem ser abertas para extensão, mas fechadas para modificação. Isso significa que o comportamento de um sistema deve poder ser estendido através da adição de novo código, em vez de alterar código existente que já foi testado e está em funcionamento. Este princípio visa proteger o código existente de regressões e reduzir a necessidade de retestes extensivos \cite{livro:martin:cleanarch}.
+
+    \par Seguir o OCP é crucial para manter a estabilidade do software à medida que ele evolui, permitindo que novas funcionalidades sejam integradas sem comprometer as existentes. Ao aderir ao OCP, os desenvolvedores podem adicionar novas funcionalidades sem alterar o código base existente, o que minimiza o risco de introduzir novos bugs. Este princípio é crucial para criar sistemas que podem crescer e se adaptar ao longo do tempo com menor esforço de manutenção \cite{artigo:ramachandrappa:2024}.
+
+
+    \par Considere uma classe DiscountCalculator que calcula descontos com base em diferentes tipos de cliente através de múltiplas declarações if-else if, como pode ser visualizado no diagrama ANTES da aplicação do OCP na Figura \ref{fig:figura_ocp_bad}.
+
+   \begin{figure}[H]
+        \centering   
+        \includesvg[width=0.6\linewidth]{figuras/solid/ocp_bad.svg}
+        \caption{Violação da OCP.}
+        \label{fig:figura_ocp_bad} 
+        \newcommand{\minhafonte}{Fonte: Adaptado de \cite{artigo:ramachandrappa:2024}.}
+        \minhafonte
+    \end{figure}
+        
+    Para aplicar o OCP, como demonstrado no diagrama da Figura \ref{fig:figura_ocp_good} DEPOIS da aplicação do OCP:
+
+   \begin{figure}[H]
+        \centering   
+        \includesvg[width=0.7\linewidth]{figuras/solid/ocp_good.svg}
+        \caption{Aplicação da OCP.}
+        \label{fig:figura_ocp_good} 
+        \newcommand{\minhafonte}{Fonte: Adaptado de \cite{artigo:ramachandrappa:2024}.}
+        \minhafonte
+    \end{figure} 
+    
+    \par pode-se usar polimorfismo: uma classe abstrata Customer com um método abstrato getDiscount(). As classes RegularCustomer e PremiumCustomer herdariam de Customer e implementariam getDiscount(). Assim, o DiscountCalculator usaria o método getDiscount() do objeto Customer passado, permitindo a adição de novos tipos de clientes criando novas subclasses de Customer sem alterar o DiscountCalculator \cite{artigo:ramachandrappa:2024}.
+
+

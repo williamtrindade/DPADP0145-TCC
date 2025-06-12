@@ -11,15 +11,24 @@
 %% \include{pre-textuais/folha-de-errata}
 \include{dados/opcoes-formatacao}
 
+\usepackage{tabularx} % Adicionar este pacote
+\usepackage{caption}
+\usepackage{graphicx} % Usado para outros tipos de imagens
+\usepackage{float} % Usado para posicionamento de imagens
+\usepackage{svg}  % Eis o pacote que queremos.
+\usepackage{tikz}
+\usepackage{adjustbox}
+
 \begin{document}
     \pretextual
     %% TEXTUAIS
     \include{textuais/introducao}
     \include{textuais/levantamento_bibliografico/main}
-    %%\include{textuais/revisao_da_literatura}
-    %%\include{textuais/consideracoes_finais}
-    
+    \include{textuais/proposta_do_trabalho}
+    \include{textuais/consideracoes_finais}
+
+    %% POS
     \include{pos-textuais/bibliografia}
-    %\include{pos-textuais/apendices}
+    %%\include{pos-textuais/apendices}
          
 \end{document}

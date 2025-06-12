@@ -1,0 +1,13 @@
+\section{Arquitetura Limpa}
+
+    \par Esta seção tem como objetivo, explorar os conceitos da Arquitetura Limpa desde o seu surgimento no ano de 2012 até os mais recentes estudos na área e implementações feitas pelos autores citados nesse trabalho. Abordar os conceitos da Arquitetura Limpa é necessário para entender quais princípios ela prega e como ela se relaciona de maneira prática mais a frente neste trabalho, com o padrão arquitetural MVC.
+    
+    \par A Arquitetura Limpa foi proposta por Robert C. Martin no ano de 2012, conforme publicado no blog The Clean Code Blog \cite{artigo:ferreira:2022}. A abordagem para criação desces princípios foi desenvolvida com base na experiência do autor sendo programador desde 1970, desse modo nota-se que a Arquitetura Limpa faz uso de conceitos estudados e desenvolvidos previamente por outros pesquisadores da área de engenheira de software \cite{livro:martin:cleanarch}.
+    
+    \par O surgimento da Arquitetura Limpa está associado à "crise do software" da década de 1960, caracterizada por problemas como prazos não cumpridos, custos elevados, baixa produtividade, qualidade insuficiente e dificuldades de manutenção em aplicações \cite{artigo:dantas:2021, artigo:ferreira:2022}. Essa crise evidenciou a necessidade de métodos para gerenciar a complexidade e os custos de manutenção de software \cite{livro:martin:cleanarch}.
+
+    \par Tendo isso em vista, a partir dos anos 1970, pesquisas buscaram melhorar os processos de desenvolvimento de software, resultando no avanço de ferramentas, métodos, padrões e técnicas para a criação de software de qualidade \cite{artigo:dantas:2021}. 
+    
+    \par Diante desse contexto, a Arquitetura é um conjunto de princípios e práticas de design de software, que visa resolver os problemas encontrados ao longo dos anos, para assim ser possível criar uma arquitetura de software capaz de comportar sistemas manuteníveis, escaláveis e testáveis, priorizando a separação de responsabilidades e a independência de detalhes de implementação \cite{livro:martin:cleanarch}.
+
+    \par A arquitetura limpa define que o sistema deve ser estruturado em camadas concêntricas, com as regras de negócio (entidades) no centro e os detalhes técnicos (frameworks, bancos de dados) na periferia, seguindo a Regra da Dependência ao qual é explicado mais a frente neste trabalho e estabelecendo que as dependências do código-fonte devem apontar para as camadas internas, garantindo o desacoplamento entre camadas \cite{livro:martin:cleanarch}.
