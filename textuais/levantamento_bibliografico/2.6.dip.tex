@@ -2,11 +2,11 @@
 
 \subsection{Princípio da Inversão de Dependência (Dependency Inversion Principle - DIP)}
     
-    \par O Princípio da Inversão de Dependência (DIP) estabelece que módulos de alto nível não devem depender de módulos de baixo nível; ambos devem depender de abstrações. Adicionalmente, as abstrações não devem depender de detalhes concretos, mas sim os detalhes é que devem depender das abstrações. Isso significa que as classes que contêm a lógica de negócios principal (alto nível) não devem ser diretamente acopladas a classes que lidam com detalhes de infraestrutura (baixo nível) \cite{livro:martin:cleanarch}.
+    \par O DIP estabelece que módulos de alto nível não devem depender de módulos de baixo nível; ambos devem depender de abstrações. Adicionalmente, as abstrações não devem depender de detalhes concretos, mas sim os detalhes é que devem depender das abstrações. Isso significa que as classes que contêm a lógica de negócios principal (alto nível) não devem ser diretamente acopladas a classes que lidam com detalhes de infraestrutura (baixo nível) \cite{livro:martin:cleanarch}.
 
     \par Este princípio é crucial para criar sistemas desacoplados e flexíveis, pois promove a dependência de interfaces ou classes abstratas em vez de implementações concretas. Isso permite que as implementações de baixo nível possam ser alteradas ou substituídas sem impactar os módulos de alto nível, desde que o contrato definido pela abstração seja mantido. Tal desacoplamento também facilita os testes, permitindo a substituição de dependências reais por dublês de teste \cite{livro:joshi:2016}.
 
-    \par A Figura~\ref{fig:figura_dip_bad} mostra um exemplo violação DIP.
+    \par A Figura~\ref{fig:figura_dip_bad} mostra um exemplo de violação do DIP.
 
     \begin{figure}[H]
         \centering   
