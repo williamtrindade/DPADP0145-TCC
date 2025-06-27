@@ -1,33 +1,70 @@
 \chapter{Introdução}
     \section{Contextualização}
-      \par A Arquitetura Limpa, proposta por Robert C. Martin, surge como uma resposta à complexidade crescente no desenvolvimento de software. Em um cenário onde a tecnologia evolui rapidamente, a necessidade de criar sistemas que sejam robustos, testáveis e de fácil manutenção se torna essencial. A Arquitetura Limpa oferece uma abordagem que visa desacoplar componentes do sistema, permitindo que mudanças em uma parte do código não impactem outras, facilitando assim a evolução e a adaptação do software às novas demandas.
 
-    \section{Problema}
+    \par O desenvolvimento de software moderno é marcado pela busca contínua por qualidade, o que, segundo \cite{livro:pressman:engenharia:2021}, envolve a criação de sistemas mais robustos, flexíveis e de fácil manutenção. A partir disso os padrões de arquitetura surgiram como soluções comprovadas para utilizar-se na criação de sistemas com alta complexidade. 
+
+
+    \par Diante disso, padrão Model-View-Controller (MVC) se destaca, servindo como a "base arquitetural para muitos frameworks de desenvolvimento web" \cite{inproceedings:grove:2011}. Tendo isso em vista, tem-se o principal framework da linguagem de programação PHP nos dias atuais, chamado Laravel, ao qual adota por padrão o MVC como base arquitetural, sendo ele usado para a construção de aplicações web orientadas a interface gráfica, bem como meio para construir uma Interface de Programação de Aplicações (Application Programming Interface – API) \cite{laravel:docs}.
+
+    \par O MVC, desde sua ideia original, propunha a divisão da aplicação em três componentes interconectados: o Modelo, responsável pela lógica de negócios e dados; a Visão, encarregada da apresentação; e o Controlador, que gerencia a interação do usuário. Essa separação de interesses oferecia uma base organizada que promovia o desacoplamento das responsabilidades do sistema \cite{artigo:reenskaug:1979}.
+
+    \par Todavia, conforme as aplicações crescem em relação a sua complexidade, a manutenção e a testabilidade em sistemas que usam apenas o MVC tradicional acaba sendo mais difícil, já que ele não visa resolver problemas de organização em todas as camadas do software. É nesse quesito que a Arquitetura Limpa proposta por \cite{livro:martin:cleanarch} foca, trazendo uma filosofia de design de software diferente, mas que faz uso de preceitos já estudados na ciência da computação por outros autores. Essa junção de técnicas visa minimizar os custos de evolução do software \cite{livro:martin:cleanarch}
+
+    \par Essa arquitetura, tem por preceito a organização do software em camadas concêntricas, onde as regras de negócio ficam no núcleo, isoladas dos detalhes de implementação como frameworks, Interface de Usuário (User Interface - UI) e bancos de dados. Essa divisão é regida pela regra da dependência, ao qual define que as dependências  do código devem apontar para dentro, protegendo o núcleo do software de influências externas \cite{livro:martin:cleanarch}.
+
+    \par A relevância de se explorar a aplicação dos princípios da Arquitetura Limpa em APIs que usam o estilo arquitetural REST (Representational State Transfer) desenvolvidas em Laravel vem do objetivo de buscar a longevidade e adaptabilidade do software, também de demonstrar como o uso da Arquitetura Limpa é capaz de isolar as regras de negócio do software, do framework, que no caso desse trabalho é o Laravel, bem como separa-las de outras tecnologias, facilitando a manutenção futura.
+
+    \par Nesse contexto, apesar da literatura atualmente abordar esses temas separadamente, percebe-se uma lacuna na mesma, no tocante a guias práticos e estudos de caso detalhados que mostram o processo de integração da Arquitetura Limpa com APIs REST desenvolvidas em Laravel, já estruturadas com o MVC. Essa carência pode dificultar a adoção de práticas arquiteturais avançadas por desenvolvedores, limitando o potencial das aplicações em termos de manutenibilidade e escalabilidade.
+
+    \par Este trabalho de conclusão de curso, busca estudar e demonstrar de maneira prática, como os princípios da Arquitetura Limpa podem ser efetivamente implementados em uma API REST desenvolvida com Laravel, partindo de uma base MVC, com o objetivo de oferecer um caminho prático para a adoção da Arquitetura Limpa em projetos de software.
+
+    \section{Problema de Pesquisa}
     
-     \par Apesar das vantagens potencialmente significativas da Arquitetura Limpa, muitos desenvolvedores e equipes de software enfrentam desafios ao adotá-la em suas práticas de desenvolvimento. Dificuldades como a resistência à mudança, a curva de aprendizado necessária para compreender seus princípios e a aplicação prática em projetos existentes são comuns. Esse cenário levanta questões importantes sobre a real eficácia da Arquitetura Limpa em diferentes contextos de desenvolvimento.
+        \par Apesar da popularidade do framework Laravel e do padrão arquitetural MVC no desenvolvimento de APIs REST, há uma lacuna na literatura atual sobre como integrar esses conceitos com os princípios da Arquitetura Limpa. Embora existam estudos sobre o padrão MVC e Arquitetura Limpa separadamente, poucos trabalhos exploram sua combinação prática, especialmente em contextos de desenvolvimento de APIs REST.
 
-    \par Diante disso, este trabalho busca investigar: Quais são os fatores que influenciam a adoção e a implementação bem-sucedida da Arquitetura Limpa em projetos de software? Além disso, até que ponto a Arquitetura Limpa se mostra vantajosa em comparação com outras abordagens arquiteturais, considerando aspectos como manutenibilidade, escalabilidade e eficiência no desenvolvimento?
+        \par Essa falta de abordagem consolidada pode dificultar a adoção de boas práticas arquiteturais pelos desenvolvedores, assim fazendo com que muitas soluções negligenciam os benefícios de usar os princípios da Arquitetura Limpa, especialmente a manutenibilidade. O presente trabalho, visa investigar como os princípios da Arquitetura Limpa podem ser implementados em uma API REST baseada no padrão MVC do framework Laravel.
 
     \section{Objetivos}
         \subsection{Objetivo Geral}
-    
-            \par Este trabalho tem como objetivo realizar um estudo sobre a Arquitetura Limpa (Clean Architecture) com base na literatura existente. Busca-se explorar os princípios e fundamentos que a sustentam, assim como os padrões de design relevantes para sua implementação. Além disso, serão discutidos os principais fatores que motivam a sua adoção em projetos de software, destacando suas vantagens e desafios.
+
+            \par Este trabalho tem como objetivo geral, demonstrar a aplicação dos princípios da Arquitetura Limpa em uma API REST desenvolvida com o framework PHP Laravel, que originalmente usa o padrão arquitetural MVC. O estudo, mostrará por meio de um caso prático, as decisões arquiteturais, os desafios enfrentados e as soluções adotadas.
 
         \subsection{Objetivos Específicos}
             \par Para a realização deste trabalho de conclusão de curso serão buscados os seguintes objetivos específicos:
 
             \begin{itemize}
 
-                \item Realizar uma revisão da literatura sobre os princípios fundamentais da Arquitetura Limpa.
+                \item Realizar uma busca na literatura sobre a relação entre Padrão de Arquitetura e Padrão de Projeto (TCC 1).
+            
+                \item Realizar uma busca na literatura sobre os princípios SOLID (TCC 1).
+                
+                \item Realizar uma busca na literatura sobre os fundamentos teóricos do padrão MVC e da Arquitetura Limpa (TCC 1).
 
-                \item Analisar padrões de design que suportam a implementação da Arquitetura Limpa em sistemas de software.
+                \item Escolher uma API REST desenvolvida em Laravel que faz uso da arquitetura proposta pelo framework, para servir como base para a demonstração da aplicação dos conceitos da Arquitetura Limpa (TCC 2).
+      
+                \item Realizar uma busca na literatura sobre os conceitos do MVC no framework Laravel (TCC 2).
 
-                \item Investigar as vantagens e desafios da aplicação da Arquitetura Limpa em projetos reais.
+                \item Redesenhar a API REST Laravel escolhida, visando aplicar camadas da Arquitetura Limpa (TCC 2).
 
-                \item Identificar os fatores que motivam ou não a adoção da Arquitetura Limpa em cenários de desenvolvimento de software.
+                \item Comparar em termos de estrutura, a arquitetura redesenhada com o  modelo original da API REST (TCC 2).
 
             \end{itemize}
             
     \section{Metodologia}
-        \par A metodologia utilizada neste trabalho de conclusão de curso tem natureza básica pura, com o objetivo de realizar um estudo descritivo, utilizando de uma abordagem qualitativa, para a obtenção dos dados do presente trabalho foi realizada uma pesquisa bibliográfica como procedimento técnico.
+    
+        \par A metodologia adotada para a condução deste Trabalho de Conclusão de Curso, possui uma abordagem qualitativa e de natureza aplicada, configurando-se como um estudo de caso prático. O principal objetivo é demonstrar, de forma detalhada e prática, o processo de implementação dos princípios da Arquitetura Limpa sobre uma API REST existente, desenvolvida com o framework Laravel em sua estrutura padrão baseada no MVC.
+
+        \par Foi realizada uma busca aprofundada na literatura para estabelecer os fundamentos teóricos que norteiam o presente trabalho. Esta etapa focou na busca da definição dos termos Padrão de Arquitetura e Padrão de Projeto no contexto do MVC e da Arquitetura Limpa, na investigação dos conceitos centrais do MVC, sua evolução para o contexto web (MVC-Web), os princípios de design de software SOLID  e os preceitos da Arquitetura Limpa, incluindo sua organização em camadas e Regra da Dependência.
+
+        \par Após isso, o estudo prosseguirá com a seleção de uma API REST em Laravel, que servirá de base para o redesenho arquitetural. Esta etapa, consistirá na aplicação sistemática dos princípios e camadas da Arquitetura Limpa (como Entidades, Casos de Uso, Adaptadores de Interface e Frameworks \& Drivers) à estrutura original da API REST selecionada. Tendo essa API REST selecionada o trabalho vai focar na refatoração do código e na redefinição das responsabilidades e introdução de abstrações, visando o desacoplamento e a melhora da manutenção da API REST, sendo feita a documentação no presente trabalho durante o processo.
+
+        \par A última etapa, é a realização de uma análise entre a API REST original e a API REST refatorada, em termos de estrutura, organização e fluxo das dependências, com foco em evidenciar as diferenças e as alterações necessárias para atingir a aplicação da Arquitetura Limpa como base arquitetural para a API REST e responder como os princípios da Arquitetura Limpa podem ser implementados em uma API REST baseada no padrão MVC do framework Laravel.
         
+    \section{Estrutura do trabalho}
+        \par O presente trabalho está organizado em quatro capítulos, com o objetivo de apresentar de maneira sequencial os tópicos abordados. No primeiro capítulo, intitulado Introdução, é realizada a contextualização do tema, apresenta-se o problema de pesquisa e são definidos o objetivo geral e os objetivos específicos e por fim, detalha-se a metodologia utilizada.
+
+        \par O segundo capítulo, Levantamento Bibliográfico, estabelece a fundamentação teórica necessária para o desenvolvimento do presente trabalho, no inicio do capítulo faz-se a distinção conceitual entre Padrão de Arquitetura e Padrão de Projeto no contexto do estudo. Sequencialmente, é abordada a evolução do MVC, desde a sua concepção até sua adaptação para a web. 
+        
+        \par Após, o capítulo aprofunda-se nos princípios SOLID, com o objetivo de criar uma base de conhecimento em design de software orientado a objetos, visando atender as premissas da Arquitetura Limpa. O capítulo é concluído com uma análise da Arquitetura Limpa, abordando a Regra da Dependência, a estrutura em camadas e um cenário de aplicação típico.
+
+        \par O terceiro capítulo, Proposta do Trabalho, descreve a fase prática da pesquisa e as etapas desenvolvidas para resolução do problema proposto. O quarto capítulo, Considerações Finais, sintetiza os resultados obtidos e por fim a seção de Referências Bibliográficas lista todas as fontes acadêmicas e técnicas que foram consultadas e citadas para dar suporte e credibilidade ao trabalho.
