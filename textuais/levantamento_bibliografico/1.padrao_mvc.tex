@@ -2,18 +2,18 @@
 
     \par Esta seção tem como objetivo, explorar o MVC desde o seu surgimento na Xerox PARC até as versões mais modernas utilizadas do desenvolvimento web. Essa abordagem ajudará a entender por que mesmo depois de quatro décadas o MVC ainda vem sendo relevante para o desenvolvimento de software, o que corrobora para entender-se como implementar os princípios da arquitetura limpa em um framework que usa-o como base.
     
-    \par O padrão arquitetural MVC foi desenvolvido em 1978 por Trygve Reenskaug enquanto ele trabalhava na Xerox PARC, que na época era um importante centro de pesquisa e desenvolvimento da Xerox Corporation. O MVC teve inicialmente o objetivo de criar sistemas de informação que refletissem os modelos mentais dos usuários, promovendo uma interação intuitiva por meio de inspeção e edição de dados \cite[p.~1]{artigo:reenskaug:2003}. 
+    \par O padrão arquitetural MVC foi desenvolvido em 1978 por Trygve Reenskaug enquanto ele trabalhava na Xerox PARC, que na época era um importante centro de pesquisa e desenvolvimento da Xerox Corporation. O MVC teve inicialmente o objetivo de criar sistemas de informação que refletissem os modelos mentais dos usuários, promovendo uma interação intuitiva por meio de inspeção e edição de dados \cite[p.~1]{artigo:reenskaug:2003}.
         
     \par Ainda nesse contexto, a sua implementação foi realizada inicialmente no ambiente Smalltalk, e foi formalizada como um padrão por Reenskaug em duas notas técnicas publicadas por ele em maio e dezembro de 1979, essa notas estabeleceram as bases do MVC \cite{artigo:reenskaug:1979}.
     
     \par Quanto a validação e a demonstração de eficacia do padrão MVC, as mesmas vieram de um experimento no Xerox PARC, envolvendo um sistema de planejamento para uma fábrica de semicondutores, dessa forma mostrando a sua aplicabilidade prática \cite{artigo:reenskaug:2003}.
     
-    \par Com a evolução tecnológica, o MVC foi adaptado para interfaces mais complexas e posteriormente inspirou frameworks modernos, como o ASP.NET MVC, que foi lançado no ano de 2009 \cite{artigo:deacon:2009}. Nesse sentido é notável  que o Smalltalk foi o responsável pela criação do padrão MVC, que posteriormente se tornou amplamente adotado em sistemas orientados a objetos \cite{artigo:deacon:2009}.
+    \par Com a evolução tecnológica, o MVC foi adaptado para interfaces mais complexas e posteriormente inspirou frameworks modernos, como o ASP.NET MVC, que foi lançado no ano de 2009. Nesse sentido é notável  que o Smalltalk foi o responsável pela criação do padrão MVC, que posteriormente se tornou amplamente adotado em sistemas orientados a objetos \cite{artigo:deacon:2009}.
     
 
     \par O MVC é um padrão arquitetural que separa o software em três camadas, a camada que contem lógica do domínio da aplicação chamada Model, a camada que é responsável pela apresentação dos dados chamada View e a camada responsável por controlar as interações do usuário com a aplicação chamada Controller, assim promovendo modularidade, reutilização e manutenção do sistema\cite{artigo:reenskaug:2003}.
 
-    \par Nesse contexto de definição de conceitos, nota-se que o coração do padrão MVC não é a separação técnica entre Model, View e Controller, mas a garantia de que o Model espelhe o modelo mental do usuário. Isso significa que, ao interagir com o sistema, o usuário não está lidando com tabelas de Banco de Dados (BD) ou Notação de Objeto JavaScript (JavaScript Object Notation - JSON), mas com representações digitais de conceitos que já fazem parte do seu entendimento (ex.: 'projetos', 'tarefas', 'prazos'). Essa abordagem, inspirada em psicologia cognitiva e em linguagens de modelagem como UML, foi o que diferenciou o MVC de padrões anteriores \cite{artigo:reenskaug:2003}.
+    \par Nesse contexto de definição de conceitos, nota-se que o coração do padrão MVC não é a separação técnica entre Model, View e Controller, mas a garantia de que o Model espelhe o modelo mental do usuário. Isso significa que, ao interagir com o sistema, o usuário não está lidando com tabelas de Banco de Dados (BD) ou Notação de Objeto JavaScript (JavaScript Object Notation - JSON), mas com representações digitais de conceitos que já fazem parte do seu entendimento (ex.: 'projetos', 'tarefas', 'prazos'). Essa abordagem, inspirada em psicologia cognitiva\footnote{A Psicologia Cognitiva é o estudo científico dos processos internos utilizados para extrair sentido do ambiente e decidir a ação apropriada, incluindo atenção, percepção, aprendizagem, memória, linguagem, resolução de problemas, raciocínio e pensamento \cite{livro:eysenck:2017}.} e em linguagens de modelagem como UML, foi o que diferenciou o MVC de padrões anteriores \cite{artigo:reenskaug:2003}.
 
     \begin{figure}[H] % O [H] exige o uso do pacote float (veja abaixo)
         \centering
@@ -26,7 +26,7 @@
 
     %% MODEL 
     
-    \par A camada Model representa o núcleo do domínio da aplicação, encapsulando tanto os dados quanto as regras de negócio que comandam o comportamento do sistema. Ela deve manter-se completamente independente das questões relacionadas à UI, não contendo qualquer referência direta ou conhecimento sobre como os dados são apresentados ou manipulados externamente \cite{artigo:deacon:2009}
+    \par A camada Model representa o núcleo do domínio da aplicação, encapsulando tanto os dados quanto as regras de negócio que comandam o comportamento do sistema. Ela deve manter-se completamente independente das questões relacionadas à UI, não contendo qualquer referência direta ou conhecimento sobre como os dados são apresentados ou manipulados externamente \cite{artigo:deacon:2009}.
     
     \par Esta camada é composta por entidades que modelam o problema em questão, como classes representando clientes, transações financeiras ou reservas, permanecendo estável mesmo quando as interfaces de usuário sofrem modificações significativas. A literatura ainda explica uma distinção importante entre o Modelo de Domínio (Md), que contém a lógica essencial do negócio, e o Modelo de Aplicação (Ma), que atua como mediador entre o núcleo do sistema e as camadas de apresentação \cite{artigo:deacon:2009}.
         
@@ -43,16 +43,12 @@
         
     %% A comunicação entre os componentes
     
-    \par A comunicação entre estes componentes segue padrões bem definidos que preservam a separação de conceitos. As Views se comunicam com o Model através de mensagens, geralmente mediadas pelo Modelo de Aplicação quando este está presente, para solicitar atualizações ou acesso a dados \cite{artigo:deacon:2009}.
-    
-    \par O fluxo inverso, onde mudanças no Model precisam ser refletidas nas Views, ocorre através de mecanismos de notificação por eventos, garantindo que o Model permaneça independente de suas Views \cite{artigo:deacon:2009}.
+    \par A comunicação entre estes componentes segue padrões bem definidos que preservam a separação de conceitos. As Views se comunicam com o Model através de mensagens, geralmente mediadas pelo Modelo de Aplicação quando este está presente, para solicitar atualizações ou acesso a dados. O fluxo inverso, onde mudanças no Model precisam ser refletidas nas Views, ocorre através de mecanismos de notificação por eventos, garantindo que o Model permaneça independente de suas Views \cite{artigo:deacon:2009}.
     
     \par Já os Controllers, por sua vez, interceptam as interações do usuário com a aplicação, decidindo quais ações vão ser disparadas na View ou no Model, sem no entanto assumir responsabilidades que pertençam a estes componentes, mantendo assim sua responsabilidade bem definida \cite{artigo:deacon:2009}.
         
     %% Diferenciais
-    \par A arquitetura MVC oferece diferenciais significativos para o desenvolvimento e manutenção de sistemas de software complexos. Ao isolar a lógica de negócio das preocupações com UI, torna-se possível modificar ou expandir as camadas de apresentação sem afetar o núcleo do sistema, assim como reutilizar o mesmo Model em diferentes contextos e plataformas \cite{artigo:deacon:2009}.
-    
-    \par A comunicação baseada em eventos e o princípio de dependência unidirecional entre os componentes contribuem para a criação de sistemas mais flexíveis, coesos e fáceis de manter, características essenciais em ambientes onde os requisitos estão sujeitos a mudanças frequentes \cite{artigo:deacon:2009}.
+    \par A arquitetura MVC oferece diferenciais significativos para o desenvolvimento e manutenção de sistemas de software complexos. Ao isolar a lógica de negócio das preocupações com UI, torna-se possível modificar ou expandir as camadas de apresentação sem afetar o núcleo do sistema, assim como reutilizar o mesmo Model em diferentes contextos e plataformas. A comunicação baseada em eventos e o princípio de dependência unidirecional entre os componentes contribuem para a criação de sistemas mais flexíveis, coesos e fáceis de manter, características essenciais em ambientes onde os requisitos estão sujeitos a mudanças frequentes \cite{artigo:deacon:2009}.
 
     \subsection{Padrão MVC no Smalltalk-80}
     
