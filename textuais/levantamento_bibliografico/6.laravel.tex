@@ -1,0 +1,24 @@
+\section{Laravel}
+    \par Tendo em vista que o presente TCC aborda o Laravel como ferramenta para aplicar a Arquitertura Limpa, é necessário uma definição conceitual sobre seus princípios e filosofia, assim corroborando para o melhor entendimento dos código presentes durante o processo de refatoração.
+    
+    \par O Laravel é um framework para o desenvolvimento de aplicações web em PHP, cuja primeira versão beta foi lançada em junho de 2011. A sua criação foi motivada pela insatisfação do seu idealizador, Taylor Otwell, com as limitações de frameworks contemporâneos como o CodeIgniter. A filosofia central que norteia o Laravel é a de maximizar a ''felicidade do desenvolvedo'', um princípio que se manifesta através de código limpo, legível e de um ecossistema de ferramentas que visa simplificar tarefas comuns e acelerar o ciclo de desenvolvimento \cite{livro:stauffer:2023:laravel}.
+
+    \par A fundação da arquitetura do Laravel é o seu container de Inversão de Controle (IoC), que é a ferramenta que viabiliza a implementação de uma arquitetura limpa ao permitir a Injeção de Dependência \cite{livro:otwell:2013:laravel}. Este container é o coração do ciclo de vida de uma requisição. Toda requisição HTTP para uma aplicação Laravel é direcionada para o arquivo public/index.php, que carrega o autoloader do Composer e inicializa a aplicação, criando uma instância do container \cite{livro:stauffer:2023:laravel}.
+    
+    \par Em seguida, a requisição é encapsulada em um objeto \verb|Illuminate\Http\Request| e passada para o ''kernel'' da aplicação Laravel. O kernel, por sua vez, processa a requisição através de uma série de camadas de Middleware antes de finalmente direcioná-la para uma rota definida \cite{livro:stauffer:2023:laravel}.
+
+    \par As rotas são os pontos de entrada de uma API e são definidas no arquivo routes/api.php. As rotas neste arquivo são, por padrão, stateless (sem estado de sessão), o que é fundamental para APIs RESTful. A definição de uma rota associa um verbo HTTP e um URI a uma ação, geralmente um método em um Controlador. Para agilizar a criação de APIs REST, o Laravel oferece o método Route::apiResource(), que gera rotas padrão para um recurso. O recurso de Route Model Binding também é crucial, pois simplifica a lógica nos controladores ao injetar automaticamente instâncias de modelos com base em parâmetros da URL \cite{livro:stauffer:2023:laravel}.
+
+@todo
+O Middleware atua como um sistema de filtros para as requisições HTTP (STAUFFER, 2023, p. 273). Antes de uma requisição chegar ao controlador, ela passa por um pipeline de middlewares que podem inspecioná-la e até mesmo rejeitá-la (STAUFFER, 2023, p. 273). No contexto de uma API, o middleware é o local ideal para implementar funcionalidades transversais. A sua aplicação mais comum é na autenticação, onde um middleware pode verificar a validade de um token de acesso, e no controle de frequência de requisições (rate limiting), que protege a API contra abuso (STAUFFER, 2023, p. 280).
+
+@todo
+Seguindo os princípios de uma arquitetura limpa, os controladores devem atuar como uma fina camada de transporte (OTWELL, 2013, p. 26). A sua responsabilidade é receber a requisição HTTP, extrair os dados necessários do objeto Request (STAUFFER, 2023, p. 187) e delegar a execução da lógica de negócio para camadas mais internas, como classes de serviço ou casos de uso (OTWELL, 2013, p. 26). 
+
+O Artisan disponibiliza o comando php artisan make:controller NomeController --api para gerar controladores já com os métodos padrão para uma API REST (STAUFFER, 2023, p. 47). A injeção de dependência é amplamente utilizada nos construtores e métodos dos controladores para receber as abstrações (interfaces) das camadas de negócio, mantendo o controlador desacoplado da implementação concreta (OTWELL, 2013, p. 44).
+
+@todo
+Os modelos, implementados através do Eloquent ORM, representam a camada de acesso e persistência de dados (STAUFFER, 2023, p. 121). No contexto de uma API, a principal funcionalidade do Eloquent é a sua capacidade de serializar automaticamente modelos e coleções para o formato JSON quando retornados de um controlador (STAUFFER, 2023, p. 142). Para garantir que apenas os dados necessários sejam expostos, o Eloquent permite um controle preciso sobre a serialização através das propriedades \verb|$hidden| e \verb|$visible| na classe do modelo (STAUFFER, 2023, p. 143), um recurso de segurança essencial para qualquer API.
+
+    \par Após o processamento pelo controlador e a serialização pelo Eloquent, a resposta é encapsulada num objeto \verb|Illuminate\Http\Response|, que então percorre o caminho inverso através do pipeline de Middleware, permitindo que cada camada modifique a resposta (por exemplo, adicionando cabeçalhos) antes de ser finalmente enviada de volta ao cliente \cite{livro:stauffer:2023:laravel}.
+
