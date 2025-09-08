@@ -31,7 +31,7 @@
         
         \item \textbf{DataAccessInterface:} É uma interface definida na camada de Casos de Uso da Arquitetura Limpa, que especifica os métodos de persistência necessários, como buscar ou salvar \textbf{Entities}. Essa abordagem, desacopla o caso de uso da implementação real do BD.
         
-        \item \textbf{OutputBoundary:} Parecida com a \textbf{InputBoundary}, esta é uma interface definida na camada de Casos de Uso. Sendo ela a representação do Presenteer, o \textbf{UseCaseInteractor} utiliza ela para enviar os dados de resultado para fora, sem conhecer a existência ou a natureza do \textbf{Presenter}, tal técnica completa o mecanismo de inversão de dependência.
+        \item \textbf{OutputBoundary:} Parecida com a \textbf{InputBoundary}, esta é uma interface definida na camada de Casos de Uso. Sendo ela a representação do Presenter, o \textbf{UseCaseInteractor} utiliza ela para enviar os dados de resultado para fora, sem conhecer a existência ou a natureza do \textbf{Presenter}, tal técnica completa o mecanismo de inversão de dependência.
         
         \item \textbf{Presenter:} É a implementação da interface \textbf{OutputBoundary}. Sua responsabilidade é receber os dados de negócio crus do caso de uso e formatá-los para exibição, convertendo os dados em uma estrutura chamada \textbf{View Model}.
         

@@ -7,18 +7,29 @@
     
     \par Em seguida, a requisição é encapsulada em um objeto \verb|Illuminate\Http\Request| e passada para o ''kernel'' da aplicação Laravel. O kernel, por sua vez, processa a requisição através de uma série de camadas de Middleware antes de finalmente direcioná-la para uma rota definida \cite{livro:stauffer:2023:laravel}.
 
-    \par As rotas são os pontos de entrada de uma API e são definidas no arquivo routes/api.php. As rotas neste arquivo são, por padrão, stateless (sem estado de sessão), o que é fundamental para APIs RESTful. A definição de uma rota associa um verbo HTTP e um URI a uma ação, geralmente um método em um Controlador. Para agilizar a criação de APIs REST, o Laravel oferece o método Route::apiResource(), que gera rotas padrão para um recurso. O recurso de Route Model Binding também é crucial, pois simplifica a lógica nos controladores ao injetar automaticamente instâncias de modelos com base em parâmetros da URL \cite{livro:stauffer:2023:laravel}.
+    \par As rotas são os pontos de entrada de uma API e são definidas no arquivo routes/api.php. As rotas neste arquivo são, por padrão, stateless (sem estado de sessão), o que é fundamental para APIs REST. A definição de uma rota associa um verbo HTTP e um URI a uma ação, geralmente um método em um Controlador.\cite{livro:stauffer:2023:laravel}.
 
-@todo
-O Middleware atua como um sistema de filtros para as requisições HTTP (STAUFFER, 2023, p. 273). Antes de uma requisição chegar ao controlador, ela passa por um pipeline de middlewares que podem inspecioná-la e até mesmo rejeitá-la (STAUFFER, 2023, p. 273). No contexto de uma API, o middleware é o local ideal para implementar funcionalidades transversais. A sua aplicação mais comum é na autenticação, onde um middleware pode verificar a validade de um token de acesso, e no controle de frequência de requisições (rate limiting), que protege a API contra abuso (STAUFFER, 2023, p. 280).
+    \par O Middleware atua como um sistema de filtros para as requisições HTTP. Antes de uma requisição chegar ao controlador, ela passa por um pipeline de middlewares que podem inspecioná-la e até mesmo rejeitá-la. No contexto de uma API, o middleware é o local ideal para implementar funcionalidades transversais. A sua aplicação mais comum é na autenticação, onde um middleware pode verificar a validade de um token de acesso, e no controle de frequência de requisições (rate limiting), que protege a API contra abuso \cite{livro:stauffer:2023:laravel}.
 
-@todo
-Seguindo os princípios de uma arquitetura limpa, os controladores devem atuar como uma fina camada de transporte (OTWELL, 2013, p. 26). A sua responsabilidade é receber a requisição HTTP, extrair os dados necessários do objeto Request (STAUFFER, 2023, p. 187) e delegar a execução da lógica de negócio para camadas mais internas, como classes de serviço ou casos de uso (OTWELL, 2013, p. 26). 
+    \par O controller tem como responsabilidade receber a requisição HTTP e extrair os dados necessários do objeto Request \cite{livro:stauffer:2023:laravel}. Além disso ele pode delegar a execução da lógica de negócio para camadas mais internas, como classes de serviço ou casos de uso. A injeção de dependência é amplamente utilizada nos construtores e métodos dos Controllers para receber as abstrações (interfaces) das camadas de negócio, mantendo o controlador desacoplado da implementação concreta \cite{livro:otwell:2013:laravel}.
 
-O Artisan disponibiliza o comando php artisan make:controller NomeController --api para gerar controladores já com os métodos padrão para uma API REST (STAUFFER, 2023, p. 47). A injeção de dependência é amplamente utilizada nos construtores e métodos dos controladores para receber as abstrações (interfaces) das camadas de negócio, mantendo o controlador desacoplado da implementação concreta (OTWELL, 2013, p. 44).
-
-@todo
-Os modelos, implementados através do Eloquent ORM, representam a camada de acesso e persistência de dados (STAUFFER, 2023, p. 121). No contexto de uma API, a principal funcionalidade do Eloquent é a sua capacidade de serializar automaticamente modelos e coleções para o formato JSON quando retornados de um controlador (STAUFFER, 2023, p. 142). Para garantir que apenas os dados necessários sejam expostos, o Eloquent permite um controle preciso sobre a serialização através das propriedades \verb|$hidden| e \verb|$visible| na classe do modelo (STAUFFER, 2023, p. 143), um recurso de segurança essencial para qualquer API.
+    \par Os modelos, implementados através do Eloquent ORM, representam a camada de acesso e persistência de dados. No contexto de uma API, a principal funcionalidade do Eloquent é a sua capacidade de serializar automaticamente modelos e coleções para o formato JSON quando retornados de um controlador . Para garantir que apenas os dados necessários sejam expostos, o Eloquent permite um controle preciso sobre a serialização através das propriedades \verb|$hidden| e \verb|$visible| na classe do modelo, um recurso de segurança essencial para desenvolver APIs \cite{livro:stauffer:2023:laravel}.
 
     \par Após o processamento pelo controlador e a serialização pelo Eloquent, a resposta é encapsulada num objeto \verb|Illuminate\Http\Response|, que então percorre o caminho inverso através do pipeline de Middleware, permitindo que cada camada modifique a resposta (por exemplo, adicionando cabeçalhos) antes de ser finalmente enviada de volta ao cliente \cite{livro:stauffer:2023:laravel}.
 
+    \par Na Figura \ref{fig:figura_laravel1}, apresenta-se uma exemplificação simplificada da arquitetura do Laravel com base nos autores citados neste trabalho. O Laravel é estruturadado em camadas, iniciando pela camada de entrada e framework, que inclui o public/index.php, o Kernel, o Router e os Middlewares. Em seguida, a camada de aplicação contém os Controllers, responsáveis por orquestrar a lógica e direcionar o fluxo da requisição. Já a camada de negócio e dados concentra, opcionalmente, os Services ou Use Cases, que implementam a lógica de negócio, e obrigatoriamente os Models, representados pelo Eloquent, que realizam a persistência de dados. 
+    
+    \par Em algumas implementações, a lógica de negócio pode permanecer nos Controllers; todavia, a abordagem destacada pelos autores, ao delegar essa responsabilidade a componentes específicos, contribui para um maior desacoplamento e melhor organização do código. Por fim, conectando todos esses elementos, está o IoC Container, que viabiliza o desacoplamento e a injeção de dependências entre os componentes do framework.
+
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{figuras/laravel/laravel_arch.pdf}
+        \caption{Arquitetura Simplificada de Componentes do Laravel.} 
+        \label{fig:figura_laravel1} 
+        \newcommand{\minhafonte}{Fonte: Autor.}
+        \minhafonte
+    \end{figure}
+
+
+    \par Juntamente com seus componentes arquiteturais, o Laravel oferece uma interface de linha de comando chamada Artisan. Essencial para o ecossistema do framework, o Artisan, impulsionado pelo componente Console do Symfony, disponibiliza um vasto conjunto de comandos que automatizam e aceleram tarefas repetitivas do desenvolvimento. Com ele, é possível gerar estruturas de código padronizadas, como Controllers, Models e Migrations, gerenciar o cache da aplicação, executar migrações de banco de dados e até mesmo criar comandos personalizados para necessidades específicas do projeto \cite{laravel:docs}.

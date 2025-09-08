@@ -16,7 +16,21 @@
 \usepackage{float} % Usado para posicionamento de imagens
 \usepackage{svg}  % Eis o pacote que queremos.
 \usepackage{tikz}
+\usepackage{listings}
+\usepackage{xcolor}
 
+\lstset{
+  basicstyle=\ttfamily\footnotesize, % fonte monoespaçada
+  keywordstyle=\color{blue}\bfseries, % palavras-chave em azul e negrito
+  commentstyle=\color{green},       % comentários em verde
+  stringstyle=\color{red},          % strings em vermelho
+  numbers=left,                     % números das linhas à esquerda
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  showstringspaces=false,
+  breaklines=true,                  % quebra linhas automaticamente
+  frame=single                      % quadro ao redor do código
+}
 
 \begin{document}
     \pretextual
