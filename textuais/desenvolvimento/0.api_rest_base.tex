@@ -1,6 +1,3 @@
-\chapter{Desenvolvimento}
-
-    \par Este capítulo tem como objetivo documentar o desenvolvimento do trabalho proposto anteriormente, apresentando a API REST escolhida e detalhando os passos necessários para sua criação e posterior refatoração, de modo que esta passe a seguir os princípios da Arquitetura Limpa.
 
     \section {API REST base}
 
@@ -226,4 +223,3 @@
             \par O arquivo \texttt{ContactController.php} implementa o Controller responsável pelo gerenciamento das operações relacionadas à entidade \textit{Contato}. Ele define métodos para criar (\texttt{store}), listar (\texttt{index}), exibir um registro específico (\texttt{show}), atualizar (\texttt{update}) e deletar (\texttt{destroy}) contatos no banco de dados, utilizando o Model \texttt{Contact}. 
             
             \par Cada método realiza a operação correspondente dentro de um bloco \texttt{try/catch}, retornando um array indicando sucesso ou, em caso de falha, o erro ocorrido. Esse Controller permite, portanto, a manipulação completa dos dados de contatos através das rotas da API.
-
