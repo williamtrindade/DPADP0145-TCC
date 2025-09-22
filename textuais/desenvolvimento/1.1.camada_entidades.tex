@@ -1,14 +1,4 @@
-\section{Implementação da Arquitetura Limpa}
-
-    \par Esta seção descreve a aplicação dos princípios propostos por \cite{livro:martin:cleanarch} na API REST de contatos desenvolvida pelo grupo PET. Inicialmente, apresenta-se uma análise comparativa entre o cenário típico da Arquitetura Limpa, conforme definido por \cite{livro:martin:cleanarch}, e o modelo arquitetural Model-View-Controller (MVC) utilizado nativamente pelo framework Laravel. Em seguida, procede-se à reorganização da aplicação segundo as camadas da Arquitetura Limpa, de modo a evidenciar a adaptação prática do modelo teórico ao contexto do presente estudo.
-
-    \subsection{Arquitetura Limpa no Laravel}
-
-        \par A aplicação dos princípios da Arquitetura Limpa em um framework como o Laravel exige uma tradução clara entre o modelo conceitual de \cite{livro:martin:cleanarch} e a estrutura prática do projeto. Esta sub seção tem como objetivo detalhar esse mapeamento, utilizando o ``cenário típico'' (Figura \ref{fig:typical_scenario}) como guia para a organização dos componentes da API de Contatos.
-
-        /par @ TODO uma tabela contendo a comparação da organização do livro com a organização feita no trabalho com o Laravel.
-
-    \subsection{Camada de Entidades}
+\subsection{Camada de Entidades}
 
         \par O primeiro passo prático na refatoração da API REST de contatos para a Arquitetura Limpa consiste em estabelecer seu núcleo. Conforme a abordagem proposta por \cite{livro:martin:cleanarch}, a camada mais interna e fundamental de um sistema é a das Entidades.
 
@@ -25,6 +15,3 @@
         \par Além da implementação dessas propriedades e métodos, nota-se na entidade o modificador \texttt{final}, fazendo com que a classe não possa ser estendida, garantindo que o núcleo da aplicação permaneça independente, já que é uma entidade base que vai ser usada pelos casos de uso.
         
         \par Cada método \texttt{setter} pode ter uma validação específica para garantir a consistência e a integridade de um contato. Esta classe não possui conhecimento sobre como será persistida no banco de dados ou como será exibida em uma resposta HTTP, cumprindo o principal objetivo da Arquitetura Limpa de isolar o núcleo do sistema.
-
-
-

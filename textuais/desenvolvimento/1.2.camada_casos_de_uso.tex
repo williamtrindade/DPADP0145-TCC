@@ -1,0 +1,50 @@
+\subsection{Camada de Casos de Uso}
+\label{sec:casos_de_uso}
+
+    \par Conforme a abordagem proposta por \cite{livro:martin:cleanarch}, a camada de Casos de Uso é responsável por conter as regras de negócio específicas da aplicação, orquestrando as Entidades para executar as ações que o sistema oferece. Para a API de contatos, as operações de CRUD (\textit{Create, Read, Update, Delete}) foram mapeadas para Casos de Uso individuais, garantindo a coesão e a separação de responsabilidades.
+
+
+    
+        \par A estrutura de diretórios foi organizada de modo a isolar cada caso de uso em sua própria pasta, como \texttt{app/UseCases/CreateContact/} e \texttt{app/UseCases/UpdateContact/}. Essa abordagem reflete o conceito de `Arquitetura Gritante'' (MARTIN, 2019), onde a estrutura do projeto por si só deve comunicar suas funcionalidades. Para refinar ainda mais a organização, foram criadas subpastas para agrupar os diferentes tipos de componentes dentro de cada caso de uso:
+        
+            \begin{itemize}
+                \item \texttt{Boundaries/}: Agrupa as interfaces que definem os contratos de entrada (\textit{InputBoundary}) e saída (\textit{OutputBoundary}) do caso de uso.
+                
+                \item \texttt{DTOs/}: Contém os \textit{Data Transfer Objects}, estruturas de dados responsáveis por transportar informações através das \textit{boundaries}.
+                
+                \item \texttt{Interactor}: A classe principal que contém a implementação da lógica de negócio.
+            \end{itemize}
+
+        \par Após a criação da estrutura dos casos de uso, foi criada uma Interface para representar a \texttt{DataAccessInterface}, essa interface representa a implementação do \texttt{DataAccess} da camada de Frameworks e Drivers. Para realizar esse isolamento do acesso ao banco de dados, foi utilizado o padrão RepositoryPattern, onde tem-se uma classe que implementa as operações de acesso ao banco de dados, e uma interface que fica na camada de Casos de Uso.
+
+        \par Para aderir a esse padrão, foi criada a Interface \texttt{ContactRepositoryInterface} (Código \ref{lst:contact.repo.interface})  dentro do diretório \texttt{app/UsesCases/Contracts}, essa interface apenas define os métodos que vão ser usados pelos casos de uso, essa Interface faz com que essa camada não conheça qual banco de dados ou ORM a aplicação usa, assim aderindo à inversão de dependência.
+
+        \lstinputlisting[language=PHP, inputencoding=utf8, caption={Interface do repositório de Contatos.}, label=lst:contact.repo.interface]{codigos/clean_arch/casos_de_uso/ContactRepositoryInterface.php}
+    
+        \par Para exemplificar a implementação, o caso de uso \texttt{CreateContact} é detalhado a seguir, por ser o mais completo na aplicação do padrão, demonstrando a função de cada componente.
+        
+        \par Os primeiros elementos a serem criados são os DTOs, eles são classes simples, responsáveis por transportar dados de forma estruturada. São definidos dois DTOs: um para a requisição (\texttt{RequestModel}), que carrega os dados de entrada, e um para a resposta (\texttt{ResponseModel}), que carrega os dados de saída do caso de uso. Essas classes dentro da representação de \cite{livro:martin:cleanarch} de um cenário típico da arquitetura limpa, são representados pelos componentes \texttt{InputData} e  \texttt{OutputData}.
+        
+        \lstinputlisting[language=PHP, inputencoding=utf8, caption={DTO de Requisição para o Caso de Uso de Criação.}, label=lst:create.request.model]{codigos/clean_arch/casos_de_uso/CreateContactRequestModel.php}
+        
+        \lstinputlisting[language=PHP, inputencoding=utf8, caption={DTO de Resposta para o Caso de Uso de Criação.}, label=lst:create.response.model]{codigos/clean_arch/casos_de_uso/CreateContactResponseModel.php}
+        
+        \par As \textit{boundaries} representam os contratos que garantem a inversão de dependência. A \texttt{InputBoundary} (Código \ref{lst:create.input.boundary}) define a porta de entrada do caso de uso, servindo como uma abstração que será implementada pelo \texttt{Interactor} e consumida pelo \texttt{Controller}.
+        
+        \lstinputlisting[language=PHP, inputencoding=utf8, caption={Input Boundary para o Caso de Uso de Criação.}, label=lst:create.input.boundary]{codigos/clean_arch/casos_de_uso/CreateContactInputBoundary.php}
+        
+        \par  Já a \texttt{OutputBoundary} (Código \ref{lst:create.output.boundary}) define o contrato para a camada de apresentação, sendo implementada pelo \texttt{Presenter}.
+        
+        \lstinputlisting[language=PHP, inputencoding=utf8, caption={Output Boundary para o Caso de Uso de Criação.}, label=lst:create.output.boundary]{codigos/clean_arch/casos_de_uso/CreateContactOutputBoundary.php}
+        
+        
+        \par O Interactor (Código \ref{lst:create.interactor}) é a classe que contém a lógica de negócio pura. Ele implementa a \texttt{InputBoundary} e orquestra a interação com as Entidades, utilizando outras abstrações — como a \texttt{ContactRepositoryInterface} e a \texttt{CreateContactOutputBoundary} — para se comunicar com as camadas externas sem conhecê-las diretamente.
+        
+        
+        \lstinputlisting[language=PHP, inputencoding=utf8, caption={Estrutura do Interactor de Criação de Contato.}, label=lst:create.interactor]{codigos/clean_arch/casos_de_uso/CreateContactInteractor.php}
+
+        \par No (Código \ref{lst:create.interactor.create}) tem-se a implementação do método create do \texttt{Interactor}, esse método realiza a regra de negócio do caso de uso, como as validações e etapas necessárias para a criação de um Contato. Esse método recebe os dados pela estrutura de dados de entrada e ao final retorna o método \texttt{present()} da interface \texttt{CreateContactOutputBoundary}, que é a representação do \texttt{Presenter}. Desse modo o caso de uso não conhece as implementações das outras camadas, mantendo os princípios da Arquitetura Limpa.
+
+        \lstinputlisting[language=PHP, inputencoding=utf8, caption={Estrutura do método create do Interactor de Criação de Contato.}, label=lst:create.interactor.create]{codigos/clean_arch/casos_de_uso/CreateContactInteractor@create.php}
+        
+        \par As implementações completas para as demais operações de CRUD seguem os mesmos princípios aqui demonstrados, variando apenas na complexidade de seus DTOs e na lógica de seus Interactors. Para fins de brevidade, seus códigos não serão detalhados neste documento, mas podem ser consultados na íntegra no repositório do projeto no GitHub.

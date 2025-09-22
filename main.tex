@@ -16,21 +16,39 @@
 \usepackage{float} % Usado para posicionamento de imagens
 \usepackage{svg}  % Eis o pacote que queremos.
 \usepackage{tikz}
+
 \usepackage{listings}
 \usepackage{xcolor}
 
+% --- COMANDO PRINCIPAL PARA RENOMEAR "Listing" ---
+\renewcommand{\lstlistingname}{Código}
+
+% (Opcional) Renomeia também a "Lista de Listings" para "Lista de Códigos"
+\renewcommand{\lstlistlistingname}{Lista de Códigos}
+
+% Definição de cores personalizadas
+\definecolor{phpkeyword}{RGB}{0,0,180}   % azul escuro
+\definecolor{phpcomment}{RGB}{0,128,0}   % verde
+\definecolor{phpstring}{RGB}{180,0,0}    % vermelho
+
 \lstset{
-  basicstyle=\ttfamily\footnotesize, % fonte monoespaçada
-  keywordstyle=\color{blue}\bfseries, % palavras-chave em azul e negrito
-  commentstyle=\color{green},       % comentários em verde
-  stringstyle=\color{red},          % strings em vermelho
-  numbers=left,                     % números das linhas à esquerda
-  numberstyle=\tiny\color{gray},
-  stepnumber=1,
-  showstringspaces=false,
-  breaklines=true,                  % quebra linhas automaticamente
-  frame=single                      % quadro ao redor do código
+  language=PHP,                          % linguagem PHP
+  basicstyle=\ttfamily\footnotesize,     % fonte monoespaçada
+  keywordstyle=\color{phpkeyword}\bfseries, % palavras-chave em azul e negrito
+  commentstyle=\color{phpcomment},       % comentários em verde
+  stringstyle=\color{phpstring},         % strings em vermelho
+  numbers=left,                          % números das linhas à esquerda
+  numberstyle=\tiny\color{gray},         % estilo dos números
+  stepnumber=1,                          % mostra número a cada linha
+  showstringspaces=false,                % não mostrar espaços em strings
+  breaklines=true,                       % quebra automática de linha
+  frame=single,                          % quadro ao redor do código
+  tabsize=4,                             % largura da tabulação
+  captionpos=b,                          % posição da legenda (bottom)
+  escapeinside={(*@}{@*)},               % escape para LaTeX dentro do código
+  morekeywords={private,public,protected,final,interface,implements,extends}
 }
+
 
 \begin{document}
     \pretextual
