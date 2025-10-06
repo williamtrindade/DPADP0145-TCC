@@ -1,0 +1,111 @@
+\subsection{Camada de Adaptadores de Interface}
+    \par Para a implementação da camada de Adaptadores de Interface se fez necessário primeiramente a deleção do Controller criado anteriormente no projeto, pois com a Arquitetura Limpa e aplicação do SRP do SOLID, cada método do Controller se tornara uma classe. Assim como na camad de Caos de Uso, essa subsecção focara em apresentar a criação do contato na API de contatos.
+
+    \par Primeiramente são deletado os arquivos \texttt{ContactController.php} e \texttt{Controller.php} do diretório \texttt{app/Http/Controllers/}. 
+    Após isso foi criado primeiro o arquivo \texttt{Controller.php} e o arquivo \texttt{/Contact/CreateContactController.php} no diretório \texttt{app/InterfaceAdapters/Http/Controllers/}.
+
+    \par Criados esses dois arquivos, o \texttt{Controller.php}, Código \ref{lst:controllerbase}, é mantido como o anterior, criado pelo Laravel, mentendo o mesmo código, pois essa classe é estendida pelos outros controllers. A decisão de coloca-lo no diretório de InterfaceAdapters é para facilicar a manutenção do código, já que componentes com resposabilidades parecidas vão se manter próximos no projeto.
+
+    \lstinputlisting[
+        language=PHP, 
+        inputencoding=utf8, caption={Controller base}, 
+        label=lst:controllerbase
+    ]{codigos/ca/InterfaceAdapters/Http/Controllers/Controller.php}
+
+    \par Tendo o controller base implementado, é criado um controller para criação de um contato, Código \ref{lst:controller.create}, o \texttt{CreateContactController} atua como um adaptador de interface entre a camada HTTP e a camada de casos de uso da aplicação, seguindo os princípios da Arquitetura Limpa. O controlador recebe duas dependências principais através de injeção de dependência: o \texttt{CreateContactInputBoundary}, uma interface que define o contrato para o caso de uso de criação de contatos seguindo o Princípio da Inversão de Dependência (DIP), e o \texttt{CreateContactApiPresenter}, responsável por formatar a resposta em formato adequado para APIs REST.
+    
+    \par O método \texttt{\_\_invoke()} implementa o padrão Single Action Controller do Laravel, extraindo os dados da requisição HTTP (\texttt{name}, \texttt{phone\_number} e \texttt{email}), criando uma instância de \texttt{CreateContactRequestModel} (um DTO que encapsula os dados necessários), invocando o método \texttt{create()} do interactor para delegar a lógica de negócio, recuperando o modelo de visualização formatado pelo presenter através do método \texttt{getViewModel()}, e retornando uma resposta JSON com código de status HTTP 201 (Created).
+    
+    \lstinputlisting[
+        language=PHP, 
+        inputencoding=utf8, caption={Controller de criação de Contato}, 
+        label=lst:controller.create
+    ]{codigos/ca/InterfaceAdapters/Http/Controllers/Contact/CreateContactController.php}
+
+    \par Nessa abordagem da Arquitetura Limpa, os presenters são registrados como singletons pois precisam manter o estado do ViewModel entre a execução do interactor e a recuperação no controller, essa etapa de configuração será vista mais a frente no trabalho.
+
+    \par Após a definição de todos os controllers seguindo esse mesmo padrão, a estrutura fica conforme a Figura \ref{fig:estrutura-contact-controllers}.
+
+    \begin{figure}[h!]
+        \caption{Estrutura de Diretórios dos Controladores de Contato.}
+        \label{fig:estrutura-contact-controllers}
+        \dirtree{%
+        .1 InterfaceAdapters.
+        .2 Http.
+        .3 Controllers.
+        .4 Contact.
+        .5 CreateContactController.php.
+        .5 DeleteContactController.php.
+        .5 FindContactController.php.
+        .5 ListContactsController.php.
+        .5 UpdateContactController.php.
+        .4 Controller.php.
+        }
+    \end{figure}
+
+    \par A próoxima etapa foi a implementação dos \texttt{Presenters}, eles atuam como adaptadores de saída (output adapters) responsáveis por transformar os dados retornados pelos casos de uso em um formato adequado para a camada mais externa, implementando o padrão de separação entre lógica de negócio e formatação de resposta. 
+    
+    \par A classe \texttt{CreateContactApiPresenter}, Código \ref{lst:presenter.create}, implementa a interface \texttt{CreateContactOutputBoundary}, definindo o contrato de saída do caso de uso de criação de contatos. Este presenter possui dois métodos principais: \texttt{present()}, que recebe um \texttt{CreateContactResponseModel} (DTO contendo os dados brutos retornados pelo interactor) e o transforma em um \texttt{ContactViewModel} armazenado como propriedade privada da classe, e \texttt{getViewModel()}, que permite ao controller recuperar o ViewModel formatado após a execução do caso de uso. 
+
+    \lstinputlisting[
+        language=PHP, 
+        inputencoding=utf8, caption={Presenter de criação de Contato.}, 
+        label=lst:presenter.create
+    ]{codigos/ca/InterfaceAdapters/Presenters/Api/CreateContactApiPresenter.php}
+    
+    \par Sendo um Singleton, primeiro o interactor invoca \texttt{present()} para formatar os dados, e em seguida o controller invoca \texttt{getViewModel()} para recuperar o resultado formatado, asssim é garantindo que ambas as operações acessem a mesma instância do presenter e, consequentemente, o mesmo \texttt{viewModel} armazenado.
+
+    \par Após a definição de todos os Presenters seguindo o mesmo padrão utilizado no presenter de criação de contato, a estrutura fica conforme a Figura \ref{fig:estrutura-api-presenters}.
+
+    \begin{figure}[h!]
+        \caption{Estrutura de Diretórios dos Presenters da API.}
+        \label{fig:estrutura-api-presenters}
+        \dirtree{%
+            .1 Presenters.
+            .2 Api.
+            .3 CreateContactApiPresenter.php.
+            .3 FindContactApiPresenter.php.
+            .3 ListContactsApiPresenter.php.
+        }
+    \end{figure}
+
+    \par A pŕoxima etapa é a implementação do \texttt{ContactRepository}, Código \ref{lst:repository}, ele atua como um adaptador de interface, implementando a interface \texttt{ContactRepositoryInterface} definida na camada de Casos de Uso e fazendo a ponte entre a lógica de negócio (entidades) e a camada de persistência (framework e drivers). 
+
+    \lstinputlisting[
+        linerange={1-10, 74-75},
+        language=PHP, 
+        inputencoding=utf8, caption={Repositório de Contatos.}, 
+        label=lst:repository
+    ]{codigos/ca/InterfaceAdapters/Repositories/ContactRepository.php}
+    
+    \par Este repositório é responsável por realizar operações CRUD sobre contatos, encapsulando toda a interação com o banco de dados através do Eloquent ORM do Laravel e garantindo que as camadas internas da aplicação não tenham dependência direta do framework. O método privado \texttt{toEntity()}, Código \ref{lst:repository.toEntity}, realiza a conversão entre \texttt{ContactModel} (representação do framework Laravel/Eloquent) e \texttt{Contact} (entidade de domínio pura), assegurando que apenas objetos de domínio circulem nas camadas internas da aplicação. 
+
+    \lstinputlisting[
+        linerange={11-20},
+        language=PHP, 
+        inputencoding=utf8, caption={Repositório de Contatos - Método toEntity().}, 
+        label=lst:repository.toEntity
+    ]{codigos/ca/InterfaceAdapters/Repositories/ContactRepository.php}
+    
+    \par O repositório implementa algumas operações, conforme o Código \ref{lst:repository.methods}, \texttt{existsByEmail()} verifica a existência de um contato por email, \texttt{findById()} busca um contato específico retornando a entidade ou null, \texttt{findAll()} retorna todos os contatos convertidos em um array de entidades usando \texttt{map()}, \texttt{save()} persiste um novo contato criando uma instância de \texttt{ContactModel} e populando seus atributos a partir da entidade, \texttt{update()} atualiza um contato existente buscando o modelo pelo ID e atualizando seus atributos, e \texttt{delete()} remove um contato retornando um booleano indicando sucesso ou falha. 
+
+    \lstinputlisting[
+        linerange={21-73},
+        language=PHP, 
+        inputencoding=utf8, caption={Repositório de Contatos - Métodos CRUD.}, 
+        label=lst:repository.methods
+    ]{codigos/ca/InterfaceAdapters/Repositories/ContactRepository.php}
+    
+    \par O padrão Repository e o DIP do SOLID, permitem que a lógica de negócio permaneça agnóstica quanto à tecnologia de persistência utilizada, facilitando testes unitários através de mocks e possibilitando a troca do mecanismo de persistência sem impactar os casos de uso.
+
+    \par Para finalizar a camada de Adaptadores de Interface, o \texttt{ContactViewModel}, Código \ref{lst:view.model}, é criado, sendo uma classe DTO (Data Transfer Object) imutável responsável por encapsular os dados de um contato no formato adequado para a camada responsável pela apresentação dos dados da aplicação. 
+
+    \lstinputlisting[
+        language=PHP, 
+        inputencoding=utf8, caption={Implementação do View Model.}, 
+        label=lst:view.model
+    ]{codigos/ca/InterfaceAdapters/ViewModels/ContactViewModel.php}
+    
+    \par Esta classe utiliza promoted properties do PHP 8, declarando todos os atributos (\texttt{id}, \texttt{name}, \texttt{phoneNumber} e \texttt{email}) como públicos diretamente no construtor, simplificando a sintaxe e eliminando a necessidade de declarações redundantes de propriedades. O ViewModel atua como o formato final dos dados que serão serializados para JSON e retornados pela API, sendo criado pelo presenter após a transformação do \texttt{CreateContactResponseModel}.
+    
+    \par A declaração como \texttt{final} impede que a classe seja estendida, garantindo que sua estrutura permaneça consistente e previsível, enquanto a ausência de métodos setters e a imutabilidade implícita da classe reforçam o princípio de que ViewModels devem apenas transportar dados entre camadas sem conter lógica de negócio.

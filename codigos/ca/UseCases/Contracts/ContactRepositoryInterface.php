@@ -1,4 +1,5 @@
 <?php
+
 namespace App\UseCases\Contracts;
 
 use App\Entities\Contact;

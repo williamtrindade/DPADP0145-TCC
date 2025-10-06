@@ -1,0 +1,70 @@
+\subsection{Camada de Frameworks e Drivers}
+    
+    \par A camada de \textit{Frameworks and Drivers} foi organizada no diretório \texttt{FrameworksAndDrivers}. Esta camada representa o nível mais externo da arquitetura, contendo todos os componentes que possuem dependência direta do framework Laravel e de bibliotecas externas.
+    
+    \par Dentro desta camada, foram criados subdiretórios específicos para organizar os diferentes tipos de componentes. O diretório \texttt{Models} contém as classes de modelo do Eloquent ORM, como \texttt{ContactModel.php}, que representam as entidades do banco de dados e suas respectivas operações de persistência. Este arquivo foi movido de sua localização original em \texttt{app/Models/} para \texttt{app/FrameworksAndDrivers/Models/}, mantendo sua funcionalidade de interação com o banco de dados através do Eloquent, mas agora devidamente isolado na camada apropriada.
+    
+    \par Já o diretório \texttt{Providers} agrupa os provedores de serviço do Laravel. O arquivo \texttt{AppServiceProvider.php}, que originalmente estava localizado em \texttt{app/Providers/}, foi movido para \texttt{app/FrameworksAndDrivers/Providers/}, mantendo suas responsabilidades de configuração global da aplicação. 
+    
+    \par Adicionalmente, foi criado o provedor \texttt{CleanArchServiceProvider.php}, apresentado no Código \ref{lst:provider}, especificamente desenvolvido para registrar e configurar as dependências necessárias à implementação da Arquitetura Limpa, gerenciando o binding de interfaces com suas implementações concretas através do container de injeção de dependências do framework.
+
+    \lstinputlisting[
+        language=PHP, 
+        inputencoding=utf8,
+        caption={Implementação do CleanArchServiceProvider.php.}, 
+        label=lst:provider
+    ]{codigos/ca/FrameworksAndDrivers/Providers/CleanArchServiceProvider.php}
+
+    
+    \par Como parte do processo de refatoração, o modelo \texttt{User.php} que foi criado pelo Laravel foi removido e o modelo \texttt{Contact.php}, que estava localizado no diretório padrão \texttt{app/Models/} do foi movido para \texttt{app/FrameworksAndDrivers/Models/} e renomeado, conforme mostrado no Código \ref{lst:model.fd}. 
+
+    \lstinputlisting[
+        language=PHP, 
+        inputencoding=utf8,
+        caption={Implementação do Model.}, 
+        label=lst:model.fd
+    ]{codigos/ca/FrameworksAndDrivers/Models/ContactModel.php}
+    
+    \par Além dos componentes já mencionados, foram configurados arquivos essenciais para o funcionamento da aplicação. O arquivo \texttt{bootstrap/app.php}, apresentado no Código~\ref{lst:bootstrap}, é responsável pela inicialização da aplicação Laravel, configurando os serviços principais.
+    
+    % Espaço para código do bootstrap/app.php
+    \lstinputlisting[
+        linerange={1-15, 52-52},
+        language=PHP, 
+        inputencoding=utf8,
+        caption={Implementação do app.php}, 
+        label=lst:bootstrap
+    ]{codigos/ca/bootstrap/app.php}
+
+    \par Além disso, é nesse arquivo que é implementado o tratamento de exceções, onde toda \texttt{Exception} que a apliocação levante é tratada nesse arquivo, para retornar uma resposta no formato JSON para o cliente da API. Conforme apresentado no Código~\ref{lst:bootstrap.eh}, as exceções da camada de Casos de Uso e outras exceções do Framework são tratadas de maneira individual, permitindo também a adição de novos tratamentos, sempre que for necessário.
+
+    % Espaço para código do bootstrap/app.php
+    \lstinputlisting[
+        linerange={16-51},
+        language=PHP, 
+        inputencoding=utf8,
+        caption={Implementação do app.php - Exception Handler}, 
+        label=lst:bootstrap.eh
+    ]{codigos/ca/bootstrap/app.php}
+    
+    \par O arquivo \texttt{bootstrap/providers.php}, mostrado no Código~\ref{lst:providers}, registra os provedores de serviço que serão carregados automaticamente pela aplicação, incluindo tanto os provedores padrão do Laravel quanto o \texttt{CleanArchServiceProvider} customizado criado para suportar a Arquitetura Limpa.
+    
+    % Espaço para código do bootstrap/providers.php
+    \lstinputlisting[
+        language=PHP, 
+        inputencoding=utf8,
+        caption={Implementação do providers.php}, 
+        label=lst:providers
+    ]{codigos/ca/bootstrap/providers.php}
+    
+    \par Por fim, o arquivo \texttt{routes/api.php}, detalhado no Código~\ref{lst:routes}, define as novas rotas da API REST, mapeando as requisições HTTP para os respectivos controladores na camada de \textit{Interface Adapters}.
+    
+    % Espaço para código do routes/api.php
+    \lstinputlisting[
+        language=PHP,
+        inputencoding=utf8,
+        caption={Implementação do arquivo de rotas}, 
+        label=lst:routes
+    ]{codigos/ca/routes/api.php}
+    
+    \par Esta organização visa isolar completamente o código que depende de tecnologias específicas, facilitando futuras manutenções e eventual migração para outros frameworks, uma vez que as regras de negócio permanecem independentes nas camadas de domínio e casos de uso. Todos os arquivos que anteriormente estavam dispersos no diretório padrão \texttt{app/} do Laravel e que possuíam relação direta com funcionalidades específicas do framework foram reorganizados para esta camada.

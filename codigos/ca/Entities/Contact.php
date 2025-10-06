@@ -1,24 +1,39 @@
+<?php
 
-    // ... Metodo Construtor
-    
-    public function getId(): ?int 
-    { 
+namespace App\Entities;
+
+use InvalidArgumentException;
+
+final class Contact
+{
+    private ?int $id;
+    private string $name;
+    private string $phoneNumber;
+    private string $email;
+
+    public function __construct(?int $id, string $name, string $phoneNumber, string $email)
+    {
+        $this->id = $id;
+        $this->setName($name);
+        $this->setPhoneNumber($phoneNumber);
+        $this->setEmail($email);
+    }
+
+    public function getId(): ?int
+    {
         return $this->id;
     }
-    
-    public function getName(): string 
-    { 
-        return $this->name; 
+    public function getName(): string
+    {
+        return $this->name;
     }
-    
     public function getPhoneNumber(): string
     {
-        return $this->phoneNumber; 
+        return $this->phoneNumber;
     }
-    
     public function getEmail(): string
-    { 
-        return $this->email; 
+    {
+        return $this->email;
     }
 
     public function setName(string $name): void
@@ -44,3 +59,4 @@
         }
         $this->email = $email;
     }
+}

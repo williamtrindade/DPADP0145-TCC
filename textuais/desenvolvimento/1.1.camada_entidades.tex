@@ -6,11 +6,23 @@
 
         \par Nesse cenário, o arquivo \texttt{app/Entities/Contact.php} define a classe que representa a entidade. Primeiramente, foram definidas as propriedades e o construtor da classe com as chamadas para os métodos \texttt{setters}, conforme o código abaixo demonstra:
 
-        \lstinputlisting[language=PHP, inputencoding=utf8]{codigos/clean_arch/entidade_construtor.php}
+        \lstinputlisting[
+            language=PHP,
+            inputencoding=utf8,
+            firstline=1, 
+            lastline=21 
+        ]{codigos/ca/Entities/Contact.php}
+
 
         \par Em seguida, na mesma classe foram criados os método \texttt{getters} e \texttt{setters}, conforme o código abaixo:
-        
-        \lstinputlisting[language=PHP, inputencoding=utf8]{codigos/clean_arch/entidade_getter_setter.php}
+
+        \lstinputlisting[
+            language=PHP,
+            inputencoding=utf8,
+            firstline=22, 
+            lastline=61 
+        ]{codigos/ca/Entities/Contact.php}
+
 
         \par Além da implementação dessas propriedades e métodos, nota-se na entidade o modificador \texttt{final}, fazendo com que a classe não possa ser estendida, garantindo que o núcleo da aplicação permaneça independente, já que é uma entidade base que vai ser usada pelos casos de uso.
         

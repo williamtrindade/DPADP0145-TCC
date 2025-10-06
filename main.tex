@@ -19,6 +19,7 @@
 
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{dirtree}
 
 % --- COMANDO PRINCIPAL PARA RENOMEAR "Listing" ---
 \renewcommand{\lstlistingname}{Código}
@@ -33,7 +34,7 @@
 
 \lstset{
   language=PHP,                          % linguagem PHP
-  basicstyle=\ttfamily\footnotesize,     % fonte monoespaçada
+  basicstyle=\ttfamily\scriptsize,             % fonte monoespaçada
   keywordstyle=\color{phpkeyword}\bfseries, % palavras-chave em azul e negrito
   commentstyle=\color{phpcomment},       % comentários em verde
   stringstyle=\color{phpstring},         % strings em vermelho
@@ -48,7 +49,6 @@
   escapeinside={(*@}{@*)},               % escape para LaTeX dentro do código
   morekeywords={private,public,protected,final,interface,implements,extends}
 }
-
 
 \begin{document}
     \pretextual
