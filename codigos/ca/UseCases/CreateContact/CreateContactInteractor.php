@@ -13,15 +13,14 @@ use App\UseCases\Exceptions\BusinessRuleException;
 final readonly class CreateContactInteractor implements CreateContactInputBoundary
 {
     public function __construct(
-        private ContactRepositoryInterface $contactRepository,
-        private CreateContactOutputBoundary $presenter
+        private ContactRepositoryInterface $contactRepository
     ) {
     }
 
     /**
      * @throws BusinessRuleException
      */
-    public function create(CreateContactRequestModel $requestModel): void
+    public function create(CreateContactRequestModel $requestModel, CreateContactOutputBoundary $presenter): void
     {
         if ($this->contactRepository->existsByEmail($requestModel->email)) {
             throw new BusinessRuleException('O e-mail informado ja esta em uso.');
@@ -43,6 +42,6 @@ final readonly class CreateContactInteractor implements CreateContactInputBounda
             phoneNumber: $savedContact->getPhoneNumber()
         );
 
-        $this->presenter->present($responseModel);
+        $presenter->present($responseModel);
     }
 }

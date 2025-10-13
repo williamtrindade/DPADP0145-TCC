@@ -26,7 +26,7 @@ class UpdateContactController extends Controller
             email: $request->get('email')
         );
 
-        $this->interactor->update($requestModel);
+        $this->interactor->update($requestModel, $this->presenter);
         $viewModel = $this->presenter->getViewModel();
 
         return response()->json($viewModel);

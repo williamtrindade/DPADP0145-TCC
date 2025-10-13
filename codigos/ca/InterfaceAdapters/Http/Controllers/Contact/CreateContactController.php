@@ -26,7 +26,7 @@ class CreateContactController extends Controller
             email: $request->get('email')
         );
 
-        $this->interactor->create($requestModel);
+        $this->interactor->create($requestModel, $this->presenter);
         $viewModel = $this->presenter->getViewModel();
 
         return response()->json($viewModel, ResponseAlias::HTTP_CREATED);

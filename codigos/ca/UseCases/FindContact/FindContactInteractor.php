@@ -10,16 +10,14 @@ use App\UseCases\FindContact\DTOs\FindContactResponseModel;
 
 final readonly class FindContactInteractor implements FindContactInputBoundary
 {
-    public function __construct(
-        private ContactRepositoryInterface $contactRepository,
-        private FindContactOutputBoundary $presenter
-    ) {
+    public function __construct(private ContactRepositoryInterface $contactRepository)
+    {
     }
 
     /**
      * @throws ResourceNotFoundException
      */
-    public function find(int $id): void
+    public function find(int $id, FindContactOutputBoundary $presenter): void
     {
         $contact = $this->contactRepository->findById($id);
 
@@ -34,6 +32,6 @@ final readonly class FindContactInteractor implements FindContactInputBoundary
             email:       $contact->getEmail()
         );
 
-        $this->presenter->present($responseModel);
+        $presenter->present($responseModel);
     }
 }

@@ -6,5 +6,8 @@ use App\UseCases\CreateContact\DTOs\CreateContactRequestModel;
 
 interface CreateContactInputBoundary
 {
-    public function create(CreateContactRequestModel $requestModel): void;
+    public function create(
+        CreateContactRequestModel $requestModel,
+        CreateContactOutputBoundary $presenter
+    ): void;
 }

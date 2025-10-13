@@ -6,5 +6,8 @@ use App\UseCases\UpdateContact\DTOs\UpdateContactRequestModel;
 
 interface UpdateContactInputBoundary
 {
-    public function update(UpdateContactRequestModel $requestModel): void;
+    public function update(
+        UpdateContactRequestModel $requestModel,
+        UpdateContactOutputBoundary $presenter
+    ): void;
 }

@@ -4,5 +4,5 @@ namespace App\UseCases\FindContact\Boundaries;
 
 interface FindContactInputBoundary
 {
-    public function find(int $id): void;
+    public function find(int $id, FindContactOutputBoundary $presenter): void;
 }

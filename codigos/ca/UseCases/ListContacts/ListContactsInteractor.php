@@ -10,12 +10,11 @@ use App\UseCases\ListContacts\DTOs\ListContactsResponseModel;
 final readonly class ListContactsInteractor implements ListContactsInputBoundary
 {
     public function __construct(
-        private ContactRepositoryInterface $contactRepository,
-        private ListContactsOutputBoundary $presenter
+        private ContactRepositoryInterface $contactRepository
     ) {
     }
 
-    public function list(): void
+    public function list(ListContactsOutputBoundary $presenter): void
     {
         // 1. Pega o array de Entidades do repositorio
         $contactEntities = $this->contactRepository->findAll();
@@ -32,6 +31,6 @@ final readonly class ListContactsInteractor implements ListContactsInputBoundary
         }
 
         // 3. Entregamos ao presenter que seta o ViewModel
-        $this->presenter->present($responseModels);
+        $presenter->present($responseModels);
     }
 }

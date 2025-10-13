@@ -12,15 +12,17 @@ use App\UseCases\UpdateContact\DTOs\UpdateContactResponseModel;
 final readonly class UpdateContactInteractor implements UpdateContactInputBoundary
 {
     public function __construct(
-        private ContactRepositoryInterface $contactRepository,
-        private UpdateContactOutputBoundary $presenter
+        private ContactRepositoryInterface $contactRepository
     ) {
     }
 
     /**
      * @throws ResourceNotFoundException
      */
-    public function update(UpdateContactRequestModel $requestModel): void
+    public function update(
+        UpdateContactRequestModel $requestModel,
+        UpdateContactOutputBoundary $presenter
+    ): void
     {
         $contact = $this->contactRepository->findById($requestModel->id);
 
@@ -44,6 +46,6 @@ final readonly class UpdateContactInteractor implements UpdateContactInputBounda
             phoneNumber: $updatedContact->getPhoneNumber()
         );
 
-        $this->presenter->present($responseModel);
+        $presenter->present($responseModel);
     }
 }

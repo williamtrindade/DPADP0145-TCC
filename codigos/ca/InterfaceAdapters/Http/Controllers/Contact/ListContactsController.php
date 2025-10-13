@@ -17,7 +17,7 @@ class ListContactsController extends Controller
 
     public function __invoke(): JsonResponse
     {
-        $this->interactor->list();
+        $this->interactor->list($this->presenter);
         $viewModelArray = $this->presenter->getViewModel();
 
         return response()->json($viewModelArray);

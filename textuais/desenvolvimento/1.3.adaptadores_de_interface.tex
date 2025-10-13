@@ -14,7 +14,10 @@
 
     \par Tendo o controller base implementado, é criado um controller para criação de um contato, Código \ref{lst:controller.create}, o \texttt{CreateContactController} atua como um adaptador de interface entre a camada HTTP e a camada de casos de uso da aplicação, seguindo os princípios da Arquitetura Limpa. O controlador recebe duas dependências principais através de injeção de dependência: o \texttt{CreateContactInputBoundary}, uma interface que define o contrato para o caso de uso de criação de contatos seguindo o Princípio da Inversão de Dependência (DIP), e o \texttt{CreateContactApiPresenter}, responsável por formatar a resposta em formato adequado para APIs REST.
     
-    \par O método \texttt{\_\_invoke()} implementa o padrão Single Action Controller do Laravel, extraindo os dados da requisição HTTP (\texttt{name}, \texttt{phone\_number} e \texttt{email}), criando uma instância de \texttt{CreateContactRequestModel} (um DTO que encapsula os dados necessários), invocando o método \texttt{create()} do interactor para delegar a lógica de negócio, recuperando o modelo de visualização formatado pelo presenter através do método \texttt{getViewModel()}, e retornando uma resposta JSON com código de status HTTP 201 (Created).
+    \par O método \texttt{\_\_invoke()} implementa o padrão \textit{Single Action Controller} do Laravel. Ele é responsável por extrair os dados da requisição HTTP (\texttt{name}, \texttt{phone\_number} e \texttt{email}), criar uma instância de \texttt{CreateContactRequestModel}, um DTO que encapsula os dados necessários e utilizá-la como parâmetro ao invocar o método \texttt{create()} do \textit{interactor}. 
+    
+    \par Nessa etapa, o \textit{presenter} é passado como parâmetro ao Intercator para que formate a resposta. Após a execução da lógica de negócio, o método recupera o modelo de visualização formatado pelo \textit{presenter} por meio de \texttt{getViewModel()}, retornando, por fim, uma resposta JSON com código de status HTTP~201 (\textit{Created}).
+
     
     \lstinputlisting[
         language=PHP, 
@@ -22,7 +25,6 @@
         label=lst:controller.create
     ]{codigos/ca/InterfaceAdapters/Http/Controllers/Contact/CreateContactController.php}
 
-    \par Nessa abordagem da Arquitetura Limpa, os presenters são registrados como singletons pois precisam manter o estado do ViewModel entre a execução do interactor e a recuperação no controller, essa etapa de configuração será vista mais a frente no trabalho.
 
     \par Após a definição de todos os controllers seguindo esse mesmo padrão, a estrutura fica conforme a Figura \ref{fig:estrutura-contact-controllers}.
 
@@ -53,7 +55,9 @@
         label=lst:presenter.create
     ]{codigos/ca/InterfaceAdapters/Presenters/Api/CreateContactApiPresenter.php}
     
-    \par Sendo um Singleton, primeiro o interactor invoca \texttt{present()} para formatar os dados, e em seguida o controller invoca \texttt{getViewModel()} para recuperar o resultado formatado, asssim é garantindo que ambas as operações acessem a mesma instância do presenter e, consequentemente, o mesmo \texttt{viewModel} armazenado.
+    \par Nesse cenário, a primeira função do interactor é chamar o método \texttt{present()} para formatar os dados, e em seguida o controller invoca \texttt{getViewModel()} para recuperar o resultado formatado, dessar forma o Caso de Uso não conhece qual implementação de \texttt{OutputBoundary} está sendo passada para ele, garantindo que o \texttt{Controller} decida qual a formatação que vai ser utilizada, asssim basta o Controller instanciar o \texttt{Presenter} correto para cada momento.
+
+    \par Dessa maneira, é possível ter um presenter para cada tipo de retorno, seja para retorno de API em JSON, ou um retorno para formatar o ViewData como um arquivo CSV, tudo isso garante que o Caso de Uso permança isolado, sem a necessidade de conhecer as camadas externas da aplicação. 
 
     \par Após a definição de todos os Presenters seguindo o mesmo padrão utilizado no presenter de criação de contato, a estrutura fica conforme a Figura \ref{fig:estrutura-api-presenters}.
 

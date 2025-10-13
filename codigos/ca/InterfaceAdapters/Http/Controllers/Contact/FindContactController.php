@@ -17,7 +17,7 @@ class FindContactController extends Controller
 
     public function __invoke(int $id): JsonResponse
     {
-        $this->interactor->find($id);
+        $this->interactor->find($id, $this->presenter);
         $viewModel = $this->presenter->getViewModel();
 
         return response()->json($viewModel);

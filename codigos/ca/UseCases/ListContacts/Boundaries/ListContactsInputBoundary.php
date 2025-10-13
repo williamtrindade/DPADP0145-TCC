@@ -6,5 +6,5 @@ use App\UseCases\ListContacts\DTOs\ListContactsResponseModel;
 
 interface ListContactsInputBoundary
 {
-    public function list(): void;
+    public function list(ListContactsOutputBoundary $presenter): void;
 }
