@@ -45,7 +45,7 @@
         }
     \end{figure}
 
-    \par A próoxima etapa foi a implementação dos \texttt{Presenters}, eles atuam como adaptadores de saída (output adapters) responsáveis por transformar os dados retornados pelos casos de uso em um formato adequado para a camada mais externa, implementando o padrão de separação entre lógica de negócio e formatação de resposta. 
+    \par A próxima etapa foi a implementação dos \texttt{Presenters}, eles atuam como adaptadores de saída (output adapters) responsáveis por transformar os dados retornados pelos casos de uso em um formato adequado para a camada mais externa, implementando o padrão de separação entre lógica de negócio e formatação de resposta. 
     
     \par A classe \texttt{CreateContactApiPresenter}, Código \ref{lst:presenter.create}, implementa a interface \texttt{CreateContactOutputBoundary}, definindo o contrato de saída do caso de uso de criação de contatos. Este presenter possui dois métodos principais: \texttt{present()}, que recebe um \texttt{CreateContactResponseModel} (DTO contendo os dados brutos retornados pelo interactor) e o transforma em um \texttt{ContactViewModel} armazenado como propriedade privada da classe, e \texttt{getViewModel()}, que permite ao controller recuperar o ViewModel formatado após a execução do caso de uso. 
 
@@ -74,7 +74,7 @@
         }
     \end{figure}
 
-    \par A pŕoxima etapa é a implementação do \texttt{ContactRepository}, Código \ref{lst:repository}, ele atua como um adaptador de interface, implementando a interface \texttt{ContactRepositoryInterface} definida na camada de Casos de Uso e fazendo a ponte entre a lógica de negócio (entidades) e a camada de persistência (framework e drivers). 
+    \par A próxima etapa é a implementação do \texttt{ContactRepository}, Código \ref{lst:repository}, ele atua como um adaptador de interface, implementando a interface \texttt{ContactRepositoryInterface} definida na camada de Casos de Uso e fazendo a ponte entre a lógica de negócio (entidades) e a camada de persistência (framework e drivers). 
 
     \lstinputlisting[
         linerange={1-10, 74-75},

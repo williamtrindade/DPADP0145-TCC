@@ -55,16 +55,18 @@
 
         \par O Dockerfile é o primeiro componente criado para o ambiente Docker, atuando como um 'manual de instruções' para a construção da imagem do container da aplicação. Ele utiliza a imagem base \texttt{php:8.2-fpm-alpine}, garantindo um ambiente leve e focado no processamento de scripts PHP. 
         
-        \par Através de comandos RUN, o arquivo instala dependências essenciais como o Git e bibliotecas de desenvolvimento, além de extensões PHP específicas, como a \texttt{pdo\_mysql}, que é necessária para a comunicação com o banco de dados. Por fim, o Dockerfile instala o Composer para gerenciar as dependências do Laravel e define o diretório de trabalho, garantindo que o contêiner esteja pronto para executar a aplicação. A Figura \ref{fig:figura_tutorial_2}, apresenta o código escrito no Dockerfile.
+        \par Através de comandos RUN, o arquivo instala dependências essenciais como o Git e bibliotecas de desenvolvimento, além de extensões PHP específicas, como a \texttt{pdo\_mysql}, que é necessária para a comunicação com o banco de dados. Por fim, o Dockerfile instala o Composer para gerenciar as dependências do Laravel e define o diretório de trabalho, garantindo que o contêiner esteja pronto para executar a aplicação. O Código \ref{lst:dockerfile}, apresenta o código escrito no Dockerfile.
 
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=1\textwidth]{figuras/tutorial/2docker.png}
-            \caption{Código do Dockerfile}
-            \label{fig:figura_tutorial_2}
-            \newcommand{\minhafonteum}{Fonte: Autor}
-            \minhafonteum
-        \end{figure}
+        \lstinputlisting[
+            language=bash,
+            inputencoding=utf8,
+            caption={Código do Dockerfile.},
+            label=lst:dockerfile,
+            frame=single, % Adiciona uma moldura ao redor do código
+            numbers=left, % Adiciona números de linha à esquerda
+            breaklines=true, % Quebra linhas longas automaticamente
+            basicstyle=\ttfamily\scriptsize % Define a fonte como monoespaçada e pequena
+        ]{codigos/ca/docker/app/Dockerfile}
 
         \par O arquivo \texttt{default.conf}, localizado na pasta \texttt{docker/nginx}, é o responsável por configurar o servidor web Nginx. Sua principal função é atuar como um proxy reverso, recebendo todas as requisições HTTP e encaminhando-as para o container da aplicação PHP.
 
@@ -72,16 +74,18 @@
 
         \par A seção \texttt{location \textasciitilde \textbackslash.php\$} é a mais crítica para o funcionamento da aplicação. Ela intercepta todas as requisições que terminam em .php e as encaminha para o serviço app (o container PHP-FPM) na porta 9000. Essa configuração permite que o Nginx entregue arquivos estáticos diretamente e passe apenas as requisições dinâmicas para o PHP processar, otimizando o desempenho.
 
-        \par Na Figura \ref{fig:figura_tutorial_3} é apresentado o código escrito no arquivo \texttt{default.conf}.
+        \par No Código \ref{defaultconf} é apresentada a estrutura do arquivo \texttt{default.conf}.
 
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=1\textwidth]{figuras/tutorial/3docker.png}
-            \caption{Código do default.conf}
-            \label{fig:figura_tutorial_3}
-            \newcommand{\minhafonteum}{Fonte: Autor}
-            \minhafonteum
-        \end{figure}
+        \lstinputlisting[
+            language=bash,
+            inputencoding=utf8,
+            caption={Código do default.conf.},
+            label=defaultconf,
+            frame=single, % Adiciona uma moldura ao redor do código
+            numbers=left, % Adiciona números de linha à esquerda
+            breaklines=true, % Quebra linhas longas automaticamente
+            basicstyle=\ttfamily\scriptsize % Define a fonte como monoespaçada e pequena
+        ]{codigos/ca/docker/nginx/default.conf}
 
         \par O arquivo \texttt{docker-compose.yml} é o componente central para a orquestração do ambiente, atuando como um plano que define e gerencia os serviços da aplicação. Ele garante que cada serviço, como a aplicação Laravel, o servidor Nginx e o banco de dados MySQL, sejam criados e interligados corretamente, eliminando a complexidade de iniciar cada contêiner de maneira individual.
 
@@ -104,33 +108,42 @@
             \item \textbf{volumes}: Gerencia a persistência dos dados do banco de dados, para que os dados não sejam perdidos quando o contêiner for parado ou recriado.
         \end{enumerate}
     
-        \par Na Figura \ref{fig:figura_tutorial_4} é apresentado o código do arquivo \texttt{docker-compose.yml}.
+        \par No Código \ref{lst:figura.tutorial.4} é apresentado o conteúdo do arquivo \texttt{docker-compose.yml}.
 
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=1\textwidth]{figuras/tutorial/4docker.png}
-            \caption{Código do docker-compose.yml}
-            \label{fig:figura_tutorial_4}
-            \newcommand{\minhafonteum}{Fonte: Autor}
-            \minhafonteum
-        \end{figure}
-
+        \lstinputlisting[
+            language=bash,
+            inputencoding=utf8,
+            caption={Código do docker-compose.yml},
+            label=lst:figura.tutorial.4,
+            frame=single, % Adiciona uma moldura ao redor do código
+            numbers=left, % Adiciona números de linha à esquerda
+            breaklines=true, % Quebra linhas longas automaticamente
+            basicstyle=\ttfamily\scriptsize % Define a fonte como monoespaçada e pequena
+        ]{codigos/ca/docker-compose.yml}
+        
+    
         \par Após a configuração do ambiente Docker, o próximo passo foi preparar o ambiente de desenvolvimento da aplicação. Para isso, o arquivo \texttt{.env.example}, que contém um modelo das variáveis de ambiente padrão do projeto, precisou ser copiado e renomeado para \texttt{.env}. Esse arquivo é fundamental, pois armazena credenciais e configurações sensíveis, como chaves de acesso e informações de conexão com o banco de dados.
 
-        \par É no arquivo .env que as variáveis como \texttt{DB\_CONNECTION}, \texttt{DB\_HOST}, \texttt{DB\_PORT}, \texttt{DB\_DATABASE}, \texttt{DB\_USERNAME}, \texttt{DB\_PASSWORD} e \texttt{DB\_ROOT\_PASSWORD} são ajustadas para corresponderem às configurações do serviço de banco de dados no arquivo docker-compose.yml. Isso permite que o container da aplicação Laravel se conecte corretamente ao container do banco de dados, estabelecendo a comunicação necessária para o funcionamento do projeto.
+        \begin{sloppypar}
+            \par É no arquivo .env que as variáveis como \texttt{DB\_CONNECTION}, \texttt{DB\_HOST}, \texttt{DB\_PORT},  \texttt{DB\_DATABASE}, \texttt{DB\_USERNAME}, \texttt{DB\_PASSWORD} e \texttt{DB\_ROOT\_PASSWORD} são ajustadas para corresponderem às configurações do serviço de banco de dados no arquivo docker-compose.yml. Isso permite que o container da aplicação Laravel se conecte corretamente ao container do banco de dados, estabelecendo a comunicação necessária para o funcionamento do projeto.
+        \end{sloppypar}
 
-        \par A Figura \ref{fig:figura_tutorial_5} mostra como ficaram as configurações alteradas no arquivo \texttt{.env.example}:
+        \begin{sloppypar}
+            \par No Código \ref{lst:.env.example} é apresentado como ficou o parcialmente o arquivo \texttt{.env.example}, com as mudanças que são necessárias necessárias para o funcionamento da API REST, tal arquivo vai para o sistema controle de versão:
+        \end{sloppypar}
 
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=0.8\textwidth]{figuras/tutorial/5docker.png}
-            \caption{Código do .env.example}
-            \label{fig:figura_tutorial_5}
-            \newcommand{\minhafonteum}{Fonte: Autor}
-            \minhafonteum
-        \end{figure}
+        \lstinputlisting[
+            language=bash,
+            inputencoding=utf8,
+            caption={Código do .env.example},
+            label=lst:.env.example,
+            frame=single, 
+            numbers=left, 
+            breaklines=true,
+            basicstyle=\ttfamily\scriptsize
+        ]{codigos/ca/.env.example}
 
-        \par Após essa alteração foi rodado o seguinte comando no terminal para a criação do arquivo \texttt{.env}:
+        \par Após essa alteração foi rodado o seguinte comando no terminal para a criação do arquivo \texttt{.env}, ao qual não vai estar disponível no sistema de controle de versão:
 
         \begin{verbatim}
         cp .env.example .env
