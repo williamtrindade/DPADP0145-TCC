@@ -60,13 +60,20 @@
             
     \section{Metodologia}
     
-        \par A metodologia adotada para a condução deste Trabalho de Conclusão de Curso, possui uma abordagem qualitativa e de natureza aplicada, configurando-se como um estudo de caso prático. O principal objetivo é demonstrar, de forma detalhada e prática, o processo de implementação dos princípios da Arquitetura Limpa sobre uma API REST existente, desenvolvida com o framework Laravel em sua estrutura padrão baseada no MVC.
+        \par A metodologia adotada para a condução deste Trabalho de Conclusão de Curso apresenta uma abordagem qualitativa e de natureza aplicada, configurando-se como um estudo de caso prático. O principal objetivo é demonstrar, de forma detalhada e prática, o processo de implementação dos princípios da Arquitetura Limpa sobre uma API REST existente, desenvolvida com o framework Laravel em sua estrutura padrão baseada no MVC.
 
-        \par Foi realizada uma busca aprofundada na literatura para estabelecer os fundamentos teóricos que norteiam o presente trabalho. Esta etapa focou na busca da definição dos termos Padrão de Arquitetura e Padrão de Projeto no contexto do MVC e da Arquitetura Limpa, na investigação dos conceitos centrais do MVC, sua evolução para o contexto web (MVC-Web), os princípios de design de software SOLID  e os preceitos da Arquitetura Limpa, incluindo sua organização em camadas e Regra da Dependência.
+        \par Inicialmente, foi realizada uma busca na literatura para estabelecer os fundamentos teóricos que norteiam o presente trabalho. Esta etapa focou na busca pela definição dos termos Padrão de Arquitetura e Padrão de Projeto no contexto do MVC e da Arquitetura Limpa, na investigação dos conceitos centrais do MVC, sua evolução para o contexto web (MVC-Web), os princípios de design de software SOLID, os preceitos da Arquitetura Limpa, incluindo sua organização em camadas e Regra da Dependência e uma base teórica sobre o Framework Laravel e a linguagem PHP.
 
-        \par Após isso, o estudo prosseguirá com a seleção de uma API REST em Laravel, que servirá de base para o redesenho arquitetural. Esta etapa, consistirá na aplicação sistemática dos princípios e camadas da Arquitetura Limpa (como Entidades, Casos de Uso, Adaptadores de Interface e Frameworks \& Drivers) à estrutura original da API REST selecionada. Tendo essa API REST selecionada o trabalho vai focar na refatoração do código e na redefinição das responsabilidades e introdução de abstrações, visando o desacoplamento e a melhora da manutenção da API REST, sendo feita a documentação no presente trabalho durante o processo.
+        \par Em seguida, foi selecionada uma API REST base, proveniente de um tutorial do Programa de Educação Tutorial (PET) da UFSM, por sua clareza e aderência ao MVC padrão do Laravel. Um ambiente de desenvolvimento replicável e isolado foi construído utilizando Docker e Docker Compose, garantindo a consistência do projeto.
 
-        \par A última etapa, é a realização de uma análise entre a API REST original e a API REST refatorada, em termos de estrutura, organização e fluxo das dependências, com foco em evidenciar as diferenças e as alterações necessárias para atingir a aplicação da Arquitetura Limpa como base arquitetural para a API REST e responder como os princípios da Arquitetura Limpa podem ser implementados em uma API REST baseada no padrão MVC do framework Laravel.
+        \par A API base foi primeiramente codificada seguindo a estrutura MVC nativa do framework. Subsequentemente, iniciou-se o processo de refatoração, que foi documentado passo a passo, aplicando sistematicamente os princípios e camadas da Arquitetura Limpa (como Entidades, Casos de Uso, Adaptadores de Interface e Frameworks \& Drivers) à estrutura original da API REST selecionada. 
+        
+        \par O trabalho focou na refatoração do código e na redefinição das responsabilidades e introdução de abstrações, visando o desacoplamento e a melhoria da manutenção da API REST, sendo o processo documentado no presente trabalho.
+
+        \par Na etapa final, foi realizada uma análise comparativa entre a arquitetura original e a refatorada. Essa comparação foi feita em termos de estrutura de diretórios, utilizando diagramas de "antes e depois" para ilustrar a mudança de uma organização técnica para uma "Arquitetura Gritante". O fluxo de uma requisição em ambas as arquiteturas também foi contrastado por meio de diagramas de sequência. 
+        
+        \par Por fim, foi realizada uma avaliação qualitativa dos impactos da adoção da Arquitetura Limpa, focando nos benefícios de manutenibilidade e flexibilidade, bem como no aumento da complexidade inicial proveniente dessa arquitetura.
+        
         
     \section{Estrutura do trabalho}
 
