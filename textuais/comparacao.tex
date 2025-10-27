@@ -1,8 +1,8 @@
-\chapter{Resultados}
-    \par Este capítulo apresenta os resultados obtidos a partir da refatoração da API REST de contatos, que foi transformada de uma arquitetura MVC padrão do framework Laravel para uma estrutura orientada pelos princípios da Arquitetura Limpa. A análise foca na comparação entre a API REST original e a final, destacando as mudanças na estrutura do projeto, no fluxo da requisição e as implicações dessas alterações em termos de novas implementações e de manutenibilidade.
+\chapter{Comparações}
+
+    \par Este capítulo apresenta uma comparação entre a API REST original desenvolvida em MVC e sua versão refatorada com Arquitetura Limpa. A análise destaca as principais mudanças na estrutura do projeto e no fluxo das requisições, estabelecendo uma base para a compreensão dos resultados apresentados nas seções seguintes. Dessa forma, busca-se proporcionar uma visão geral da refatoração, evidenciando os impactos e aspectos que devem ser considerados na adoção da Arquitetura Limpa, os quais serão discutidos posteriormente neste trabalho.
     
     \section{Comparação Estrutural}
-
         \par Para apresentar a materialização do modelo conceitual proposto por \cite{livro:martin:cleanarch}, a Tabela \ref{tab:mapeamento_clean_arch} apresenta o mapeamento direto entre cada componente teórico e a sua respectiva representação no projeto, utilizando o caso de uso de criação de um novo contato como exemplo.
         
         \begin{table}[H]
@@ -57,7 +57,7 @@
             }
         \end{figure}
 
-        \par Já após a refatoração, a estrutura de diretórios passou a espelhar as camadas da Arquitetura Limpa. As regras de negócio agora residem em \texttt{app/Entities} e \texttt{app/UseCases}, completamente isoladas do framework. Os componentes que interagem com o mundo externo, como Controllers e Repositories, foram movidos para \texttt{app/InterfaceAdapters}, e os detalhes de implementação específicos do Laravel, como os Models do Eloquent, para \texttt{app/FrameworksAndDrivers}. A Figura \ref{fig:estrutura-depois} demonstra a organização final do diretório \texttt{app}.
+        \par Já após a refatoração, a estrutura de diretórios passou a refletir as camadas da Arquitetura Limpa. As regras de negócio agora residem em \texttt{app/Entities} e \texttt{app/UseCases}, completamente isoladas do framework. Os componentes que interagem com o mundo externo, como Controllers e Repositories, foram movidos para \texttt{app/InterfaceAdapters}, e os detalhes de implementação específicos do Laravel, como os Models do Eloquent, para \texttt{app/FrameworksAndDrivers}. A Figura \ref{fig:estrutura-depois} demonstra a organização final do diretório \texttt{app}.
 
         \begin{figure}[h!]
             \caption{Estrutura do diretório app após a refatoração.}
@@ -113,7 +113,7 @@
         
         \begin{figure}[H]
             \centering   
-            \includegraphics[width=1\linewidth]{figuras/resultados/mvc1.pdf}
+            \includegraphics[angle=-90,width=0.5\linewidth]{figuras/resultados/mvc1.pdf}
             \caption{Fluxo da Requisição - Arquitetura MVC Original (Laravel).}
             \label{fig:mvc1} 
             \newcommand{\minhafonte}{Fonte: Autor.}
@@ -125,7 +125,7 @@
         
         \begin{figure}[H]
             \centering   
-            \includegraphics[width=1\linewidth]{figuras/resultados/ca1.pdf}
+            \includegraphics[angle=-90,width=0.5\linewidth]{figuras/resultados/ca1.pdf}
             \caption{Fluxo da Requisição - Arquitetura Limpa (Laravel).}
             \label{fig:ca1}
             \newcommand{\minhafonte}{Fonte: Autor.}
@@ -137,13 +137,3 @@
         \par O Interactor, na camada de Casos de Uso, é então ativado e orquestra a lógica de negócio: ele cria a Entidade Contact (4), aplicando as regras de negócio, e delega a persistência para outra abstração, a ContactRepositoryInterface (5). A implementação concreta deste repositório, que também é um Adaptador de Interface, é responsável por interagir com o banco de dados (6, 7, 8). 
         
         \par Ao receber a confirmação da persistência, o Interactor cria um ResponseModel (9) e o envia para a OutputBoundary através do método present() (10), cumprindo sua única responsabilidade. O Presenter, por sua vez, converte os dados em um ViewModel (11). Finalmente, o controle retorna ao Controller, que solicita o ViewModel ao Presenter (13, 14) e envia a resposta JSON final ao cliente (15). Essa abordagem garante que o núcleo da aplicação (Casos de Uso e Entidades) permaneça completamente isolado dos detalhes de infraestrutura, como o framework web e o banco de dados, seguindo estritamente a Regra da Dependência.
-
-    \section{Novas implementações e manutenabilidade}
-
-        \par As implicações dessas alterações são profundas, tanto em termos de implementações novas quanto de manutenibilidade. No que tange à implementação, a nova abordagem exige uma estrutura de código mais elaborada. A criação de uma única funcionalidade, que antes se resumia a um método em um Controller, agora envolve a definição de Entidades, Casos de Uso com seus respectivos DTOs e Boundaries, e as implementações dos adaptadores, como o Repository e o Presenter.
-        
-        \par É notável, que embora isso represente um aumento na quantidade de arquivos e na complexidade inicial, a implementação passa a ser guiada por contratos (interfaces), reforçando o Princípio da Inversão de Dependência e resultando em um código mais explícito e coeso. É na manutenibilidade, no entanto, que os maiores benefícios serão percebidos, sendo este um dos objetivos centrais da Arquitetura Limpa. Ao isolar o núcleo da aplicação (Casos de Uso e Entidades) dos detalhes de infraestrutura como o framework e o banco de dados, a arquitetura facilita a manutenção futura. 
-        
-        \par Na prática, a substituição do Eloquent ORM por outra ferramenta de persistência, por exemplo, exigiria apenas a criação de uma nova classe que implemente a ContactRepositoryInterface, sem qualquer alteração na lógica de negócio contida no Interactor. Essa separação estrita de interesses não só protege as regras de negócio de mudanças em tecnologias externas, mas também pode tornar o sistema mais flexível e testável.
-
-      

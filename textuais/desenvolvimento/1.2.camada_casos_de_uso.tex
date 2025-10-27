@@ -13,11 +13,11 @@
         \item \texttt{Interactor}: A classe principal que contém a implementação da lógica de negócio.
     \end{itemize}
 
-    \par Após a criação da estrutura dos casos de uso, foi criada uma Interface para representar a \texttt{DataAccessInterface}, essa interface representa a implementação do \texttt{DataAccess}. Para realizar esse isolamento do acesso ao banco de dados, foi utilizado o padrão RepositoryPattern, onde tem-se uma classe que implementa as operações de acesso ao banco de dados, e uma interface que fica na camada de Casos de Uso que é a representação desse Adaptador.
+    \par Após a criação da estrutura dos casos de uso, foi criada uma Interface para representar a \texttt{DataAccessInterface}, essa interface representa a implementação do \texttt{DataAccess}. Para realizar esse isolamento do acesso ao banco de dados, foi utilizado o padrão Repository Pattern, onde tem-se uma classe que implementa as operações de acesso ao banco de dados, e uma interface que fica na camada de Casos de Uso que é a representação desse Adaptador.
 
     \par Para aderir a esse padrão, foi criada a Interface \texttt{ContactRepositoryInterface} (Código \ref{lst:contact.repo.interface})  dentro do diretório \texttt{app/UsesCases/Contracts}, essa interface apenas define os métodos que vão ser usados pelos casos de uso, e faz com que essa camada não conheça qual banco de dados ou ORM a aplicação usa, assim aderindo à inversão de dependência.
 
-    \par A interface que representa o acesso aos dados é definida na Arquitertura Limpa como um Gateway de aceso à dados, ou seja, independente da origem desses dados, no caso da API de contatos a origem é um banco de dados, e para isso foi utilizado o Repository Pattern, todavia, se fosse feito acesso a um arquivo .txt, poderia ser utilizado outro padrão. A Arquitetura Limpa não se importa com a origem dos dados, mas sim com que a camada mais interna não dependa da camada mais externa.
+    \par A interface que representa o acesso aos dados é definida na Arquitetura Limpa como um Gateway de aceso à dados, ou seja, independente da origem desses dados, no caso da API de contatos a origem é um banco de dados, e para isso foi utilizado o Repository Pattern, todavia, se fosse feito acesso a um arquivo .txt, poderia ser utilizado outro padrão. A Arquitetura Limpa não se importa com a origem dos dados, mas sim com que a camada mais interna não dependa da camada mais externa.
 
     \lstinputlisting[
         language=PHP, 
@@ -134,4 +134,4 @@
         \label{fig:estrutura-usecases-minimalista}
     \end{figure} 
         
-    \par As implementações completas dessses Casos de Uso seguem os mesmos princípios aqui demonstrados pela implementação do caso de uso \texttt{CreateContact}, variando apenas na complexidade de seus DTOs e na lógica de seus Interactors. Para fins de brevidade, seus códigos não serão detalhados neste documento, mas podem ser consultados na íntegra no repositório do projeto no GitHub.
+    \par As implementações completas desses Casos de Uso seguem os mesmos princípios aqui demonstrados pela implementação do caso de uso \texttt{CreateContact}, variando apenas na complexidade de seus DTOs e na lógica de seus Interactors. Para fins de brevidade, seus códigos não serão detalhados neste documento, mas podem ser consultados na íntegra no repositório do projeto no GitHub.

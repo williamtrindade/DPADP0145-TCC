@@ -40,7 +40,7 @@
 
         \par Para garantir um ambiente de desenvolvimento isolado, consistente e portátil para replicação do projeto, foi utilizada a tecnologia Docker. O uso de containers Docker permitiu encapsular a aplicação e suas dependências, como o servidor web e o banco de dados, eliminando problemas de compatibilidade entre diferentes sistemas operacionais, a orquestração dos serviços foi realizada com o Docker Compose.
         
-        \par Conforme a Figura \ref{fig:figura_tutorial_1}, a estrutura de diretórios do projeto foi organizada para acomodar os arquivos de configuração do Docker junto ao projeto Laravel na raiz do mesmo. No diretório reservado ao docker \texttt{/docker}, comtém a pasta \texttt{app} que armazena o Dockerfile do projeto e a pasta \texttt{nginx} que armazena a configuração do servidor web Nginx, que atua como ponto de entrada para as requisições HTTP.
+        \par Conforme a Figura \ref{fig:figura_tutorial_1}, a estrutura de diretórios do projeto foi organizada para acomodar os arquivos de configuração do Docker junto ao projeto Laravel na raiz do mesmo. No diretório reservado ao docker \texttt{/docker}, contém a pasta \texttt{app} que armazena o Dockerfile do projeto e a pasta \texttt{nginx} que armazena a configuração do servidor web Nginx, que atua como ponto de entrada para as requisições HTTP.
 
         \par Ainda na Figura \ref{fig:figura_tutorial_1} pode-se notar o arquivo \texttt{docker-compose.yml} que é o componente central para a orquestração dos serviços, definindo o uso de containers para a aplicação, servidor web e banco de dados.
 
@@ -53,7 +53,7 @@
             \minhafonteum
         \end{figure}
 
-        \par O Dockerfile é o primeiro componente criado para o ambiente Docker, atuando como um 'manual de instruções' para a construção da imagem do container da aplicação. Ele utiliza a imagem base \texttt{php:8.2-fpm-alpine}, garantindo um ambiente leve e focado no processamento de scripts PHP. 
+        \par O Dockerfile é o primeiro componente criado para o ambiente Docker, atuando como um `manual de instruções'' para a construção da imagem do container da aplicação. Ele utiliza a imagem base \texttt{php:8.2-fpm-alpine}, garantindo um ambiente leve e focado no processamento de scripts PHP. 
         
         \par Através de comandos RUN, o arquivo instala dependências essenciais como o Git e bibliotecas de desenvolvimento, além de extensões PHP específicas, como a \texttt{pdo\_mysql}, que é necessária para a comunicação com o banco de dados. Por fim, o Dockerfile instala o Composer para gerenciar as dependências do Laravel e define o diretório de trabalho, garantindo que o contêiner esteja pronto para executar a aplicação. O Código \ref{lst:dockerfile}, apresenta o código escrito no Dockerfile.
 

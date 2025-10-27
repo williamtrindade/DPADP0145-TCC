@@ -1,5 +1,5 @@
 \section{Laravel}
-    \par Tendo em vista que o presente TCC aborda o Laravel como ferramenta para aplicar a Arquitertura Limpa, é necessário uma definição conceitual sobre seus princípios e filosofia, assim corroborando para o melhor entendimento dos código presentes durante o processo de refatoração.
+    \par Tendo em vista que o presente TCC aborda o Laravel como ferramenta para aplicar a Arquitetura Limpa, é necessário uma definição conceitual sobre seus princípios e filosofia, assim corroborando para o melhor entendimento dos código presentes durante o processo de refatoração.
     
     \par O Laravel é um framework para o desenvolvimento de aplicações web em PHP, cuja primeira versão beta foi lançada em junho de 2011. A sua criação foi motivada pela insatisfação do seu idealizador, Taylor Otwell, com as limitações de frameworks contemporâneos como o CodeIgniter. A filosofia central que norteia o Laravel é a de maximizar a ''felicidade do desenvolvedo'', um princípio que se manifesta através de código limpo, legível e de um ecossistema de ferramentas que visa simplificar tarefas comuns e acelerar o ciclo de desenvolvimento \cite{livro:stauffer:2023:laravel}.
 
@@ -7,7 +7,7 @@
     
     \par Em seguida, a requisição é encapsulada em um objeto \verb|Illuminate\Http\Request| e passada para o ''kernel'' da aplicação Laravel. O kernel, por sua vez, processa a requisição através de uma série de camadas de Middleware antes de finalmente direcioná-la para uma rota definida \cite{livro:stauffer:2023:laravel}.
 
-    \par As rotas são os pontos de entrada de uma API e são definidas no arquivo routes/api.php. As rotas neste arquivo são, por padrão, stateless (sem estado de sessão), o que é fundamental para APIs REST. A definição de uma rota associa um verbo HTTP e um URI a uma ação, geralmente um método em um Controlador.\cite{livro:stauffer:2023:laravel}.
+    \par As rotas são os pontos de entrada de uma API e são definidas no arquivo routes/api.php. As rotas neste arquivo são, por padrão, stateless, o que é fundamental para APIs REST. A definição de uma rota associa um verbo HTTP e um URI a uma ação, geralmente um método em um Controlador.\cite{livro:stauffer:2023:laravel}.
 
     \par O Middleware atua como um sistema de filtros para as requisições HTTP. Antes de uma requisição chegar ao controlador, ela passa por um pipeline de middlewares que podem inspecioná-la e até mesmo rejeitá-la. No contexto de uma API, o middleware é o local ideal para implementar funcionalidades transversais. A sua aplicação mais comum é na autenticação, onde um middleware pode verificar a validade de um token de acesso, e no controle de frequência de requisições (rate limiting), que protege a API contra abuso \cite{livro:stauffer:2023:laravel}.
 

@@ -6,7 +6,7 @@
         
     \par Ainda nesse contexto, a sua implementação foi realizada inicialmente no ambiente Smalltalk, e foi formalizada como um padrão por Reenskaug em duas notas técnicas publicadas por ele em maio e dezembro de 1979, essa notas estabeleceram as bases do MVC \cite{artigo:reenskaug:1979}.
     
-    \par Quanto a validação e a demonstração de eficacia do padrão MVC, as mesmas vieram de um experimento no Xerox PARC, envolvendo um sistema de planejamento para uma fábrica de semicondutores, dessa forma mostrando a sua aplicabilidade prática \cite{artigo:reenskaug:2003}.
+    \par Quanto a validação e a demonstração de eficacia do padrão MVC, as mesmas vieram de um experimento no Xerox PARC, envolvendo um sistema de planejamento para uma fábrica de semicondutores, dessa forma, mostrando a sua aplicabilidade prática \cite{artigo:reenskaug:2003}.
     
     \par Com a evolução tecnológica, o MVC foi adaptado para interfaces mais complexas e posteriormente inspirou frameworks modernos, como o ASP.NET MVC, que foi lançado no ano de 2009. Nesse sentido é notável  que o Smalltalk foi o responsável pela criação do padrão MVC, que posteriormente se tornou amplamente adotado em sistemas orientados a objetos \cite{artigo:deacon:2009}.
     
@@ -26,7 +26,7 @@
 
     %% MODEL 
     
-    \par A camada Model, como apresentada na Figura \ref{fig:figura_mvc_1}, representa o núcleo do domínio da aplicação, encapsulando tanto os dados quanto as regras de negócio que comandam o comportamento do sistema. Ela deve manter-se completamente independente das questões relacionadas à UI, não contendo qualquer referência direta ou conhecimento sobre como os dados são apresentados ou manipulados externamente \cite{artigo:deacon:2009}.
+    \par A camada Model, como apresentada na Figura \ref{fig:figura_mvc_1}, representa o núcleo do domínio da aplicação, encapsulando tanto os dados quanto as regras de negócio que regem o comportamento do sistema. Ela deve manter-se completamente independente das questões relacionadas à UI, não contendo qualquer referência direta ou conhecimento sobre como os dados são apresentados ou manipulados externamente \cite{artigo:deacon:2009}.
     
     \par Esta camada é composta por entidades que modelam o problema em questão, como classes representando clientes, transações financeiras ou reservas, permanecendo estável mesmo quando as interfaces de usuário sofrem modificações significativas. A literatura ainda explica uma distinção importante entre o Modelo de Domínio (Md), que contém a lógica essencial do negócio, e o Modelo de Aplicação (Ma), que atua como mediador entre o núcleo do sistema e as camadas de apresentação \cite{artigo:deacon:2009}.
         
@@ -68,7 +68,7 @@
     
         \par O padrão MVC-Web surge como uma adaptação do tradicional MVC para o contexto de aplicações web, onde a arquitetura cliente-servidor e o Protocolo de Transferência de Hipertexto (Hypertext Transfer Protocol - HTTP) introduzem desafios distintos em relação aos sistemas desktop originais \cite{inproceedings:grove:2011}.
         
-        \par Enquanto o MVC clássico foi concebido para ambientes interativos como o Smalltalk-80, o MVC-Web reflete as mudanças necessárias para lidar com a natureza stateless da web, a separação física entre cliente e servidor e a necessidade de gerenciamento explícito do fluxo de navegação \cite{inproceedings:grove:2011}.
+        \par Enquanto o MVC clássico foi concebido para ambientes interativos como o Smalltalk-80, o MVC-Web reflete as mudanças necessárias para lidar com a natureza \textit{stateless} (sem estado de sessão) da web, a separação física entre cliente e servidor e a necessidade de gerenciamento explícito do fluxo de navegação \cite{inproceedings:grove:2011}.
         
         %% MODEL
         
