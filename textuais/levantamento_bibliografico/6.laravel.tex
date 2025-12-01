@@ -19,8 +19,7 @@
 
     \par Na Figura \ref{fig:figura_laravel1}, apresenta-se uma exemplificação simplificada da arquitetura do Laravel com base nos autores citados neste trabalho. O Laravel é estruturadado em camadas, iniciando pela camada de entrada e framework, que inclui o public/index.php, o Kernel, o Router e os Middlewares. Em seguida, a camada de aplicação contém os Controllers, responsáveis por orquestrar a lógica e direcionar o fluxo da requisição. Já a camada de negócio e dados concentra, opcionalmente, os Services ou Use Cases, que implementam a lógica de negócio, e obrigatoriamente os Models, representados pelo Eloquent, que realizam a persistência de dados. 
     
-    \par Em algumas implementações, a lógica de negócio pode permanecer nos Controllers; todavia, a abordagem destacada pelos autores, ao delegar essa responsabilidade a componentes específicos, contribui para um maior desacoplamento e melhor organização do código. Por fim, conectando todos esses elementos, está o IoC Container, que viabiliza o desacoplamento e a injeção de dependências entre os componentes do framework.
-
+    \par Em algumas implementações, a lógica de negócio pode permanecer nos Controllers; contudo, a abordagem destacada pelos autores, ao delegar essa responsabilidade a componentes específicos, contribui para um maior desacoplamento e melhor organização do código. Por fim, conectando todos esses elementos, está o IoC Container, que viabiliza o desacoplamento e a injeção de dependências entre os componentes do framework.
 
     \begin{figure}[H]
         \centering

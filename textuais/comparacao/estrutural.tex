@@ -30,7 +30,7 @@
         
         \par A persistência dos dados é abstraída pela Data Access Interface (\texttt{ContactRepositoryInterface.php}), cuja implementação concreta é o \texttt{ContactRepository.php}, que por sua vez interage com o Database (MySQL). Ao final do fluxo, o Interactor produz o Output Data (\texttt{CreateContactResponseModel.php}) e o entrega ao Presenter (\texttt{CreateContactApiPresenter.php}) através da Output Boundary (\texttt{CreateContactOutputBoundary.php}). Por fim, o Presenter formata esses dados em um View Model (\texttt{ContactViewModel.php}), que serve de base para a View, representada pela Resposta JSON final.
 
-        \par Aprsentados os componentes resultantes da aplicação da Arquitetura Limpa, pode-se realizar uma comparação entre a arquitetura MVC e a Arquitetura Limpa no contexto desse TCC, apresentando as diferenças entre a abordagem inicial, centrada no framework, e a abordagem final, centrada no domínio de negócio. 
+        \par Apresentados os componentes resultantes da aplicação da Arquitetura Limpa, pode-se realizar uma comparação entre a arquitetura MVC e a Arquitetura Limpa no contexto desse TCC, apresentando as diferenças entre a abordagem inicial, centrada no framework, e a abordagem final, centrada no domínio de negócio. 
         
         \par A primeira mudança perceptível está na organização dos diretórios. A estrutura MVC original agrupa os arquivos por seu tipo técnico (Models, Controllers), enquanto a nova estrutura os organiza por camadas e funcionalidades, refletindo o conceito de "Arquitetura Gritante".
         

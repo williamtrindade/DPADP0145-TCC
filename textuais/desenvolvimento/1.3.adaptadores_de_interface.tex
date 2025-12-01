@@ -1,10 +1,10 @@
 \subsection{Camada de Adaptadores de Interface}
-    \par Para a implementação da camada de Adaptadores de Interface se fez necessário primeiramente a deleção do Controller criado anteriormente no projeto, pois com a Arquitetura Limpa e aplicação do SRP do SOLID, cada método do Controller se tornara uma classe. Assim como na camad de Caos de Uso, essa subsecção focara em apresentar a criação do contato na API de contatos.
+    \par Para a implementação da camada de Adaptadores de Interface se fez necessário primeiramente a deleção do Controller criado anteriormente no projeto, pois com a Arquitetura Limpa e aplicação do SRP do SOLID, cada método do Controller se tornara uma classe. Assim como na camada de Casos de Uso, essa subsecção focara em apresentar a criação do contato na API de contatos.
 
     \par Primeiramente são deletado os arquivos \texttt{ContactController.php} e \texttt{Controller.php} do diretório \texttt{app/Http/Controllers/}. 
     Após isso foi criado primeiro o arquivo \texttt{Controller.php} e o arquivo \texttt{/Contact/CreateContactController.php} no diretório \texttt{app/InterfaceAdapters/Http/Controllers/}.
 
-    \par Criados esses dois arquivos, o \texttt{Controller.php}, Código \ref{lst:controllerbase}, é mantido como o anterior, criado pelo Laravel, mentendo o mesmo código, pois essa classe é estendida pelos outros controllers. A decisão de coloca-lo no diretório de InterfaceAdapters é para facilicar a manutenção do código, já que componentes com resposabilidades parecidas vão se manter próximos no projeto.
+    \par Criados esses dois arquivos, o \texttt{Controller.php}, Código \ref{lst:controllerbase}, é mantido como o anterior, criado pelo Laravel, mantendo o mesmo código, pois essa classe é estendida pelos outros controllers. A decisão de coloca-lo no diretório de InterfaceAdapters é para facilitar a manutenção do código, já que componentes com responsabilidades parecidas vão se manter próximos no projeto.
 
     \lstinputlisting[
         language=PHP, 
