@@ -4,25 +4,35 @@
 
         \par Para a API de Contatos, a entidade principal é a Contact. Seguindo os princípios da Arquitetura Limpa, esta entidade não deve ter qualquer acoplamento com o Eloquent ORM do Laravel. Em vez disso, ela será uma classe PHP pura. A principal responsabilidade desta classe é representar um contato e suas regras intrínsecas, garantindo a integridade de seus dados.
 
-        \par Nesse cenário, o arquivo \texttt{app/Entities/Contact.php} define a classe que representa a entidade. Primeiramente, foram definidas as propriedades e o construtor da classe com as chamadas para os métodos \texttt{setters}, conforme o código abaixo demonstra:
+        \par Nesse contexto, o arquivo \texttt{app/Entities/Contact.php} define a classe responsável por representar a entidade de domínio. Inicialmente, são declaradas as propriedades da classe, bem como o construtor, que realiza a atribuição dos valores por meio das chamadas aos métodos \texttt{setters}. A estrutura inicial dessa implementação pode ser observada no Código~\ref{lst:ca-contact-entity-0}.
 
         \lstinputlisting[
             language=PHP,
             inputencoding=utf8,
-            firstline=1, 
-            lastline=21 
+            firstline=1,
+            lastline=21,
+            caption={Estrutura inicial da entidade \texttt{Contact}},
+            label=lst:ca-contact-entity-0,
+            frame=single,
+            numbers=left,
+            breaklines=true,
+            basicstyle=\ttfamily\scriptsize
         ]{codigos/ca/Entities/Contact.php}
 
-
-        \par Em seguida, na mesma classe foram criados os método \texttt{getters} e \texttt{setters}, conforme o código abaixo:
+        \par Em seguida, na mesma classe foram implementados os métodos \texttt{getters} e \texttt{setters}, responsáveis por encapsular o acesso e a modificação dos atributos da entidade. A implementação completa desses métodos pode ser observada no Código~\ref{lst:ca-contact-entity-1}.
 
         \lstinputlisting[
             language=PHP,
             inputencoding=utf8,
-            firstline=22, 
-            lastline=61 
+            firstline=22,
+            lastline=61,
+            caption={Métodos \texttt{getters} e \texttt{setters} da entidade \texttt{Contact}},
+            label=lst:ca-contact-entity-1,
+            frame=single,
+            numbers=left,
+            breaklines=true,
+            basicstyle=\ttfamily\scriptsize
         ]{codigos/ca/Entities/Contact.php}
-
 
         \par Além da implementação dessas propriedades e métodos, nota-se na entidade o modificador \texttt{final}, fazendo com que a classe não possa ser estendida, garantindo que o núcleo da aplicação permaneça independente, já que é uma entidade base que vai ser usada pelos casos de uso.
         

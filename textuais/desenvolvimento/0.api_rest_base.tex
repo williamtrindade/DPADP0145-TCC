@@ -1,8 +1,8 @@
 \section {API REST base}
 
     \par Esta seção do presente TCC tem como objetivo apresentar a API REST escolhida para a refatoração, bem como documentar o processo de sua criação, desde a configuração de um ambiente de desenvolvimento utilizando a ferramenta Docker até a descrição das etapas necessárias para a implementação da API REST. Dessa forma, busca-se fornecer uma base prática para a aplicação da Arquitetura Limpa, contribuindo para uma melhor compreensão dos princípios abordados neste trabalho.
-
-    \par A API escolhida como base para este TCC foi uma API REST desenvolvida em um tutorial do Programa de Educação Tutorial (PET) do curso de Sistemas de Informação da UFSM. O material foi disponibilizado pelo Grupo PET no endereço eletrônico: https://www.ufsm.br/pet/sistemas-de-informacao/2020/08/25/api-laravel. O tutorial foi publicado em 25/08/2020 e atualizado em 02/09/2025, permanecendo disponível até a elaboração deste trabalho.
+    
+    \par A API escolhida como base para este TCC foi uma API REST desenvolvida em um tutorial do Programa de Educação Tutorial (PET) do curso de Sistemas de Informação da UFSM. O material foi disponibilizado pelo Grupo PET no endereço eletrônico\footnote{Disponível em: \url{https://www.ufsm.br/pet/sistemas-de-informacao/2020/08/25/api-laravel}. Acesso em: 25 de novembro de 2025}. O tutorial foi publicado em 25/08/2020 e atualizado em 02/09/2025, permanecendo disponível até a elaboração deste trabalho.
 
     \par A API desenvolvida no tutorial do PET, consiste em rotas para a gestão do recurso de contatos, de maneira que seja fácil exemplificar o uso das ferramentas do framework. Ela foi construída passo a passo, desde a criação do projeto até a implementação de métodos como index, show, store, update e destroy, permitindo uma compreensão clara e objetiva do processo de desenvolvimento de APIs com Laravel.
     
@@ -53,9 +53,9 @@
             \minhafonteum
         \end{figure}
 
-        \par O Dockerfile é o primeiro componente criado para o ambiente Docker, atuando como um `manual de instruções'' para a construção da imagem do container da aplicação. Ele utiliza a imagem base \texttt{php:8.2-fpm-alpine}, garantindo um ambiente leve e focado no processamento de scripts PHP. 
-        
-        \par Através de comandos RUN, o arquivo instala dependências essenciais como o Git e bibliotecas de desenvolvimento, além de extensões PHP específicas, como a \texttt{pdo\_mysql}, que é necessária para a comunicação com o banco de dados. Por fim, o Dockerfile instala o Composer para gerenciar as dependências do Laravel e define o diretório de trabalho, garantindo que o contêiner esteja pronto para executar a aplicação. O Código \ref{lst:dockerfile}, apresenta o código escrito no Dockerfile.
+        \par O Dockerfile é o primeiro componente criado para o ambiente Docker, atuando como um ``manual de instruções'' para a construção da imagem do container da aplicação. Ele utiliza a imagem base \texttt{php:8.2-fpm-alpine}, garantindo um ambiente leve e focado no processamento de scripts PHP. 
+
+        \par Através de comandos RUN, o arquivo instala dependências essenciais, como o Git e bibliotecas de desenvolvimento, além de extensões PHP específicas, como a \texttt{pdo\_mysql}, que é necessária para a comunicação com o banco de dados. Por fim, o Dockerfile instala o Composer para gerenciar as dependências do Laravel e define o diretório de trabalho, garantindo que o contêiner esteja pronto para executar a aplicação. O Código \ref{lst:dockerfile} apresenta o código escrito no Dockerfile.
 
         \lstinputlisting[
             language=bash,
@@ -176,27 +176,7 @@
         \end{verbatim}
         
         \sloppy
-        \par Após essas etapas o ambiente docker foi verificado com o comando \texttt{docker-compose ps} e demonstrou sucesso na execução dos containers conforme a Figura \ref{fig:figura_tutorial_6}.
-
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=0.9\textwidth]{figuras/tutorial/6docker.png}
-            \caption{Resultado do comando docker-compose ps}
-            \label{fig:figura_tutorial_6}
-            \newcommand{\minhafonteum}{Fonte: Autor}
-            \minhafonteum
-        \end{figure}
-
-        \par Para verificar a aplicação rodando com a rota padrão criada pelo framework, bastou acessar a URL \textbf{http://localhost:8000/}, conforme mostra a Figura \ref{fig:figura_tutorial_7}.
-
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=0.8\textwidth]{figuras/tutorial/7docker.png}
-            \caption{Aplicação Laravel em execução}
-            \label{fig:figura_tutorial_7}
-            \newcommand{\minhafonteum}{Fonte: Autor}
-            \minhafonteum
-        \end{figure}
+        \par Após essas etapas, o ambiente Docker foi verificado com o comando \texttt{docker-compose ps}, o qual demonstrou sucesso na execução dos contêineres. Em seguida, foi realizada a validação da execução da aplicação, acessando a URL \textbf{http://localhost:8000/}.
         
     \subsection{Codificação da API REST}
     
@@ -210,27 +190,74 @@
         
         \par Ao rodar esse comando, foram criados dois arquivos, \textit{app/Models/Contact.php}, correspondente ao Model, e um arquivo com final \texttt{create\_contacts\_table}, localizado em \texttt{database/migrations}, que corresponde à Migration. 
 
-        \par O arquivo do Model ficou da seguinte forma:
+        \par Conforme mostra o Código~\ref{lst:mvc-model-0}, arquivo referente ao Model apresenta a seguinte implementação:
+
+        \lstinputlisting[
+            language=PHP,
+            inputencoding=utf8,
+            caption={Código do Model},
+            label=lst:mvc-model-0,
+            frame=single, 
+            numbers=left, 
+            breaklines=true,
+            basicstyle=\ttfamily\scriptsize
+        ]{codigos/api-pet/Contact.php}
+
+        \par Conforme apresenta o Código~\ref{lst:mvc-migration-0}, o arquivo de Migration ficou estruturado da seguinte forma:
+
+        \lstinputlisting[
+            language=PHP,
+            inputencoding=utf8,
+            caption={Código da Migration},
+            label=lst:mvc-migration-0,
+            frame=single,
+            numbers=left,
+            breaklines=true,
+            basicstyle=\ttfamily\scriptsize
+        ]{codigos/api-pet/Migration.php}
+
+        \par Em seguida, foi necessário alterar o arquivo \texttt{bootstrap/app.php} para registrar o arquivo de rotas da API. O Código~\ref{lst:mvc-app-0} apresenta a nova configuração aplicada:
         
-        \lstinputlisting[language=PHP, inputencoding=utf8]{codigos/api-pet/Contact.php}
+        \lstinputlisting[
+            language=PHP,
+            inputencoding=utf8,
+            caption={Configuração do arquivo \texttt{bootstrap/app.php}},
+            label=lst:mvc-app-0,
+            frame=single,
+            numbers=left,
+            breaklines=true,
+            basicstyle=\ttfamily\scriptsize
+        ]{codigos/api-pet/app.php}
+
+        \par Após o registro no arquivo \texttt{bootstrap/app.php}, foi criado o arquivo de rotas \texttt{routes/api.php}, no qual foram definidas as rotas da API. O Código~\ref{lst:mvc-routes-api-0} apresenta a implementação final desse arquivo:
         
-        \par O arquivo de Migration ficou assim:
-        
-        \lstinputlisting[language=PHP, inputencoding=utf8]{codigos/api-pet/Migration.php}
-        
-        \par Em seguida, foi necessário alterar o arquivo \texttt{bootstrap/app.php} para registrar o arquivo de rotas da API, que passou a ter a seguinte configuração:
-        
-        \lstinputlisting[language=PHP, inputencoding=utf8]{codigos/api-pet/app.php}
-        
-        \par Após o registro no \texttt{app.php}, foi criado o arquivo de rotas \texttt{routes/api.php} e definidas as rotas da API. Após a implementação, o arquivo ficou da seguinte forma:
-        
-        \lstinputlisting[language=PHP, inputencoding=utf8]{codigos/api-pet/api.php}
+        \lstinputlisting[
+            language=PHP,
+            inputencoding=utf8,
+            caption={Arquivo de rotas \texttt{routes/api.php}},
+            label=lst:mvc-routes-api-0,
+            frame=single,
+            numbers=left,
+            breaklines=true,
+            basicstyle=\ttfamily\scriptsize
+        ]{codigos/api-pet/api.php}
 
         \sloppy
-        \par O último arquivo a ser criado foi o \texttt{ContactController.php}, localizado em \texttt{app/Http/Controllers}. O conteúdo do arquivo ficou da seguinte forma:
-        \vspace{1cm}  % pula 1 cm
 
-        \lstinputlisting[language=PHP, inputencoding=utf8]{codigos/api-pet/ContactController.php}
+        \par O último arquivo a ser criado foi o \texttt{ContactController.php}, localizado em \texttt{app/Http/Controllers}. O Código~\ref{lst:mvc-controller-0} apresenta o conteúdo final desse arquivo:
+
+        \vspace{1cm}
+        
+        \lstinputlisting[
+            language=PHP,
+            inputencoding=utf8,
+            caption={Arquivo \texttt{ContactController.php}},
+            label=lst:mvc-controller-0,
+            frame=single,
+            numbers=left,
+            breaklines=true,
+            basicstyle=\ttfamily\scriptsize
+        ]{codigos/api-pet/ContactController.php}
 
         \par O arquivo \texttt{ContactController.php} implementa o Controller responsável pelo gerenciamento das operações relacionadas à entidade \textit{Contato}. Ele define métodos para criar (\texttt{store}), listar (\texttt{index}), exibir um registro específico (\texttt{show}), atualizar (\texttt{update}) e deletar (\texttt{destroy}) contatos no banco de dados, utilizando o Model \texttt{Contact}. 
         

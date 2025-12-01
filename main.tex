@@ -1,25 +1,23 @@
 \documentclass[oneside,openright,12pt]{ufsm_2021} 
 
 \include{dados/dados}
-%% \include{pre-textuais/epigrafe}
-%% \include{pre-textuais/dedicatoria}
-%% \include{pre-textuais/agradecimentos}
+\include{pre-textuais/epigrafe}
+\include{pre-textuais/dedicatoria}
+\include{pre-textuais/agradecimentos}
 \include{pre-textuais/resumo}
 \include{pre-textuais/listas}
+
 %% \include{pre-textuais/ficha-catalografica}
 %% \include{pre-textuais/folha-de-errata}
 \include{dados/opcoes-formatacao}
 
 \usepackage{booktabs}
-
-
 \usepackage{tabularx} % Adicionar este pacote
 \usepackage{caption}
 \usepackage{graphicx} % Usado para outros tipos de imagens
 \usepackage{float} % Usado para posicionamento de imagens
 \usepackage{svg}  % Eis o pacote que queremos.
 \usepackage{tikz}
-
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{dirtree}
@@ -55,11 +53,12 @@
 
 \begin{document}
     \pretextual
+    
     %% TEXTUAIS
     \include{textuais/introducao}
     \include{textuais/levantamento_bibliografico/main}
     \include{textuais/desenvolvimento/main}
-    \include{textuais/comparacao}
+    \include{textuais/comparacao/main}
     \include{textuais/resultados_e_discucoes}
     \include{textuais/consideracoes_finais}
 

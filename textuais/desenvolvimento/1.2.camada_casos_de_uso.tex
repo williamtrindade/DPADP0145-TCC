@@ -58,11 +58,11 @@
     ]{codigos/ca/UseCases/CreateContact/Boundaries/CreateContactOutputBoundary.php}
         
         
-    \par O Interactor (Código \ref{lst:create.interactor}) é a classe que contém a lógica de negócio pura. Ele implementa a \texttt{InputBoundary} e orquestra a interação com as Entidades, utilizando outras abstrações — como a \texttt{ContactRepositoryInterface} e a \texttt{CreateContactOutputBoundary} — para se comunicar com as camadas externas sem conhecê-las diretamente.
+    \par O Interactor (Código \ref{lst:create.interactor}) é a classe que contém a lógica de negócio pura. Ele implementa a \texttt{InputBoundary} e orquestra a interação com as Entidades, utilizando outras abstrações como a \texttt{ContactRepositoryInterface} e a \texttt{CreateContactOutputBoundary}, para se comunicar com as camadas externas sem conhecê-las diretamente.
         
     \lstinputlisting[
         firstline=1,
-        lastline=20,
+        lastline=19,
         language=PHP, 
         inputencoding=utf8, 
         caption={Estrutura do Interactor de Criação de Contato.}, label=lst:create.interactor
@@ -71,7 +71,7 @@
     \par No (Código \ref{lst:create.interactor.create}) tem-se a implementação do método create do \texttt{Interactor}, esse método realiza a regra de negócio do caso de uso, como as validações e etapas necessárias para a criação de um Contato. Esse método recebe os dados pela estrutura de dados de entrada e ao final chama o método \texttt{present()} da interface \texttt{CreateContactOutputBoundary}, que é a representação do \texttt{Presenter}. Desse modo o caso de uso não conhece as implementações das outras camadas, mantendo os princípios da Arquitetura Limpa.
 
     \lstinputlisting[
-        firstline=21,
+        firstline=20,
         lastline=50,
         language=PHP, 
         inputencoding=utf8, caption={Estrutura do método create do Interactor de Criação de Contato.}, 
@@ -102,7 +102,7 @@
     
     \par Após a implementação de todos os casos de uso a estrutura do diretório de UseCases ficou conforme a Figura \ref{fig:estrutura-usecases-minimalista}, onde cada caso de uso tem seus \texttt{Boundaries} e \texttt{DTOs}, quando se faz necessário cada um deles, por exemplo, no caso de uso \texttt{DeleteContact}, não é necessário passar uma estrutura de dados para realizar a deleção, o que faz com que esse Caso de Uso não necessite de DTOs.
     
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \dirtree{%
             .1 UseCases.
             .2 Contracts.

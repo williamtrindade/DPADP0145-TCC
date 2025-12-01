@@ -41,7 +41,7 @@ services:
         networks:
             - laravel-network
         ports:
-            - "3307:3306" # Alterado para usar a porta 3307 no host
+            - "3307:3306" 
 
 networks:
     laravel-network:
