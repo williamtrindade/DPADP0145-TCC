@@ -3,7 +3,7 @@
 
     \par Conforme a abordagem proposta por \cite{livro:martin:cleanarch}, a camada de Casos de Uso é responsável por conter as regras de negócio específicas da aplicação, orquestrando as Entidades para executar as ações que o sistema oferece. Para a API de contatos, as operações de CRUD (\textit{Create, Read, Update, Delete}) foram mapeadas para Casos de Uso individuais, garantindo a coesão e a separação de responsabilidades.
 
-    \par A estrutura de diretórios foi organizada de modo a isolar cada caso de uso em sua própria pasta, como \texttt{app/UseCases/CreateContact/} e \texttt{app/UseCases/UpdateContact/}. Essa abordagem reflete o conceito de `Arquitetura Gritante'' (MARTIN, 2019), onde a estrutura do projeto por si só deve comunicar suas funcionalidades. Para refinar ainda mais a organização, foram criadas subpastas para agrupar os diferentes tipos de componentes dentro de cada caso de uso:
+    \par A estrutura de diretórios foi organizada de modo a isolar cada caso de uso em sua própria pasta, como \texttt{app/UseCases/CreateContact/} e \texttt{app/UseCases/UpdateContact/}. Essa abordagem reflete o conceito de ``Arquitetura Gritante'' (MARTIN, 2019), onde a estrutura do projeto por si só deve comunicar suas funcionalidades. Para refinar ainda mais a organização, foram criadas subpastas para agrupar os diferentes tipos de componentes dentro de cada caso de uso:
         
     \begin{itemize}
         \item \texttt{Boundaries/}: Agrupa as interfaces que definem os contratos de entrada (\textit{InputBoundary}) e saída (\textit{OutputBoundary}) do caso de uso.

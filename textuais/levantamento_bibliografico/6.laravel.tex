@@ -5,7 +5,7 @@
 
     \par A fundação da arquitetura do Laravel é o seu \textit{container} de Inversão de Controle (IoC), que é a ferramenta que viabiliza a implementação de uma arquitetura limpa ao permitir a Injeção de Dependência \cite{livro:otwell:2013:laravel}. Este \textit{container} é o coração do ciclo de vida de uma requisição. Toda requisição HTTP para uma aplicação Laravel é direcionada para o arquivo public/index.php, que carrega o autoloader do Composer e inicializa a aplicação, criando uma instância do \textit{container} \cite{livro:stauffer:2023:laravel}.
     
-    \par Em seguida, a requisição é encapsulada em um objeto \verb|Illuminate\Http\Request| e passada para o ''kernel'' da aplicação Laravel. O kernel, por sua vez, processa a requisição através de uma série de camadas de Middleware antes de finalmente direcioná-la para uma rota definida \cite{livro:stauffer:2023:laravel}.
+    \par Em seguida, a requisição é encapsulada em um objeto \verb|Illuminate\Http\Request| e passada para o ``kernel'' da aplicação Laravel. O kernel, por sua vez, processa a requisição através de uma série de camadas de Middleware antes de finalmente direcioná-la para uma rota definida \cite{livro:stauffer:2023:laravel}.
 
     \par As rotas são os pontos de entrada de uma API e são definidas no arquivo routes/api.php. As rotas neste arquivo são, por padrão, \textit{stateless}, o que é fundamental para APIs REST. A definição de uma rota associa um verbo HTTP e um URI a uma ação, geralmente um método em um Controlador.\cite{livro:stauffer:2023:laravel}.
 
