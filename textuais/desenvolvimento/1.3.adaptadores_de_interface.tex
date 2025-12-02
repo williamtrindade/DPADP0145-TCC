@@ -1,10 +1,10 @@
 \subsection{Camada de Adaptadores de Interface}
-    \par Para a implementação da camada de Adaptadores de Interface se fez necessário primeiramente a deleção do Controller criado anteriormente no projeto, pois com a Arquitetura Limpa e aplicação do SRP do SOLID, cada método do Controller se tornara uma classe. Assim como na camada de Casos de Uso, essa subsecção focara em apresentar a criação do contato na API de contatos.
+    \par Para a implementação da camada de Adaptadores de Interface se fez necessário primeiramente a deleção do Controller criado anteriormente no projeto, pois com a Arquitetura Limpa e aplicação do SRP do SOLID, cada método do Controller se tornara uma classe. Assim como na camada de Casos de Uso, esta subseção focará em apresentar a criação do contato na API de contatos.
 
     \par Primeiramente são deletado os arquivos \texttt{ContactController.php} e \texttt{Controller.php} do diretório \texttt{app/Http/Controllers/}. 
     Após isso foi criado primeiro o arquivo \texttt{Controller.php} e o arquivo \texttt{/Contact/CreateContactController.php} no diretório \texttt{app/InterfaceAdapters/Http/Controllers/}.
 
-    \par Criados esses dois arquivos, o \texttt{Controller.php}, Código \ref{lst:controllerbase}, é mantido como o anterior, criado pelo Laravel, mantendo o mesmo código, pois essa classe é estendida pelos outros controllers. A decisão de coloca-lo no diretório de InterfaceAdapters é para facilitar a manutenção do código, já que componentes com responsabilidades parecidas vão se manter próximos no projeto.
+    \par Após criar esses dois arquivos, o \texttt{Controller.php}, Código \ref{lst:controllerbase}, é mantido como o anterior, criado pelo Laravel, mantendo o mesmo código, pois essa classe é estendida pelos outros controllers. A decisão de coloca-lo no diretório de InterfaceAdapters é para facilitar a manutenção do código, já que componentes com responsabilidades parecidas vão se manter próximos no projeto.
 
     \lstinputlisting[
         language=PHP, 
@@ -14,7 +14,7 @@
 
     \par Tendo o controller base implementado, é criado um controller para criação de um contato, Código \ref{lst:controller.create}, o \texttt{CreateContactController} atua como um adaptador de interface entre a camada HTTP e a camada de casos de uso da aplicação, seguindo os princípios da Arquitetura Limpa. O controlador recebe duas dependências principais através de injeção de dependência: o \texttt{CreateContactInputBoundary}, uma interface que define o contrato para o caso de uso de criação de contatos seguindo o Princípio da Inversão de Dependência (DIP), e o \texttt{CreateContactApiPresenter}, responsável por formatar a resposta em formato adequado para APIs REST.
     
-    \par O método \texttt{\_\_invoke()} implementa o padrão \textit{Single Action Controller} do Laravel. Ele é responsável por extrair os dados da requisição HTTP (\texttt{name}, \texttt{phone\_number} e \texttt{email}), criar uma instância de \texttt{CreateContactRequestModel}, um DTO que encapsula os dados necessários e utilizá-la como parâmetro ao invocar o método \texttt{create()} do \textit{interactor}. 
+    \par O método \texttt{\_\_invoke()} implementa o padrão \textit{Single Action Controller} do Laravel. Ele é responsável por extrair os dados da requisição HTTP (\texttt{name}, \texttt{phone\_number} e \texttt{email}), criar uma instância de \texttt{CreateContactRequestModel}, um DTO que encapsula os dados necessários e utilizá-la como parâmetro ao invocar o método \texttt{create()} do \texttt{Interactor}. 
     
     \par Nessa etapa, o \textit{presenter} é passado como parâmetro ao Intercator para que formate a resposta. Após a execução da lógica de negócio, o método recupera o modelo de visualização formatado pelo \textit{presenter} por meio de \texttt{getViewModel()}, retornando, por fim, uma resposta JSON com código de status HTTP~201 (\textit{Created}).
 
@@ -74,7 +74,7 @@
         }
     \end{figure}
 
-    \par A próxima etapa é a implementação do \texttt{ContactRepository}, Código \ref{lst:repository}, ele atua como um adaptador de interface, implementando a interface \texttt{ContactRepositoryInterface} definida na camada de Casos de Uso e fazendo a ponte entre a lógica de negócio (entidades) e a camada de persistência (framework e drivers). 
+    \par A próxima etapa é a implementação do \texttt{ContactRepository}, Código \ref{lst:repository}, ele atua como um adaptador de interface, implementando a interface \texttt{ContactRepositoryInterface} definida na camada de Casos de Uso e fazendo a ponte entre a lógica de negócio (Entidades) e a camada de persistência (Frameworks e Drivers). 
 
     \lstinputlisting[
         linerange={1-10, 74-75},
@@ -83,7 +83,7 @@
         label=lst:repository
     ]{codigos/ca/InterfaceAdapters/Repositories/ContactRepository.php}
     
-    \par Este repositório é responsável por realizar operações CRUD sobre contatos, encapsulando toda a interação com o banco de dados através do Eloquent ORM do Laravel e garantindo que as camadas internas da aplicação não tenham dependência direta do framework. O método privado \texttt{toEntity()}, Código \ref{lst:repository.toEntity}, realiza a conversão entre \texttt{ContactModel} (representação do framework Laravel/Eloquent) e \texttt{Contact} (entidade de domínio pura), assegurando que apenas objetos de domínio circulem nas camadas internas da aplicação. 
+    \par Este repositório é responsável por realizar operações CRUD sobre contatos, encapsulando toda a interação com o banco de dados através do Eloquent ORM do Laravel e garantindo que as camadas internas da aplicação não tenham dependência direta do \textit{framework}. O método privado \texttt{toEntity()}, Código \ref{lst:repository.toEntity}, realiza a conversão entre \texttt{ContactModel} (representação do \textit{framework} Laravel/Eloquent) e \texttt{Contact} (entidade de domínio pura), assegurando que apenas objetos de domínio circulem nas camadas internas da aplicação. 
 
     \lstinputlisting[
         linerange={11-20},

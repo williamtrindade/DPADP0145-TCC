@@ -1,7 +1,7 @@
 \subsection{Cenário típico}
     \par Para se ter um entendimento antes da aplicação da Arquitetura Limpa, na segunda etapa do presente trabalho de maneira prática, principalmente em relação a estrutura de pastas e organização geral do projeto de software e comunicação dos componentes, deve-se inicialmente analisar a obra de \cite{livro:martin:cleanarch} em relação ao que ele propõe como modelo de organização e fluxo de informações na Arquitetura Limpa.
 
-    \par Tendo isso em vista, nota-se o uso do termo "Arquitetura Gritante", tal termo é referente a um conceito proposto e defendido pelo autor, que prega que a estrutura de um sistema de software deve, antes de qualquer coisa, comunicar o seu propósito e seus casos de uso. Sendo assim a arquitetura de uma aplicação deve revelar de maneira clara, o seu domínio de negócio, como por exemplo, "Sistema de segurança de trabalho", "Sistema de gestão para o terceiro setor". Assim indo contra a ideia de que a arquitetura deve ser definida pelo seu framework, como Rails ou Spring, pois são referentes a ferramentas e não ao objetivo do software \cite{livro:martin:cleanarch}.
+    \par Tendo isso em vista, nota-se o uso do termo "Arquitetura Gritante", tal termo é referente a um conceito proposto e defendido pelo autor, que prega que a estrutura de um sistema de software deve, antes de qualquer coisa, comunicar o seu propósito e seus casos de uso. Sendo assim a arquitetura de uma aplicação deve revelar de maneira clara, o seu domínio de negócio, como por exemplo, "Sistema de segurança de trabalho", "Sistema de gestão para o terceiro setor". Assim indo contra a ideia de que a arquitetura deve ser definida pelo seu \textit{framework}, como Rails ou Spring, pois são referentes a ferramentas e não ao objetivo do software \cite{livro:martin:cleanarch}.
 
     \par Portanto, o principal objetivo de uma Arquitetura Gritante é ser centrada nos casos de uso e desacoplá-los de detalhes de implementação, desse modo a estrutura passa a ser o reflexo do software em si, permitindo uma melhor compreensão da sua finalidade de negócio, antes mesmo de se conhecer a infraestrutura tecnológica \cite{livro:martin:cleanarch}.
 
@@ -19,7 +19,7 @@
     \par Nota-se na Figura \ref{fig:typical_scenario} a representação feita por \cite{livro:martin:cleanarch} representando esse cenário, onde, o fluxo de dados é controlado pelos seguintes componentes:
 
     \begin{itemize}
-        \item \textbf{Controller:} É o ponto de entrada da aplicação, ele recebe a requisição do mundo externo. Sua função é desempacotar os dados vindos da requisição, agrupá-los em uma estrutura de dados simples e indiferente em relação a frameworks e passar esses dados para o interior da arquitetura através da \textbf{InputBoundary}.
+        \item \textbf{Controller:} É o ponto de entrada da aplicação, ele recebe a requisição do mundo externo. Sua função é desempacotar os dados vindos da requisição, agrupá-los em uma estrutura de dados simples e indiferente em relação a \textit{frameworks} e passar esses dados para o interior da arquitetura através da \textbf{InputBoundary}.
 
         \item \textbf{InputBoundary:} É uma interface pertencente à camada de Casos de Uso da arquitetura limpa. Ela representa o \textbf{UseCaseInteractor}, o Controller depende e invoca esta interface para transmitir os dados. Ela serve como uma porta de entrada que isola o núcleo de negócio do mecanismo de entrega e garante que a dependência aponte para dentro, em conformidade com a Regra da Dependência.
 

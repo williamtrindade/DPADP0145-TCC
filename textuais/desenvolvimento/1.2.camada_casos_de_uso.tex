@@ -17,7 +17,7 @@
 
     \par Para aderir a esse padrão, foi criada a Interface \texttt{ContactRepositoryInterface} (Código \ref{lst:contact.repo.interface})  dentro do diretório \texttt{app/UsesCases/Contracts}, essa interface apenas define os métodos que vão ser usados pelos casos de uso, e faz com que essa camada não conheça qual banco de dados ou ORM a aplicação usa, assim aderindo à inversão de dependência.
 
-    \par A interface que representa o acesso aos dados é definida na Arquitetura Limpa como um Gateway de aceso à dados, ou seja, independente da origem desses dados, no caso da API de contatos a origem é um banco de dados, e para isso foi utilizado o Repository Pattern, todavia, se fosse feito acesso a um arquivo .txt, poderia ser utilizado outro padrão. A Arquitetura Limpa não se importa com a origem dos dados, mas sim com que a camada mais interna não dependa da camada mais externa.
+    \par A interface que representa o acesso aos dados é definida na Arquitetura Limpa como um \textit{Gateway} de aceso à dados, ou seja, independente da origem desses dados, no caso da API de contatos a origem é um banco de dados, e para isso foi utilizado o Repository Pattern, todavia, se fosse feito acesso a um arquivo .txt, poderia ser utilizado outro padrão. A Arquitetura Limpa não se importa com a origem dos dados, mas sim com que a camada mais interna não dependa da camada mais externa.
 
     \lstinputlisting[
         language=PHP, 
@@ -80,7 +80,7 @@
 
     \par Para realizar o tratamento das exceções foram criadas exceções customizadas,  \texttt{ResourceNotFoundException} e \texttt{BusinessRuleException}, as quais são artefatos essenciais para a gestão de fluxos de exceção de forma explícita e semanticamente clara. 
     
-    \par A \texttt{ResourceNotFoundException}, Código \ref{lst:exception.1}, é lançada por um interator quando uma entidade ou recurso essencial para a execução da lógica de aplicação não é encontrado na camada de persistência. Este evento interrompe o fluxo normal, sinalizando a impossibilidade de prosseguir com a operação devido à ausência do dado. 
+    \par A \texttt{ResourceNotFoundException}, Código \ref{lst:exception.1}, é lançada por um Interactor quando uma entidade ou recurso essencial para a execução da lógica de aplicação não é encontrado na camada de persistência. Este evento interrompe o fluxo normal, sinalizando a impossibilidade de prosseguir com a operação devido à ausência do dado. 
     
     \lstinputlisting[
         language=PHP, 
@@ -97,10 +97,10 @@
         label=lst:exception.2
     ]{codigos/ca/UseCases/Exceptions/BusinessRuleException.php}
     
-    \par A utilização dessas exceções especializadas permite que os casos de uso comuniquem falhas de forma precisa para as camadas externas, promovendo um forte desacoplamento e permitindo que a camada do framework traduza esses erros em respostas apropriadas ao usuário final, como os códigos de status HTTP 404 ou 422, respectivamente. Esse tratamento global de exceções pode ser visto mais a frente neste trabalho.
+    \par A utilização dessas exceções especializadas permite que os casos de uso comuniquem falhas de forma precisa para as camadas externas, promovendo um forte desacoplamento e permitindo que a camada do \textit{framework} traduza esses erros em respostas apropriadas ao usuário final, como os códigos de status HTTP 404 ou 422, respectivamente. Esse tratamento global de exceções pode ser visto mais a frente neste trabalho.
 
     
-    \par Após a implementação de todos os casos de uso a estrutura do diretório de UseCases ficou conforme a Figura \ref{fig:estrutura-usecases-minimalista}, onde cada caso de uso tem seus \texttt{Boundaries} e \texttt{DTOs}, quando se faz necessário cada um deles, por exemplo, no caso de uso \texttt{DeleteContact}, não é necessário passar uma estrutura de dados para realizar a deleção, o que faz com que esse Caso de Uso não necessite de DTOs.
+    \par Após a implementação de todos os casos de uso a estrutura do diretório de UseCases ficou conforme a Figura \ref{fig:estrutura-usecases-minimalista}, onde cada caso de uso tem seus \texttt{Boundaries} e \texttt{DTOs}, quando faz-se necessário cada um deles, por exemplo, no caso de uso \texttt{DeleteContact}, não é necessário passar uma estrutura de dados para realizar a deleção, o que faz com que esse Caso de Uso não necessite de DTOs.
     
     \begin{figure}[H]
         \dirtree{%

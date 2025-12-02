@@ -1,12 +1,12 @@
 \subsection{Camada de Frameworks e Drivers}
     
-    \par A camada de \textit{Frameworks and Drivers} foi organizada no diretório \texttt{FrameworksAndDrivers}. Esta camada representa o nível mais externo da arquitetura, contendo todos os componentes que possuem dependência direta do framework Laravel e de bibliotecas externas.
+    \par A camada de Frameworks and Drivers foi organizada no diretório \texttt{FrameworksAndDrivers}. Esta camada representa o nível mais externo da arquitetura, contendo todos os componentes que possuem dependência direta do \textit{framework} Laravel e de bibliotecas externas.
     
     \par Dentro desta camada, foram criados subdiretórios específicos para organizar os diferentes tipos de componentes. O diretório \texttt{Models} contém as classes de modelo do Eloquent ORM, como \texttt{ContactModel.php}, que representam as entidades do banco de dados e suas respectivas operações de persistência. Este arquivo foi movido de sua localização original em \texttt{app/Models/} para  \texttt{app/FrameworksAndDrivers/Models/}, mantendo sua funcionalidade de interação com o banco de dados através do Eloquent, mas agora devidamente isolado na camada apropriada.
     
     \par Já o diretório \texttt{Providers} agrupa os provedores de serviço do Laravel. O arquivo \texttt{AppServiceProvider.php}, que originalmente estava localizado em \texttt{app/Providers/}, foi movido para \texttt{app/FrameworksAndDrivers/Providers/}, mantendo suas responsabilidades de configuração global da aplicação. 
     
-    \par Adicionalmente, foi criado o provedor \texttt{CleanArchServiceProvider.php}, apresentado no Código \ref{lst:provider}, especificamente desenvolvido para registrar e configurar as dependências necessárias à implementação da Arquitetura Limpa, gerenciando o binding de interfaces com suas implementações concretas através do container de injeção de dependências do framework.
+    \par Adicionalmente, foi criado também o provedor \texttt{CleanArchServiceProvider.php}, apresentado no Código \ref{lst:provider}, especificamente desenvolvido para registrar e configurar as dependências necessárias à implementação da Arquitetura Limpa, gerenciando o \textit{binding} de interfaces com suas implementações concretas através do \textit{container} de injeção de dependências do \textit{framework}.
 
     \lstinputlisting[
         language=PHP, 
@@ -36,7 +36,7 @@
         label=lst:bootstrap
     ]{codigos/ca/bootstrap/app.php}
 
-    \par Além disso, é nesse arquivo que é implementado o tratamento de exceções, onde toda \texttt{Exception} que a aplicação lance é tratada nesse arquivo, para retornar uma resposta no formato JSON para o cliente da API. Conforme apresentado no Código~\ref{lst:bootstrap.eh}, as exceções da camada de Casos de Uso e outras exceções do framework são tratadas de maneira individual, permitindo também a adição de novos tratamentos, sempre que for necessário.
+    \par Além disso, é nesse arquivo que é implementado o tratamento de exceções, onde toda \texttt{Exception} que a aplicação lance é tratada nesse arquivo, para retornar uma resposta no formato JSON para o cliente da API. Conforme apresentado no Código~\ref{lst:bootstrap.eh}, as exceções da camada de Casos de Uso e outras exceções do \textit{framework} são tratadas de maneira individual, permitindo também a adição de novos tratamentos, sempre que for necessário.
 
     % Espaço para código do bootstrap/app.php
     \lstinputlisting[
@@ -67,4 +67,4 @@
         label=lst:routes
     ]{codigos/ca/routes/api.php}
     
-    \par Esta organização visa isolar completamente o código que depende de tecnologias específicas, facilitando futuras manutenções e eventual migração para outros frameworks, uma vez que as regras de negócio permanecem independentes nas camadas de domínio e casos de uso. Todos os arquivos que anteriormente estavam dispersos no diretório padrão \texttt{app/} do Laravel e que possuíam relação direta com funcionalidades específicas do framework foram reorganizados para esta camada.
+    \par Esta organização visa isolar completamente o código que depende de tecnologias específicas, facilitando futuras manutenções e eventual migração para outros \textit{frameworks}, uma vez que as regras de negócio permanecem independentes nas camadas de domínio e casos de uso. Todos os arquivos que anteriormente estavam dispersos no diretório padrão \texttt{app/} do Laravel e que possuíam relação direta com funcionalidades específicas do \textit{framework} foram reorganizados para esta camada.

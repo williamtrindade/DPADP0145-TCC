@@ -1,6 +1,6 @@
 \section{Model-View-Controller (MVC)}
 
-    \par Esta seção tem como objetivo, explorar o MVC desde o seu surgimento na Xerox PARC até as versões mais modernas utilizadas do desenvolvimento web. Essa abordagem ajudará a entender por que mesmo depois de quatro décadas o MVC ainda vem sendo relevante para o desenvolvimento de software, o que corrobora para entender-se como implementar os princípios da arquitetura limpa em um framework que usa-o como base.
+    \par Esta seção tem como objetivo, explorar o MVC desde o seu surgimento na Xerox PARC até as versões mais modernas utilizadas do desenvolvimento web. Essa abordagem ajudará a entender por que mesmo depois de quatro décadas o MVC ainda vem sendo relevante para o desenvolvimento de software, o que corrobora para entender-se como implementar os princípios da arquitetura limpa em um \textit{framework} que usa-o como base.
     
     \par O padrão arquitetural MVC foi desenvolvido em 1978 por Trygve Reenskaug enquanto ele trabalhava na Xerox PARC, que na época era um importante centro de pesquisa e desenvolvimento da Xerox Corporation. O MVC teve inicialmente o objetivo de criar sistemas de informação que refletissem os modelos mentais dos usuários, promovendo uma interação intuitiva por meio de inspeção e edição de dados \cite[p.~1]{artigo:reenskaug:2003}.
         
@@ -8,7 +8,7 @@
     
     \par Quanto a validação e a demonstração de eficacia do padrão MVC, as mesmas vieram de um experimento no Xerox PARC, envolvendo um sistema de planejamento para uma fábrica de semicondutores, dessa forma, mostrando a sua aplicabilidade prática \cite{artigo:reenskaug:2003}.
     
-    \par Com a evolução tecnológica, o MVC foi adaptado para interfaces mais complexas e posteriormente inspirou frameworks modernos, como o ASP.NET MVC, que foi lançado no ano de 2009. Nesse sentido é notável  que o Smalltalk foi o responsável pela criação do padrão MVC, que posteriormente se tornou amplamente adotado em sistemas orientados a objetos \cite{artigo:deacon:2009}.
+    \par Com a evolução tecnológica, o MVC foi adaptado para interfaces mais complexas e posteriormente inspirou \textit{frameworks} modernos, como o ASP.NET MVC, que foi lançado no ano de 2009. Nesse sentido é notável  que o Smalltalk foi o responsável pela criação do padrão MVC, que posteriormente se tornou amplamente adotado em sistemas orientados a objetos \cite{artigo:deacon:2009}.
     
 
     \par O MVC é um padrão arquitetural que separa o software em três camadas, a camada que contem lógica do domínio da aplicação chamada Model, a camada que é responsável pela apresentação dos dados chamada View e a camada responsável por controlar as interações do usuário com a aplicação chamada Controller, assim promovendo modularidade, reutilização e manutenção do sistema\cite{artigo:reenskaug:2003}.
@@ -77,7 +77,7 @@
         \par No MVC-Web, o Model mantém sua função central de gerenciar o estado da aplicação e suas regras de negócio mas com adaptações significativas \cite{inproceedings:grove:2011}:
     
         \begin{itemize}
-            \item Persistência de Dados: Diferentemente do Smalltalk, onde o modelo era persistente na memória, em frameworks web como Rails ou ASP.NET, o modelo frequentemente interage com o BD, usando padrões como Active Record ou Mapeamento Objeto-Relacional (Object-Relational Mapping - ORM).
+            \item Persistência de Dados: Diferentemente do Smalltalk, onde o modelo era persistente na memória, em \textit{frameworks} web como Rails ou ASP.NET, o modelo frequentemente interage com o BD, usando padrões como Active Record ou Mapeamento Objeto-Relacional (Object-Relational Mapping - ORM).
             
             \item Transações e Lógica de Negócio: O modelo continua responsável por executar operações críticas, mas sua comunicação com as views não ocorre mais via Observer (como no padrão original). Em vez disso, o controller atua como intermediário.
             
@@ -87,10 +87,10 @@
     
         %% VIEW
     
-        \par A View no MVC-Web assume um papel híbrido, combinando renderização server-side com interatividade client-side \cite{inproceedings:grove:2011}: 
+        \par A View no MVC-Web assume um papel híbrido, combinando renderização \textit{server-side} com interatividade \textit{client-side} \cite{inproceedings:grove:2011}: 
     
         \begin{itemize}
-            \item Templates Dinâmicos: Frameworks como Rails e ASP.NET usam templates HTML com código embutido para gerar páginas dinamicamente.
+            \item Templates Dinâmicos: \textit{Frameworks} como Rails e ASP.NET usam templates HTML com código embutido para gerar páginas dinamicamente.
     
             \item Interações no lado do cliente: Com tecnologias como JavaScript e Ajax, a view pode realizar validações, atualizações parciais e outras operações sem recarregar a página, assumindo funções que, no MVC original, eram do modelo ou controller.
     
@@ -100,10 +100,10 @@
        
         %% Controller
         
-        \par O Controller no MVC-Web sofre as mudanças mais radicais, principalmente devido ao Front Controller, um padrão arquitetônico que centraliza o tratamento de requisições HTTP \cite{inproceedings:grove:2011}:
+        \par O Controller no MVC-Web sofreu as mudanças mais radicais, principalmente devido ao Front Controller, um padrão arquitetônico que centraliza o tratamento de requisições HTTP \cite{inproceedings:grove:2011}:
     
         \begin{itemize}
-            \item Front Controller: Frameworks como (ASP.NET MVC, Rails, Struts) implementam esse padrão, onde um único componente (como o Router no Rails) centraliza o roteamento de requisições HTTP para controllers específicos.
+            \item Front Controller: \textit{Frameworks} como ASP.NET MVC, Rails e Struts implementam esse padrão, onde um único componente (como o Router no Rails) centraliza o roteamento de requisições HTTP para controllers específicos.
     
             \item Ações e Fluxo de Navegação: Cada método de um controller (ex: UsersController@create) corresponde a uma ação (como criar um usuário). O controller decide qual view exibir com base no resultado (ex: redirecionar após um sucesso ou mostrar um erro).
     
