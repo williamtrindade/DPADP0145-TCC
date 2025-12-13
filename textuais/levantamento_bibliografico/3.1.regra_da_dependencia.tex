@@ -1,3 +1,4 @@
+\vspace{-1cm}
 \subsection{Regra da dependência}
 
     \par A regra da dependência é o coração da Arquitetura Limpa, ela diz que o software deve ser organizado em camadas concêntricas, ou seja, com dependências apontando para dentro. Nesse sentido, para realizar a implementação dessa regra é necessário o uso de interface abstratas, que isolam as camadas internas (entidades e casos de uso) dos detalhes técnicos mais externos \cite{livro:martin:cleanarch}.
@@ -10,13 +11,15 @@
 
     \par A Figura \ref{fig:figura_plugin_arch} demonstra a implementação desse conceito na prática, onde Robert C. Martin, mostra como os três componentes se comunicam aplicando a inversão de dependência. 
 
-    \begin{figure}[H] % O [H] exige o uso do pacote float (veja abaixo)
+    \begin{figure}[H]
         \centering
-        \includegraphics[width=1.0\textwidth]{figuras/clean_arch/plugin_arch.png}
-        \caption{Colocando um \textit{plug-in} nas regras de negócio}
+
+        \caption{Colocando um \textit{plug-in} nas regras de negócio.}
         \label{fig:figura_plugin_arch}
-        \newcommand{\minhafonteum}{Fonte: \cite{livro:martin:cleanarch}}
-        \minhafonteum
+        
+        \includegraphics[width=1.0\textwidth]{figuras/clean_arch/plugin_arch.png}
+        
+        \fonte{\cite{livro:martin:cleanarch}.}
     \end{figure}
 
     As regras de negócio (Business Rules) não interagem diretamente com os detalhes de implementação, mas sim interfaces, que são como um \textit{plug-in}, que não fica acoplado ao núcleo do software, assim possibilitando a troca do BD ou da UI gráfica.

@@ -1,9 +1,10 @@
 \section{Comparação Estrutural}
-        \par Para apresentar a materialização do modelo conceitual proposto por \cite{livro:martin:cleanarch}, a Tabela \ref{tab:mapeamento_clean_arch} apresenta o mapeamento direto entre cada componente teórico apresentado pelo autor e a sua respectiva representação no projeto, utilizando o caso de uso de criação de um novo contato como exemplo.
+        \par Para apresentar a materialização do modelo conceitual proposto por \cite{livro:martin:cleanarch}, o Quadro~\ref{quadro:mapeamento_clean_arch} apresenta o mapeamento direto entre cada componente teórico apresentado pelo autor e a sua respectiva representação no projeto, utilizando o caso de uso de criação de um novo contato como exemplo.
         
-        \begin{table}[H]
+        \begin{quadro}[H]
             \caption{Mapeamento dos Componentes}
-            \label{tab:mapeamento_clean_arch}
+            \label{quadro:mapeamento_clean_arch}
+            
             \begin{tabularx}{\linewidth}{|l|X|} % Adicionados os "|" para as linhas verticais
                 \toprule
                 % A linha do cabeçalho foi envolvida por {\small ...} para diminuir a fonte
@@ -24,7 +25,9 @@
                 View                        & Resposta JSON \\
                 \bottomrule
             \end{tabularx}
-        \end{table}
+            
+            \fonte{Autor.}
+        \end{quadro}
        
         \par Essa tradução da teoria para a prática se inicia com o Controller, representado pela classe \texttt{CreateContactController.php}, que transforma a requisição em um Input Data, implementado como o DTO \texttt{CreateContactRequestModel.php}. Este objeto é então passado para o Use Case Interactor (\texttt{CreateContactInteractor.php}) através da Input Boundary, o contrato definido pela interface \texttt{CreateContactInputBoundary.php}. No núcleo da aplicação, o Interactor orquestra as Entities, materializadas pela classe pura \texttt{Contact.php}. 
         
@@ -39,18 +42,21 @@
         \begin{figure}[H]
             \caption{Estrutura do diretório app antes da refatoração.}
             \label{fig:estrutura-original}
+            
             \dirtree{%
-            .1 app/.
-            .2 Http/.
-            .3 Controllers/.
-            .4 ContactController.php.
-            .4 Controller.php.
-            .2 Models/.
-            .3 Contact.php.
-            .3 User.php.
-            .2 Providers.
-            .3 AppServiceProvider.php.
+                .1 app/.
+                .2 Http/.
+                .3 Controllers/.
+                .4 ContactController.php.
+                .4 Controller.php.
+                .2 Models/.
+                .3 Contact.php.
+                .3 User.php.
+                .2 Providers.
+                .3 AppServiceProvider.php.
             }
+            
+            \fonte{Autor.}
         \end{figure}
 
         \par Já após a refatoração, a estrutura de diretórios passou a refletir as camadas da Arquitetura Limpa. As regras de negócio agora residem em \texttt{app/Entities} e \texttt{app/UseCases}, completamente isoladas do \textit{framework}. Os componentes que interagem com o mundo externo, como Controllers e Repositories, foram movidos para \texttt{app/InterfaceAdapters}, e os detalhes de implementação específicos do Laravel, como os Models do Eloquent, para \texttt{app/FrameworksAndDrivers}. A Figura \ref{fig:estrutura-depois} demonstra a organização final do diretório \texttt{app}.
@@ -59,46 +65,47 @@
             \caption{Estrutura do diretório app após a refatoração.}
             \label{fig:estrutura-depois}
             \dirtree{%
-            .1 /app.
-            .2 Entities.
-            .3 Contact.php.
-            .2 FrameworksAndDrivers.
-            .3 Models.
-            .4 ContactModel.php.
-            .3 Providers.
-            .4 AppServiceProvider.php.
-            .4 CleanArchServiceProvider.php.
-            .2 InterfaceAdapters.
-            .3 Http.
-            .4 Controllers.
-            .5 Controller.php.
-            .5 Contact.
-            .6 CreateContactController.php.
-            .6 ....
-            .3 Presenters.
-            .4 Api.
-            .5 CreateContactApiPresenter.php.
-            .5 ....
-            .3 Repositories.
-            .4 ContactRepository.php.
-            .3 ViewModels.
-            .4 ContactViewModel.php.
-            .2 UseCases.
-            .3 Contracts.
-            .4 ContactRepositoryInterface.php.
-            .3 CreateContact.
-            .4 CreateContactInteractor.php.
-            .4 Boundaries.
-            .5 CreateContactInputBoundary.php.
-            .5 CreateContactOutputBoundary.php.
-            .4 DTOs.
-            .5 CreateContactRequestModel.php.
-            .5 CreateContactResponseModel.php.
-            .3 Exceptions.
-            .4 BusinessRuleException.php.
-            .4 ResourceNotFoundException.php.
-            .3 ....
-        }
+                .1 /app.
+                .2 Entities.
+                .3 Contact.php.
+                .2 FrameworksAndDrivers.
+                .3 Models.
+                .4 ContactModel.php.
+                .3 Providers.
+                .4 AppServiceProvider.php.
+                .4 CleanArchServiceProvider.php.
+                .2 InterfaceAdapters.
+                .3 Http.
+                .4 Controllers.
+                .5 Controller.php.
+                .5 Contact.
+                .6 CreateContactController.php.
+                .6 ....
+                .3 Presenters.
+                .4 Api.
+                .5 CreateContactApiPresenter.php.
+                .5 ....
+                .3 Repositories.
+                .4 ContactRepository.php.
+                .3 ViewModels.
+                .4 ContactViewModel.php.
+                .2 UseCases.
+                .3 Contracts.
+                .4 ContactRepositoryInterface.php.
+                .3 CreateContact.
+                .4 CreateContactInteractor.php.
+                .4 Boundaries.
+                .5 CreateContactInputBoundary.php.
+                .5 CreateContactOutputBoundary.php.
+                .4 DTOs.
+                .5 CreateContactRequestModel.php.
+                .5 CreateContactResponseModel.php.
+                .3 Exceptions.
+                .4 BusinessRuleException.php.
+                .4 ResourceNotFoundException.php.
+                .3 ....
+            }
+            \fonte{Autor.}
         \end{figure}
 
         \par Essa nova organização deixa explícito o propósito da aplicação (gerenciar contatos, com casos de uso como CreateContact, etc.) antes mesmo de revelar qual tecnologia é usada para isso.

@@ -16,8 +16,8 @@
             \item \textbf{PHP 8.4.1} – Necessário para executar o Composer e criar o projeto Laravel.
             \item \textbf{Composer} – Usado para gerenciador de dependências PHP e instalar o Laravel e seus pacotes.
             \item \textbf{Git} - Para controle de versão do projeto.
-            \item \textbf{Docker} - para criar contêineres isolados para a aplicação, servidor web e banco de dados.
-            \item \textbf{Docker Compose} - para orquestrar múltiplos \textit{containers} com um único arquivo de configuração.
+            \item \textbf{Docker} - Para criar contêineres isolados para a aplicação, servidor web e banco de dados.
+            \item \textbf{Docker Compose} - Para orquestrar múltiplos \textit{containers} com um único arquivo de configuração.
         \end{itemize}
 
         \par Considerando as ferramentas citadas anteriormente, foi criado um repositório no GitHub para disponibilizar o código-fonte do projeto de forma completa e replicável, acessível na seguinte URL: \url{https://github.com/williamtrindade/clean-architecture-laravel-api}.
@@ -46,11 +46,13 @@
 
         \begin{figure}[H]
             \centering
-            \includegraphics[width=0.9\textwidth]{figuras/tutorial/1estrutura.png}
-            \caption{Estrutura de pastas do projeto}
+
+            \caption{Estrutura de pastas do projeto.}
             \label{fig:figura_tutorial_1}
-            \newcommand{\minhafonteum}{Fonte: Autor}
-            \minhafonteum
+
+            \includegraphics[width=0.9\textwidth]{figuras/tutorial/1estrutura.png}
+            
+            \fonte{Autor.}
         \end{figure}
 
         \par O Dockerfile é o primeiro componente criado para o ambiente Docker, atuando como um ``manual de instruções'' para a construção da imagem do \textit{container} da aplicação. Ele utiliza a imagem base \texttt{php:8.2-fpm-alpine}, garantindo um ambiente leve e focado no processamento de scripts PHP. 
@@ -64,8 +66,7 @@
             label=lst:dockerfile,
             frame=single, % Adiciona uma moldura ao redor do código
             numbers=left, % Adiciona números de linha à esquerda
-            breaklines=true, % Quebra linhas longas automaticamente
-            basicstyle=\ttfamily\scriptsize % Define a fonte como monoespaçada e pequena
+            breaklines=true
         ]{codigos/ca/docker/app/Dockerfile}
 
         \par O arquivo \texttt{default.conf}, localizado na pasta \texttt{docker/nginx}, é o responsável por configurar o servidor web Nginx. Sua principal função é atuar como um proxy reverso, recebendo todas as requisições HTTP e encaminhando-as para o \textit{container} da aplicação PHP.
@@ -83,8 +84,7 @@
             label=defaultconf,
             frame=single, % Adiciona uma moldura ao redor do código
             numbers=left, % Adiciona números de linha à esquerda
-            breaklines=true, % Quebra linhas longas automaticamente
-            basicstyle=\ttfamily\scriptsize % Define a fonte como monoespaçada e pequena
+            breaklines=true
         ]{codigos/ca/docker/nginx/default.conf}
 
         \par O arquivo \texttt{docker-compose.yml} é o componente central para a orquestração do ambiente, atuando como um plano que define e gerencia os serviços da aplicação. Ele garante que cada serviço, como a aplicação Laravel, o servidor Nginx e o banco de dados MySQL, sejam criados e interligados corretamente, eliminando a complexidade de iniciar cada contêiner de maneira individual.
@@ -115,8 +115,7 @@
             label=lst:figura.tutorial.4,
             frame=single, % Adiciona uma moldura ao redor do código
             numbers=left, % Adiciona números de linha à esquerda
-            breaklines=true, % Quebra linhas longas automaticamente
-            basicstyle=\ttfamily\scriptsize % Define a fonte como monoespaçada e pequena
+            breaklines=true,
         ]{codigos/ca/docker-compose.yml}
         
     
@@ -138,7 +137,6 @@
             frame=single, 
             numbers=left, 
             breaklines=true,
-            basicstyle=\ttfamily\scriptsize
         ]{codigos/ca/.env.example}
 
         \par Após essa alteração foi rodado o seguinte comando no terminal para a criação do arquivo \texttt{.env}, o qual não estará disponível no sistema de controle de versão:
@@ -188,7 +186,7 @@
         
         \par Ao rodar esse comando, foram criados dois arquivos, \textit{app/Models/Contact.php}, correspondente ao Model, e um arquivo com final \texttt{create\_contacts\_table}, localizado em \texttt{database/migrations}, que corresponde à Migration. 
 
-        \par Conforme mostra o Código~\ref{lst:mvc-model-0}, arquivo referente ao Model apresenta a seguinte implementação:
+        \par Conforme mostra o Código~\ref{lst:mvc-model-0}, o arquivo referente ao Model apresenta a seguinte implementação:
 
         \lstinputlisting[
             language=PHP,
@@ -198,7 +196,6 @@
             frame=single, 
             numbers=left, 
             breaklines=true,
-            basicstyle=\ttfamily\scriptsize
         ]{codigos/api-pet/Contact.php}
 
         \par Conforme apresenta o Código~\ref{lst:mvc-migration-0}, o arquivo de Migration ficou estruturado da seguinte forma:
@@ -211,7 +208,6 @@
             frame=single,
             numbers=left,
             breaklines=true,
-            basicstyle=\ttfamily\scriptsize
         ]{codigos/api-pet/Migration.php}
 
         \par Em seguida, foi necessário alterar o arquivo \texttt{bootstrap/app.php} para registrar o arquivo de rotas da API. O Código~\ref{lst:mvc-app-0} apresenta a nova configuração aplicada:
@@ -224,7 +220,6 @@
             frame=single,
             numbers=left,
             breaklines=true,
-            basicstyle=\ttfamily\scriptsize
         ]{codigos/api-pet/app.php}
 
         \par Após o registro no arquivo \texttt{bootstrap/app.php}, foi criado o arquivo de rotas \texttt{routes/api.php}, no qual foram definidas as rotas da API. O Código~\ref{lst:mvc-routes-api-0} apresenta a implementação final desse arquivo:
@@ -237,7 +232,6 @@
             frame=single,
             numbers=left,
             breaklines=true,
-            basicstyle=\ttfamily\scriptsize
         ]{codigos/api-pet/api.php}
 
         \sloppy
@@ -254,7 +248,6 @@
             frame=single,
             numbers=left,
             breaklines=true,
-            basicstyle=\ttfamily\scriptsize
         ]{codigos/api-pet/ContactController.php}
 
         \par O arquivo \texttt{ContactController.php} implementa o Controller responsável pelo gerenciamento das operações relacionadas à entidade \textit{Contato}. Ele define métodos para criar (\texttt{store}), listar (\texttt{index}), exibir um registro específico (\texttt{show}), atualizar (\texttt{update}) e deletar (\texttt{destroy}) contatos no banco de dados, utilizando o Model \texttt{Contact}. 

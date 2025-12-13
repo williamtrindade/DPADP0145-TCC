@@ -7,7 +7,7 @@
     
     \par Em seguida, a requisição é encapsulada em um objeto \verb|Illuminate\Http\Request| e passada para o ``kernel'' da aplicação Laravel. O kernel, por sua vez, processa a requisição através de uma série de camadas de Middleware antes de finalmente direcioná-la para uma rota definida \cite{livro:stauffer:2023:laravel}.
 
-    \par As rotas são os pontos de entrada de uma API e são definidas no arquivo routes/api.php. As rotas neste arquivo são, por padrão, \textit{stateless}, o que é fundamental para APIs REST. A definição de uma rota associa um verbo HTTP e um URI a uma ação, geralmente um método em um Controlador.\cite{livro:stauffer:2023:laravel}.
+    \par As rotas são os pontos de entrada de uma API e são definidas no arquivo routes/api.php. As rotas neste arquivo são, por padrão, \textit{stateless}, o que é fundamental para APIs REST. A definição de uma rota associa um verbo HTTP e um URI a uma ação, geralmente um método em um Controlador \cite{livro:stauffer:2023:laravel}.
 
     \par O Middleware atua como um sistema de filtros para as requisições HTTP. Antes de uma requisição chegar ao controlador, ela passa por um pipeline de Middlewares que podem inspecioná-la e até mesmo rejeitá-la. No contexto de uma API, os Middlewares são os locais ideais para implementar funcionalidades transversais. A sua aplicação mais comum é na autenticação, onde um middleware pode verificar a validade de um token de acesso, e no controle de frequência de requisições (rate limiting), que protege a API contra abuso \cite{livro:stauffer:2023:laravel}.
 
@@ -23,11 +23,13 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=1\linewidth]{figuras/laravel/laravel_arch.pdf}
+        
         \caption{Arquitetura Simplificada de Componentes do Laravel.} 
         \label{fig:figura_laravel1} 
-        \newcommand{\minhafonte}{Fonte: Autor.}
-        \minhafonte
+        
+        \includegraphics[width=1\linewidth]{figuras/laravel/laravel_arch.pdf}
+        
+        \fonte{Autor.}
     \end{figure}
 
 

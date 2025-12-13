@@ -8,7 +8,8 @@
 
     \lstinputlisting[
         language=PHP, 
-        inputencoding=utf8, caption={Controller base}, 
+        inputencoding=utf8,
+        caption={Controller base.}, 
         label=lst:controllerbase
     ]{codigos/ca/InterfaceAdapters/Http/Controllers/Controller.php}
 
@@ -21,7 +22,8 @@
     
     \lstinputlisting[
         language=PHP, 
-        inputencoding=utf8, caption={Controller de criação de Contato}, 
+        inputencoding=utf8,
+        caption={Controller de criação de Contato.}, 
         label=lst:controller.create
     ]{codigos/ca/InterfaceAdapters/Http/Controllers/Contact/CreateContactController.php}
 
@@ -31,18 +33,20 @@
     \begin{figure}[H]
         \caption{Estrutura de Diretórios dos Controladores de Contato.}
         \label{fig:estrutura-contact-controllers}
+        
         \dirtree{%
-        .1 InterfaceAdapters.
-        .2 Http.
-        .3 Controllers.
-        .4 Contact.
-        .5 CreateContactController.php.
-        .5 DeleteContactController.php.
-        .5 FindContactController.php.
-        .5 ListContactsController.php.
-        .5 UpdateContactController.php.
-        .4 Controller.php.
+            .1 InterfaceAdapters.
+            .2 Http.
+            .3 Controllers.
+            .4 Contact.
+            .5 CreateContactController.php.
+            .5 DeleteContactController.php.
+            .5 FindContactController.php.
+            .5 ListContactsController.php.
+            .5 UpdateContactController.php.
+            .4 Controller.php.
         }
+        \fonte{Autor.}
     \end{figure}
 
     \par A próxima etapa foi a implementação dos \texttt{Presenters}, eles atuam como adaptadores de saída (output adapters) responsáveis por transformar os dados retornados pelos casos de uso em um formato adequado para a camada mais externa, implementando o padrão de separação entre lógica de negócio e formatação de resposta. 
@@ -55,7 +59,7 @@
         label=lst:presenter.create
     ]{codigos/ca/InterfaceAdapters/Presenters/Api/CreateContactApiPresenter.php}
     
-    \par Nesse cenário, a primeira função do interactor é chamar o método \texttt{present()} para formatar os dados, e em seguida o controller invoca \texttt{getViewModel()} para recuperar o resultado formatado, dessar forma o Caso de Uso não conhece qual implementação de \texttt{OutputBoundary} está sendo passada para ele, garantindo que o \texttt{Controller} decida qual a formatação que vai ser utilizada, asssim basta o Controller instanciar o \texttt{Presenter} correto para cada momento.
+    \par Nesse cenário, a primeira função do interactor é chamar o método \texttt{present()} para formatar os dados, e em seguida o controller invoca \texttt{getViewModel()} para recuperar o resultado formatado, dessa forma o Caso de Uso não conhece qual implementação de \texttt{OutputBoundary} está sendo passada para ele, garantindo que o \texttt{Controller} decida qual a formatação que vai ser utilizada, asssim basta o Controller instanciar o \texttt{Presenter} correto para cada momento.
 
     \par Dessa maneira, é possível ter um presenter para cada tipo de retorno, seja para retorno de API em JSON, ou um retorno para formatar o ViewData como um arquivo CSV, tudo isso garante que o Caso de Uso permança isolado, sem a necessidade de conhecer as camadas externas da aplicação. 
 
@@ -64,6 +68,7 @@
     \begin{figure}[H]
         \caption{Estrutura de Diretórios dos Presenters da API.}
         \label{fig:estrutura-api-presenters}
+        
         \dirtree{%
             .1 Presenters.
             .2 Api.
@@ -72,6 +77,8 @@
             .3 ListContactsApiPresenter.php.
             .3 UpdateContactApiPresenter.php.
         }
+
+        \fonte{Autor.}
     \end{figure}
 
     \par A próxima etapa é a implementação do \texttt{ContactRepository}, Código \ref{lst:repository}, ele atua como um adaptador de interface, implementando a interface \texttt{ContactRepositoryInterface} definida na camada de Casos de Uso e fazendo a ponte entre a lógica de negócio (Entidades) e a camada de persistência (Frameworks e Drivers). 
@@ -79,7 +86,8 @@
     \lstinputlisting[
         linerange={1-10, 74-75},
         language=PHP, 
-        inputencoding=utf8, caption={Repositório de Contatos.}, 
+        inputencoding=utf8,
+        caption={Repositório de Contatos.}, 
         label=lst:repository
     ]{codigos/ca/InterfaceAdapters/Repositories/ContactRepository.php}
     
@@ -88,7 +96,8 @@
     \lstinputlisting[
         linerange={11-20},
         language=PHP, 
-        inputencoding=utf8, caption={Repositório de Contatos - Método toEntity().}, 
+        inputencoding=utf8, 
+        caption={Repositório de Contatos - Método toEntity().}, 
         label=lst:repository.toEntity
     ]{codigos/ca/InterfaceAdapters/Repositories/ContactRepository.php}
     
@@ -97,7 +106,8 @@
     \lstinputlisting[
         linerange={21-73},
         language=PHP, 
-        inputencoding=utf8, caption={Repositório de Contatos - Métodos CRUD.}, 
+        inputencoding=utf8, 
+        caption={Repositório de Contatos - Métodos CRUD.}, 
         label=lst:repository.methods
     ]{codigos/ca/InterfaceAdapters/Repositories/ContactRepository.php}
     
@@ -107,7 +117,8 @@
 
     \lstinputlisting[
         language=PHP, 
-        inputencoding=utf8, caption={Implementação do View Model.}, 
+        inputencoding=utf8, 
+        caption={Implementação do View Model.}, 
         label=lst:view.model
     ]{codigos/ca/InterfaceAdapters/ViewModels/ContactViewModel.php}
     

@@ -1,5 +1,7 @@
 \chapter{Introdução}
-
+\thispagestyle{headings}
+    \par Este capítulo introduz o trabalho apresentando a contextualização do tema no âmbito do desenvolvimento de software moderno, o problema de pesquisa identificado na literatura, os objetivos geral e específicos que orientam a investigação, a metodologia de estudo de caso adotada e, por fim, a estrutura de organização dos demais capítulos.
+    
     \section{Contextualização}
         \par O desenvolvimento de software moderno é marcado pela busca contínua por qualidade, o que, segundo \cite{livro:pressman:engenharia:2021}, envolve a criação de sistemas mais robustos, flexíveis e de fácil manutenção. A partir disso os padrões de arquitetura surgiram como soluções comprovadas para utilizar-se na criação de sistemas com alta complexidade. 
         
@@ -12,7 +14,7 @@
         
         \par Essa arquitetura tem por preceito a organização do software em camadas concêntricas, onde as regras de negócio ficam no núcleo, isoladas dos detalhes de implementação como \textit{frameworks}, Interface de Usuário (User Interface - UI) e bancos de dados. Essa divisão é regida pela regra da dependência, a qual define que as dependências  do código devem apontar para dentro, protegendo o núcleo do software de influências externas \cite{livro:martin:cleanarch}.
         
-        \par A relevância de se explorar a aplicação dos princípios da Arquitetura Limpa em APIs que usam o estilo arquitetural REST (Representational State Transfer) desenvolvidas em Laravel vem do objetivo de buscar a longevidade e adaptabilidade do software, também de demonstrar como o uso da Arquitetura Limpa é capaz de isolar as regras de negócio do software, do \textit{framework}, que no caso desse trabalho é o Laravel, bem como separá-las de outras tecnologias, facilitando a manutenção futura.
+        \par A relevância de se explorar a aplicação dos princípios da Arquitetura Limpa em APIs que usam o estilo arquitetural REST (\textit{Representational State Transfer}) desenvolvidas em Laravel vem do objetivo de buscar a longevidade e adaptabilidade do software, também de demonstrar como o uso da Arquitetura Limpa é capaz de isolar as regras de negócio do software, do \textit{framework}, que no caso desse trabalho é o Laravel, bem como separá-las de outras tecnologias, facilitando a manutenção futura.
         
         \par Nesse contexto, apesar da literatura atualmente abordar esses temas separadamente, percebe-se uma lacuna na mesma, no tocante a guias práticos e estudos de caso detalhados que mostram o processo de integração da Arquitetura Limpa com APIs REST desenvolvidas em Laravel, já estruturadas com o MVC. Essa carência pode dificultar a adoção de práticas arquiteturais avançadas por desenvolvedores, limitando o potencial das aplicações em termos de manutenibilidade e escalabilidade.
         
@@ -31,7 +33,7 @@
             \par O objetivo geral deste trabalho é detalhar, por meio de um estudo de caso prático, o processo de refatoração de uma API REST Laravel, estruturando-a segundo os princípios da Arquitetura Limpa. O estudo parte de uma aplicação com o padrão MVC nativo do \textit{framework} e propõe uma nova organização em camadas independentes, demonstrando as decisões de design, a reestruturação do código e o reposicionamento do padrão MVC na Arquitetura Limpa.
 
         \subsection{Objetivos Específicos}
-            \par Para a realização deste trabalho de conclusão de curso serão buscados os seguintes objetivos específicos:
+            \par Este trabalho de conclusão de curso possui os seguintes objetivos específicos:
 
             \begin{itemize}
 

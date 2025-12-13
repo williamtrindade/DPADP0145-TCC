@@ -9,23 +9,28 @@
     \par A Figura~\ref{fig:figura_dip_bad} mostra um exemplo de violação do DIP.
 
     \begin{figure}[H]
-        \centering   
-        \includegraphics[width=1\linewidth]{figuras/solid/dip_bad.pdf}
+        \centering
+        
         \caption{Violação da DIP.}
         \label{fig:figura_dip_bad} 
-        \newcommand{\minhafonte}{Fonte: Adaptado de \cite{artigo:ramachandrappa:2024}.}
-        \minhafonte
+        
+        \includegraphics[width=1\linewidth]{figuras/solid/dip_bad.pdf}
+ 
+        \fonte{Adaptado de \cite{artigo:ramachandrappa:2024}.}
     \end{figure}
 
     \par Nesse exemplo, nota-se uma classe UserService (alto nível) que depende diretamente de uma classe concreta EmailService (baixo nível) está fortemente acoplada. Esse problema é resolvido na Figura \ref{fig:figura_dip_good}.
 
     \begin{figure}[H]
         \centering   
-        \includegraphics[width=1\linewidth]{figuras/solid/dip_good.pdf}
+        
         \caption{Aplicação da DIP.}
-        \label{fig:figura_dip_good} 
-        \newcommand{\minhafonte}{Fonte: Adaptado de \cite{artigo:ramachandrappa:2024}.}
-        \minhafonte
+        \label{fig:figura_dip_good}
+        
+        \includegraphics[width=1\linewidth]{figuras/solid/dip_good.pdf}
+
+        
+        \fonte{Adaptado de \cite{artigo:ramachandrappa:2024}.}
     \end{figure}
     
     \par Essa solução da Figura \ref{fig:figura_dip_good}, mostra a criação da interface IEmailService, onde UserService depende dessa interface e EmailService implementa IEmailService. Isso inverte a direção da dependência, conforme o DIP prega, agora o UserService não depende do detalhe mas sim da abstração \cite{artigo:ramachandrappa:2024}.

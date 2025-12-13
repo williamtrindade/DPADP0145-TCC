@@ -14,23 +14,27 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.5\linewidth]{figuras/solid/lsp_bad.pdf}
+        
         \caption{Violação da LSP.}
         \label{fig:lsp_bad} 
-        \newcommand{\minhafonte}{Fonte: Adaptado de \cite{artigo:ramachandrappa:2024}.}
-        \minhafonte
+        
+        \includegraphics[width=0.5\linewidth]{figuras/solid/lsp_bad.pdf}
+     
+        \fonte{Adaptado de \cite{artigo:ramachandrappa:2024}.}
     \end{figure} 
     
     
     \par Nesse exemplo a classe Penguin herda de Bird e o método fly() em Bird implica a capacidade de voar, a implementação de fly() em Penguin (que não voa) lança uma exceção. Assim violando o LSP. Uma solução é apresentada no diagrama após a refatoração na Figura \ref{fig:figura_lsp_good}.
     
     \begin{figure}[H]
-        \centering   
-        \includegraphics[width=0.6\linewidth]{figuras/solid/lsp_good.pdf}
+        \centering 
+
         \caption{Aplicação da LSP.}
         \label{fig:figura_lsp_good} 
-        \newcommand{\minhafonte}{Fonte: Adaptado de \cite{artigo:ramachandrappa:2024}.}
-        \minhafonte
+        
+        \includegraphics[width=0.6\linewidth]{figuras/solid/lsp_good.pdf}
+        
+        \fonte{Adaptado de \cite{artigo:ramachandrappa:2024}.}
     \end{figure} 
     
     

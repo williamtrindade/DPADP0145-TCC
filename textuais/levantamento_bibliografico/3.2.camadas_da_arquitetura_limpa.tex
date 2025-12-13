@@ -1,15 +1,19 @@
 \subsection{Camadas da Arquitetura Limpa}
 
-     \begin{figure}[H] % O [H] exige o uso do pacote float (veja abaixo)
+    \par Para representar os princípios de separação de interesse e independência de detalhes, \cite{livro:martin:cleanarch} propõe um modelo visual para a Arquitetura Limpa, que pode ser visto na Figura \ref{fig:figura_clean_arch_1}.
+
+    \begin{figure}[H] % O [H] exige o uso do pacote float (veja abaixo)
         \centering
-        \includegraphics[width=0.8\textwidth]{figuras/clean_arch_1.jpg}
-        \caption{A arquitetura limpa}
+
+        \caption{A arquitetura limpa.}
         \label{fig:figura_clean_arch_1}
-        \newcommand{\minhafonteum}{Fonte: \cite{livro:martin:cleanarch}}
-        \minhafonteum
+        
+        \includegraphics[width=0.8\textwidth]{figuras/clean_arch_1.jpg}
+       
+        \fonte{\cite{livro:martin:cleanarch}.}
     \end{figure}
 
-    \par Para representar os princípios de separação de interesse e independência de detalhes, \cite{livro:martin:cleanarch} propõe um modelo visual para a Arquitetura Limpa, que pode ser visto na Figura \ref{fig:figura_clean_arch_1}, esse modelo define uma série de camadas concêntricas. Ele representa os níveis de abstração do software, indo desde as regras de negócio mais puras e de alto nível no centro, até os mecanismo e tecnologias na borda. A regra da dependência abordada anteriormente, dita a interação entre essas camadas, a seguir é detalhada cada uma dessas camadas:
+    \par Esse modelo define uma série de camadas concêntricas. Ele representa os níveis de abstração do software, indo desde as regras de negócio mais puras e de alto nível no centro, até os mecanismo e tecnologias na borda. A regra da dependência abordada anteriormente, dita a interação entre essas camadas, a seguir é detalhada cada uma dessas camadas:
 
     \begin{itemize}
         \item Entidades: As entidades são os componentes da arquitetura limpa responsáveis por encapsular as regras de negócio do software, sendo objetos ou coleções de dados e funções de tecnologias externas \cite{livro:martin:cleanarch, artigo:ferreira:2022, artigo:dantas:2021}. Elas fazem parte da camada central, que sofrerá menos mudanças ao longo do tempo, e são a representação do domínio do sistemas. Além disso  as entidades garantem estabilidade, pois elas são desenvolvidas para não serem alteradas quando houver mudanças em UI ou BD \cite{artigo:dantas:2021, livro:martin:cleanarch};

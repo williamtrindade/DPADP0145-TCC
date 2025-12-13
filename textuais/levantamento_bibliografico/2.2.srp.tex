@@ -15,22 +15,25 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.8\linewidth]{figuras/solid/srp_bad.pdf}
+        
         \caption{Violação do SRP.} 
         \label{fig:figura_srp_bad} 
-        \newcommand{\minhafonte}{Fonte: Adaptado de \cite{artigo:ramachandrappa:2024}.}
-        \minhafonte
+        
+        \includegraphics[width=0.8\linewidth]{figuras/solid/srp_bad.pdf}
+        
+        \fonte{Adaptado de \cite{artigo:ramachandrappa:2024}.}
     \end{figure}
 
     \par Nesse exemplo trazido por \cite{artigo:ramachandrappa:2024} a classe User lida tanto com a gestão dos dados do usuário (como nome e senha) quanto com a lógica de autenticação desse usuário no método authenticateUser(). A Figura~\ref{fig:figura_srp_good} ilustra a classe após a refatoração para fazer uso do SRP.
 
    \begin{figure}[H]
         \centering
-        \includegraphics[width=1\linewidth]{figuras/solid/srp_good.pdf}
         \caption{Aplicação do SRP.}
         \label{fig:figura_srp_good} 
-        \newcommand{\minhafonte}{Fonte: Adaptado de \cite{artigo:ramachandrappa:2024}.}
-        \minhafonte
+        
+        \includegraphics[width=1\linewidth]{figuras/solid/srp_good.pdf}
+      
+        \fonte{Adaptado de \cite{artigo:ramachandrappa:2024}.}
     \end{figure}
 
     \par Na Figura~\ref{fig:figura_srp_good} a classe User mantêm apenas os dados, a classe UserRepository controla a persistência e AuthService gerenciaria a autenticação, assim demonstrando o uso da SRP, onde cada classe tem sua própria responsabilidade \cite{artigo:ramachandrappa:2024}.

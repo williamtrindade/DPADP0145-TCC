@@ -15,13 +15,14 @@
 
     \par Nesse contexto de definição de conceitos, nota-se que o coração do padrão MVC não é a separação técnica entre Model, View e Controller, mas a garantia de que o Model espelhe o modelo mental do usuário. Isso significa que, ao interagir com o sistema, o usuário não está lidando com tabelas de Banco de Dados (BD) ou Notação de Objeto JavaScript (JavaScript Object Notation - JSON), mas com representações digitais de conceitos que já fazem parte do seu entendimento (ex.: ``projetos'', ``tarefas'', ``prazos''). Essa abordagem, inspirada em psicologia cognitiva\footnote{A Psicologia Cognitiva é o estudo científico dos processos internos utilizados para extrair sentido do ambiente e decidir a ação apropriada, incluindo atenção, percepção, aprendizagem, memória, linguagem, resolução de problemas, raciocínio e pensamento \cite{livro:eysenck:2017}.} e em linguagens de modelagem como UML, foi o que diferenciou o MVC de padrões anteriores \cite{artigo:reenskaug:2003}.
 
-    \begin{figure}[H] % O [H] exige o uso do pacote float (veja abaixo)
+    \begin{figure}[H]
         \centering
-        \includegraphics[width=0.8\textwidth]{figuras/figura_mvc_1.png}
         \caption{Modelo de colaboração UML da solução Smalltalk-80.}
         \label{fig:figura_mvc_1}
-        \newcommand{\minhafonte}{Fonte: \cite{artigo:reenskaug:2003}}
-        \minhafonte
+        
+        \includegraphics[width=0.8\textwidth]{figuras/figura_mvc_1.png}
+       
+        \fonte{\cite{artigo:reenskaug:2003}.}
     \end{figure}
 
     %% MODEL 
@@ -64,7 +65,7 @@
         
         \par Além disso, a arquitetura ainda previa o conceito de Tools, que coordenavam conjuntos de Editores (Views) para tarefas complexas, garantindo consistência na interface \cite{artigo:reenskaug:2003}. 
         
-        \par Esta implementação do MVC no Smalltalk-80 serviu como base, definindo os princípios fundamentais de separação de preocupações que influenciaram profundamente o desenvolvimento de interfaces gráficas no futuro \cite{artigo:reenskaug:2003}
+        \par Esta implementação do MVC no Smalltalk-80 serviu como base, definindo os princípios fundamentais de separação de preocupações que influenciaram profundamente o desenvolvimento de interfaces gráficas no futuro \cite{artigo:reenskaug:2003}.
             
     \subsection{Padrão MVC-WEB}
     

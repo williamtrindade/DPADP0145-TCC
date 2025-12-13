@@ -22,7 +22,8 @@
     \lstinputlisting[
         language=PHP, 
         inputencoding=utf8, 
-        caption={Interface do repositório de Contatos.}, label=lst:contact.repo.interface
+        caption={Interface do repositório de Contatos.},
+        label=lst:contact.repo.interface
     ]{codigos/ca/UseCases/Contracts/ContactRepositoryinterface.php}
     
     \par Para exemplificar a implementação, o caso de uso \texttt{CreateContact} é detalhado a seguir, por ser o mais completo na aplicação do padrão, demonstrando a função de cada componente.
@@ -46,7 +47,8 @@
     \lstinputlisting[
         language=PHP, 
         inputencoding=utf8, 
-        caption={Input Boundary para o Caso de Uso de Criação.}, label=lst:create.input.boundary
+        caption={Input Boundary para o Caso de Uso de Criação.}, 
+        label=lst:create.input.boundary
     ]{codigos/ca/UseCases/CreateContact/Boundaries/CreateContactInputBoundary.php}
         
     \par Já a \texttt{OutputBoundary} (Código \ref{lst:create.output.boundary}), define o contrato que será implementado pelo \texttt{Presenter}, na camada de Adaptadores de Interface e consumido pelo \texttt{Interactor}.
@@ -65,7 +67,8 @@
         lastline=19,
         language=PHP, 
         inputencoding=utf8, 
-        caption={Estrutura do Interactor de Criação de Contato.}, label=lst:create.interactor
+        caption={Estrutura do Interactor de Criação de Contato.}, 
+        label=lst:create.interactor
     ]{codigos/ca/UseCases/CreateContact/CreateContactInteractor.php}
 
     \par No (Código \ref{lst:create.interactor.create}) tem-se a implementação do método create do \texttt{Interactor}, esse método realiza a regra de negócio do caso de uso, como as validações e etapas necessárias para a criação de um Contato. Esse método recebe os dados pela estrutura de dados de entrada e ao final chama o método \texttt{present()} da interface \texttt{CreateContactOutputBoundary}, que é a representação do \texttt{Presenter}. Desse modo o caso de uso não conhece as implementações das outras camadas, mantendo os princípios da Arquitetura Limpa.
@@ -74,7 +77,8 @@
         firstline=20,
         lastline=50,
         language=PHP, 
-        inputencoding=utf8, caption={Estrutura do método create do Interactor de Criação de Contato.}, 
+        inputencoding=utf8, 
+        caption={Estrutura do método create do Interactor de Criação de Contato.}, 
         label=lst:create.interactor.create
     ]{codigos/ca/UseCases/CreateContact/CreateContactInteractor.php}
 
@@ -103,6 +107,9 @@
     \par Após a implementação de todos os casos de uso a estrutura do diretório de UseCases ficou conforme a Figura \ref{fig:estrutura-usecases-minimalista}, onde cada caso de uso tem seus \texttt{Boundaries} e \texttt{DTOs}, quando faz-se necessário cada um deles, por exemplo, no caso de uso \texttt{DeleteContact}, não é necessário passar uma estrutura de dados para realizar a deleção, o que faz com que esse Caso de Uso não necessite de DTOs.
     
     \begin{figure}[H]
+        \caption{Estrutura de diretórios da camada de Casos de Uso.}
+        \label{fig:estrutura-usecases-minimalista}
+        
         \dirtree{%
             .1 UseCases.
             .2 Contracts.
@@ -130,8 +137,8 @@
             .3 DTOs.
             .3 UpdateContactInteractor.php.
         }
-        \caption{Estrutura de diretórios da camada de Casos de Uso.}
-        \label{fig:estrutura-usecases-minimalista}
-    \end{figure} 
-        
-    \par As implementações completas desses Casos de Uso seguem os mesmos princípios aqui demonstrados pela implementação do caso de uso \texttt{CreateContact}, variando apenas na complexidade de seus DTOs e na lógica de seus Interactors. Para fins de brevidade, seus códigos não serão detalhados neste documento, mas podem ser consultados na íntegra no repositório do projeto no GitHub.
+
+        \fonte{Autor.}
+    \end{figure}
+
+    \par As implementações completas desses casos de uso seguem os mesmos princípios demonstrados na implementação de \texttt{CreateContact}, variando apenas no conteúdo de seus DTOs e na lógica específica de seus Interactors. Para fins de brevidade, seus códigos não serão detalhados neste documento, mas podem ser consultados integralmente no repositório do projeto no GitHub.

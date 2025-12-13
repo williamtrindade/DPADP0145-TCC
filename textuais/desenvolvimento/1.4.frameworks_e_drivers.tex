@@ -32,7 +32,7 @@
         linerange={1-15, 52-52},
         language=PHP, 
         inputencoding=utf8,
-        caption={Implementação do app.php}, 
+        caption={Implementação do app.php.}, 
         label=lst:bootstrap
     ]{codigos/ca/bootstrap/app.php}
 
@@ -43,7 +43,7 @@
         linerange={16-51},
         language=PHP, 
         inputencoding=utf8,
-        caption={Implementação do app.php - Exception Handler}, 
+        caption={Implementação do app.php - Exception Handler.}, 
         label=lst:bootstrap.eh
     ]{codigos/ca/bootstrap/app.php}
     
@@ -53,7 +53,7 @@
     \lstinputlisting[
         language=PHP, 
         inputencoding=utf8,
-        caption={Implementação do providers.php}, 
+        caption={Implementação do providers.php.}, 
         label=lst:providers
     ]{codigos/ca/bootstrap/providers.php}
     
@@ -63,8 +63,8 @@
     \lstinputlisting[
         language=PHP,
         inputencoding=utf8,
-        caption={Implementação do arquivo de rotas}, 
-        label=lst:routes
+        caption={Implementação do arquivo de rotas.}, 
+        label=lst:routes,
     ]{codigos/ca/routes/api.php}
     
     \par Esta organização visa isolar completamente o código que depende de tecnologias específicas, facilitando futuras manutenções e eventual migração para outros \textit{frameworks}, uma vez que as regras de negócio permanecem independentes nas camadas de domínio e casos de uso. Todos os arquivos que anteriormente estavam dispersos no diretório padrão \texttt{app/} do Laravel e que possuíam relação direta com funcionalidades específicas do \textit{framework} foram reorganizados para esta camada.

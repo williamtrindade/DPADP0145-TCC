@@ -13,23 +13,27 @@
     \par Para uma exemplificação, o diagrama da Figura \ref{fig:figura_ocp_bad}, representa a violação do OCP, onde tem-se uma classe DiscountCalculator que calcula descontos com base em diferentes tipos de cliente através de múltiplas declarações if-else if.
 
     \begin{figure}[H]
-        \centering   
-        \includegraphics[width=0.7\linewidth]{figuras/solid/ocp_bad.pdf}
+        \centering
+        
         \caption{Violação da OCP.}
         \label{fig:figura_ocp_bad} 
-        \newcommand{\minhafonte}{Fonte: Adaptado de \cite{artigo:ramachandrappa:2024}.}
-        \minhafonte
+        
+        \includegraphics[width=0.7\linewidth]{figuras/solid/ocp_bad.pdf}
+      
+        \fonte{Adaptado de \cite{artigo:ramachandrappa:2024}.}
     \end{figure}
         
     \par A Figura \ref{fig:figura_ocp_good} representa a aplicação do OCP:
 
    \begin{figure}[H]
-        \centering   
-        \includegraphics[width=0.7\linewidth]{figuras/solid/ocp_good.pdf}
+        \centering
+        
         \caption{Aplicação da OCP.}
         \label{fig:figura_ocp_good} 
-        \newcommand{\minhafonte}{Fonte: Adaptado de \cite{artigo:ramachandrappa:2024}.}
-        \minhafonte
+        
+        \includegraphics[width=0.7\linewidth]{figuras/solid/ocp_good.pdf}
+        
+        \fonte{Adaptado de \cite{artigo:ramachandrappa:2024}.}
     \end{figure} 
     
     \par Para a aplicação do OCP usa-se de polimorfismo, neste exemplo tem-se uma classe abstrata Customer com um método abstrato getDiscount(), as classes RegularCustomer e PremiumCustomer herdam de Customer e implementariam getDiscount(). Desse modo a classe DiscountCalculator usa o método getDiscount() do objeto Customer passado por parâmetro, permitindo a adição de novos tipos de clientes criando novas subclasses de Customer sem alterar a classe DiscountCalculator \cite{artigo:ramachandrappa:2024}.

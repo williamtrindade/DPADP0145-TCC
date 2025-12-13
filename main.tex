@@ -1,56 +1,60 @@
 \documentclass[oneside,openright,12pt]{ufsm_2021} 
 
 \include{dados/dados}
-\include{pre-textuais/epigrafe}
-\include{pre-textuais/dedicatoria}
-\include{pre-textuais/agradecimentos}
-\include{pre-textuais/resumo}
-\include{pre-textuais/listas}
-
-%% \include{pre-textuais/ficha-catalografica}
-%% \include{pre-textuais/folha-de-errata}
 \include{dados/opcoes-formatacao}
 
+\include{pre-textuais/ficha-catalografica}
+\include{pre-textuais/dedicatoria}
+\include{pre-textuais/agradecimentos}
+\include{pre-textuais/epigrafe}
+\include{pre-textuais/resumo}
+\include{pre-textuais/listas}
+%% \include{pre-textuais/folha-de-errata}
+
+% PACOTES
 \usepackage{booktabs}
-\usepackage{tabularx} % Adicionar este pacote
+\usepackage{tabularx}
 \usepackage{caption}
-\usepackage{graphicx} % Usado para outros tipos de imagens
-\usepackage{float} % Usado para posicionamento de imagens
-\usepackage{svg}  % Eis o pacote que queremos.
+\usepackage{graphicx} 
+\usepackage{float} 
+\usepackage{svg}
 \usepackage{tikz}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{dirtree}
 
-% --- COMANDO PRINCIPAL PARA RENOMEAR "Listing" ---
+% CONFIGURACAO DA LISTA DE CODIGOS
 \renewcommand{\lstlistingname}{Código}
-
-% (Opcional) Renomeia também a "Lista de Listings" para "Lista de Códigos"
 \renewcommand{\lstlistlistingname}{Lista de Códigos}
 
-% Definição de cores personalizadas
 \definecolor{phpkeyword}{RGB}{0,0,180}   % azul escuro
 \definecolor{phpcomment}{RGB}{0,128,0}   % verde
 \definecolor{phpstring}{RGB}{180,0,0}    % vermelho
 
+\captionsetup[lstlisting]{
+    font=footnotesize
+}
 \lstset{
-  language=PHP,                          % linguagem PHP
-  basicstyle=\ttfamily\scriptsize,             % fonte monoespaçada
-  keywordstyle=\color{phpkeyword}\bfseries, % palavras-chave em azul e negrito
-  commentstyle=\color{phpcomment},       % comentários em verde
-  stringstyle=\color{phpstring},         % strings em vermelho
-  numbers=left,                          % números das linhas à esquerda
-  numberstyle=\tiny\color{gray},         % estilo dos números
-  stepnumber=1,                          % mostra número a cada linha
-  showstringspaces=false,                % não mostrar espaços em strings
-  breaklines=true,                       % quebra automática de linha
-  frame=single,                          % quadro ao redor do código
-  tabsize=4,                             % largura da tabulação
-  captionpos=b,                          % posição da legenda (bottom)
-  escapeinside={(*@}{@*)},               % escape para LaTeX dentro do código
-  morekeywords={private,public,protected,final,interface,implements,extends}
+    language=PHP,                          % linguagem PHP
+    basicstyle=\ttfamily\scriptsize\setstretch{1},
+    keywordstyle=\color{phpkeyword}\bfseries, % palavras-chave em azul e negrito
+    commentstyle=\color{phpcomment},       % comentários em verde
+    stringstyle=\color{phpstring},         % strings em vermelho
+    numbers=left,                          % números das linhas à esquerda
+    numberstyle=\tiny\color{gray},         % estilo dos números
+    stepnumber=1,                          % mostra número a cada linha
+    showstringspaces=false,                % não mostrar espaços em strings
+    breaklines=true,                       % quebra automática de linha
+    frame=single,                          % quadro ao redor do código
+    tabsize=4,                             
+    escapeinside={(*@}{@*)},               % escape para LaTeX dentro do código
+    morekeywords={private,public,protected,final,interface,implements,extends},
+    captionpos=t,
+    aboveskip=18pt,  
+    belowskip=18pt
 }
 
+% DOCUMENTO
 \begin{document}
     \pretextual
     
