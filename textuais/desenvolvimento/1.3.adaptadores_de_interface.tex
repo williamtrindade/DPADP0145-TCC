@@ -1,10 +1,10 @@
 \subsection{Camada de Adaptadores de Interface}
     \par Para a implementação da camada de Adaptadores de Interface se fez necessário primeiramente a deleção do Controller criado anteriormente no projeto, pois com a Arquitetura Limpa e aplicação do SRP do SOLID, cada método do Controller se tornara uma classe. Assim como na camada de Casos de Uso, esta subseção focará em apresentar a criação do contato na API de contatos.
 
-    \par Primeiramente são deletado os arquivos \texttt{ContactController.php} e \texttt{Controller.php} do diretório \texttt{app/Http/Controllers/}. 
+    \par Primeiramente são deletados os arquivos \texttt{ContactController.php} e \texttt{Controller.php} do diretório \texttt{app/Http/Controllers/}. 
     Após isso foi criado primeiro o arquivo \texttt{Controller.php} e o arquivo \texttt{/Contact/CreateContactController.php} no diretório \texttt{app/InterfaceAdapters/Http/Controllers/}.
 
-    \par Após criar esses dois arquivos, o \texttt{Controller.php}, Código \ref{lst:controllerbase}, é mantido como o anterior, criado pelo Laravel, mantendo o mesmo código, pois essa classe é estendida pelos outros controllers. A decisão de coloca-lo no diretório de InterfaceAdapters é para facilitar a manutenção do código, já que componentes com responsabilidades parecidas vão se manter próximos no projeto.
+    \par Após criar esses dois arquivos, o \texttt{Controller.php}, Código \ref{lst:controllerbase}, é preservado como o anterior, criado pelo Laravel, conservando o mesmo código, pois essa classe é estendida pelos outros controllers. A decisão de coloca-lo no diretório de InterfaceAdapters é para facilitar a manutenção do código, já que componentes com responsabilidades parecidas vão se manter próximos no projeto.
 
     \lstinputlisting[
         language=PHP, 
@@ -17,7 +17,7 @@
     
     \par O método \texttt{\_\_invoke()} implementa o padrão \textit{Single Action Controller} do Laravel. Ele é responsável por extrair os dados da requisição HTTP (\texttt{name}, \texttt{phone\_number} e \texttt{email}), criar uma instância de \texttt{CreateContactRequestModel}, um DTO que encapsula os dados necessários e utilizá-la como parâmetro ao invocar o método \texttt{create()} do \texttt{Interactor}. 
     
-    \par Nessa etapa, o \textit{presenter} é passado como parâmetro ao Intercator para que formate a resposta. Após a execução da lógica de negócio, o método recupera o modelo de visualização formatado pelo \textit{presenter} por meio de \texttt{getViewModel()}, retornando, por fim, uma resposta JSON com código de status HTTP~201 (\textit{Created}).
+    \par Nessa etapa, o \textit{presenter} é passado como parâmetro ao \texttt{Interactor} para que formate a resposta. Após a execução da lógica de negócio, o método recupera o modelo de visualização formatado pelo \textit{presenter} por meio de \texttt{getViewModel()}, retornando, por fim, uma resposta JSON com código de status HTTP~201 (\textit{Created}).
 
     
     \lstinputlisting[
@@ -61,7 +61,7 @@
     
     \par Nesse cenário, a primeira função do interactor é chamar o método \texttt{present()} para formatar os dados, e em seguida o controller invoca \texttt{getViewModel()} para recuperar o resultado formatado, dessa forma o Caso de Uso não conhece qual implementação de \texttt{OutputBoundary} está sendo passada para ele, garantindo que o \texttt{Controller} decida qual a formatação que vai ser utilizada, asssim basta o Controller instanciar o \texttt{Presenter} correto para cada momento.
 
-    \par Dessa maneira, é possível ter um presenter para cada tipo de retorno, seja para retorno de API em JSON, ou um retorno para formatar o ViewData como um arquivo CSV, tudo isso garante que o Caso de Uso permança isolado, sem a necessidade de conhecer as camadas externas da aplicação. 
+    \par Dessa maneira, é possível ter um presenter para cada tipo de retorno, seja para retorno de API em JSON, ou um retorno para formatar o ViewData como um arquivo CSV, tudo isso garante que o Caso de Uso permaneça isolado, sem a necessidade de conhecer as camadas externas da aplicação. 
 
     \par Após a definição de todos os Presenters seguindo o mesmo padrão utilizado no presenter de criação de contato, a estrutura fica conforme a Figura \ref{fig:estrutura-api-presenters}.
 
